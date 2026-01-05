@@ -1,0 +1,20 @@
+---
+// src/pages/servicios.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ServicesComponent from '../components/Services.astro'; // Renombramos para evitar conflictos
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Servicios | Ecentia">
+    <Header />
+    
+    <main style="padding-top: 80px;">
+        <ServicesComponent />
+        
+        <Contact />
+    </main>
+
+    <Footer />
+</Layout>

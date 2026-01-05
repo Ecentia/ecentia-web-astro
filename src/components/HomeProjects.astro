@@ -1,0 +1,64 @@
+---
+// src/components/HomeProjects.astro
+import ProjectCard from './ProjectCard.astro';
+
+// Tus datos originales
+const projects = [
+    {
+        title: "Anazon Moda",
+        category: "E-COMMERCE / MODA",
+        description: "Diseño web elegante y optimizado para potenciar la identidad de marca en el sector moda.",
+        tags: ["Diseño UX/UI", "E-Commerce", "Desarrollo"],
+        image: "/webs_images/anazonmoda_sc.png", 
+        link: "https://anazonmoda.com",
+        reverse: false
+    },
+    {
+        title: "Depofibra",
+        category: "LANDING WEB",
+        description: "Plataforma de comercio de depósitos con experiencia inmersiva.",
+        tags: ["HTML", "CSS", "JavaScript"],
+        image: "/webs_images/depofibra_sc.png",
+        link: "https://depofibra.com",
+        reverse: true
+    },
+    {
+        title: "Eva Torres Moda",
+        category: "LANDING E-COMMERCE",
+        description: "Gestión de productos y diseño dinámico para tiendas locales.",
+        tags: ["Astro", "Tailwind CSS", "Sanity"],
+        image: "/webs_images/evatorresmoda_sc.png",
+        link: "https://evatorresmoda.com",
+        reverse: false
+    }
+];
+---
+
+<section id="work" class="work-section">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Obras recientes</h2>
+            <span class="section-number">01</span>
+        </div>
+
+        <div class="project-list">
+            {projects.map(project => (
+                <ProjectCard {...project} />
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS Original de la sección */
+    .work-section { padding: 150px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 700; }
+    .section-number { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--gray); }
+    
+    .project-list { display: flex; flex-direction: column; gap: 150px; }
+    
+    @media (max-width: 768px) {
+        .project-list { gap: 80px; }
+    }
+</style>

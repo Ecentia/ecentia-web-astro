@@ -1,0 +1,39 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="copyright">
+            <h4>Ecentia.</h4>
+            <p>© 2025 Ecentia Marketing. Sevilla.</p>
+        </div>
+        <div class="footer-nav">
+            <a href="/legal/aviso-legal">Legal</a>
+            <a href="/legal/privacidad">Privacidad</a>
+            <a href="/legal/cookies">Cookies</a>
+        </div>
+        <div class="socials">
+            <a target="_blank" href="https://www.instagram.com/ecentiamarketing/"><i class="fab fa-instagram"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/company/ecentia-marketing/"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* CSS Original Footer */
+    .site-footer { padding: 40px 0; background: #000; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+    .copyright h4 { font-family: 'Syne'; margin: 0; color: #fff; font-size: 1.2rem; }
+    .copyright p { color: var(--gray); font-size: 0.85rem; margin: 0; }
+    .footer-nav { display: flex; gap: 25px; }
+    .footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+    .footer-nav a:hover { color: var(--white); }
+    .socials { display: flex; gap: 15px; }
+    .socials a { color: var(--white); font-size: 1.2rem; opacity: 0.6; transition: 0.3s; }
+    .socials a:hover { opacity: 1; color: var(--accent-color); }
+    
+    @media (max-width: 900px) {
+        .footer-inner { flex-direction: column; gap: 25px; text-align: center; }
+    }
+</style>

@@ -1,0 +1,147 @@
+---
+// src/components/Services.astro
+---
+
+<section id="services" class="services-section">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Nuestra Alquimia</h2>
+            <span class="section-number">02</span>
+        </div>
+
+        <div class="services-list">
+            <div class="service-row magnet-target" tabindex="0">
+                <div class="service-header">
+                    <span class="service-num">01/</span>
+                    <h3 class="service-name">Diseño Web Premium</h3>
+                    <i class="fas fa-plus service-icon"></i>
+                </div>
+                <div class="service-body">
+                    <p>Olvídate de las plantillas. Diseñamos interfaces píxel a píxel que seducen, retienen y guían
+                        al usuario hacia la compra. Tu marca merece exclusividad.</p>
+                    <ul class="service-tags">
+                        <li>UI/UX</li>
+                        <li>Figma</li>
+                        <li>Desarrollo a medida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-row magnet-target" tabindex="0">
+                <div class="service-header">
+                    <span class="service-num">02/</span>
+                    <h3 class="service-name">Automatización & IA</h3>
+                    <i class="fas fa-plus service-icon"></i>
+                </div>
+                <div class="service-body">
+                    <p>Integramos inteligencia artificial para que tu negocio trabaje por ti. Chatbots, emails
+                        automáticos y procesos que venden mientras duermes.</p>
+                    <ul class="service-tags">
+                        <li>Zapier/Make</li>
+                        <li>Chatbots</li>
+                        <li>CRM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-row magnet-target" tabindex="0">
+                <div class="service-header">
+                    <span class="service-num">03/</span>
+                    <h3 class="service-name">E-Commerce Avanzado</h3>
+                    <i class="fas fa-plus service-icon"></i>
+                </div>
+                <div class="service-body">
+                    <p>Tiendas online ultra-rápidas diseñadas con psicología de consumo para aumentar el ticket
+                        medio y reducir carritos abandonados.</p>
+                    <ul class="service-tags">
+                        <li>Shopify</li>
+                        <li>Woocommerce</li>
+                        <li>Pasarelas de pago</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-row magnet-target" tabindex="0">
+                <div class="service-header">
+                    <span class="service-num">04/</span>
+                    <h3 class="service-name">SEO Estratégico</h3>
+                    <i class="fas fa-plus service-icon"></i>
+                </div>
+                <div class="service-body">
+                    <p>No se trata solo de estar en Google, sino de dominarlo. Estrategias de posicionamiento para
+                        captar tráfico que realmente compra.</p>
+                    <ul class="service-tags">
+                        <li>Auditoría</li>
+                        <li>Linkbuilding</li>
+                        <li>SEO Local</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS Original extraído de styles.css para la sección de servicios */
+    .services-section { padding: 100px 0; background: #080808; }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 700; }
+    .section-number { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--gray); }
+
+    .services-list {
+        display: flex; flex-direction: column; border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .service-row {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px 20px; cursor: pointer; transition: background-color 0.4s ease;
+        position: relative; overflow: hidden;
+    }
+    .service-row:hover, .service-row:focus-within { background-color: rgba(255, 255, 255, 0.03); }
+    
+    .service-header { display: flex; align-items: center; justify-content: space-between; }
+    .service-num { font-family: 'Syne', sans-serif; color: var(--accent-color); font-size: 1rem; margin-right: 30px; opacity: 0.7; }
+    .service-name { flex-grow: 1; font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--text-muted); transition: color 0.4s ease, transform 0.4s ease; }
+    .service-icon { font-size: 1.5rem; color: var(--white); transition: transform 0.4s ease; }
+    
+    .service-row:hover .service-name { color: var(--white); transform: translateX(10px); }
+    .service-row:hover .service-icon { transform: rotate(45deg); color: var(--accent-color); }
+    
+    /* El body empieza oculto */
+    .service-body {
+        max-height: 0; overflow: hidden; opacity: 0;
+        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        padding-left: 60px; margin-top: 0;
+    }
+    .service-body p { font-size: 1.1rem; color: var(--gray); max-width: 600px; margin-bottom: 20px; line-height: 1.6; }
+    .service-tags { display: flex; gap: 10px; list-style: none; }
+    .service-tags li { font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; color: var(--white); }
+
+    /* Clase activa para abrirlo (Gestionada por JS) */
+    .service-row.active .service-body {
+        max-height: 300px; opacity: 1; margin-top: 30px;
+    }
+    .service-row.active .service-icon { transform: rotate(45deg); color: var(--accent-color); }
+    .service-row.active .service-name { color: var(--white); transform: translateX(10px); }
+
+    @media (max-width: 768px) {
+        .service-row { padding: 30px 10px; }
+        .service-header { align-items: flex-start; }
+        .service-num { display: none; }
+        .service-name { font-size: 1.8rem; }
+        .service-body { padding-left: 0; }
+    }
+</style>
+
+<script>
+    // Corrección del error 'this' y tipos
+    document.addEventListener('astro:page-load', () => {
+        const rows = document.querySelectorAll('.service-row');
+        rows.forEach(row => {
+            row.addEventListener('click', () => {
+                // Al usar arrow function, 'row' es la variable correcta, no 'this'
+                row.classList.toggle('active');
+            });
+        });
+    });
+</script>

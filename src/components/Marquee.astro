@@ -1,0 +1,50 @@
+---
+// src/components/Marquee.astro
+---
+
+<section class="marquee-section">
+    <div class="marquee-inner">
+        <div class="marquee-part">
+            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
+            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
+        </div>
+        <div class="marquee-part">
+            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
+            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS Original extraído de styles.css */
+    .marquee-section { 
+        padding: 80px 0; 
+        border-top: 1px solid rgba(255,255,255,0.05); 
+        border-bottom: 1px solid rgba(255,255,255,0.05); 
+        overflow: hidden; 
+        background: #080808; 
+    }
+    .marquee-inner { 
+        display: flex; 
+        width: fit-content; 
+        animation: scrollMarquee 20s linear infinite; 
+    }
+    .marquee-part { 
+        font-family: 'Syne', sans-serif; 
+        font-size: 4rem; 
+        font-weight: 700; 
+        white-space: nowrap; 
+        padding-right: 50px; 
+        color: rgba(255,255,255,0.05); 
+        transition: 0.3s; 
+    }
+    .marquee-section:hover .marquee-part { 
+        color: var(--accent-color); 
+        opacity: 0.5; 
+    }
+    
+    @keyframes scrollMarquee { 
+        0% { transform: translateX(0); } 
+        100% { transform: translateX(-50%); } 
+    }
+</style>

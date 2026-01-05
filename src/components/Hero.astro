@@ -1,0 +1,105 @@
+---
+// src/components/Hero.astro
+---
+
+<header class="hero-section">
+    <div class="hero-bg-glow"></div>
+
+    <div class="container fluid-height">
+        <div class="hero-content">
+            <div class="label-wrapper fade-in-up">
+                <span class="status-dot"></span>
+                <span class="status-text">Agencia Digital en Sevilla</span>
+            </div>
+
+            <h1 class="mega-title">
+                <div class="line"><span class="reveal-text">DISEÑO</span></div>
+                <div class="line"><span class="reveal-text outline-text">WEB &</span></div>
+                <div class="line indent"><span class="reveal-text">AUTORIDAD</span></div>
+            </h1>
+
+            <div class="hero-footer fade-in-up delay-2">
+                <p class="hero-desc">
+                    No hacemos simples páginas web. Creamos <strong>activos digitales</strong> diseñados con
+                    psicología de venta y automatización para que tu negocio en Sevilla (o el mundo) no pare de
+                    crecer.
+                </p>
+                <a href="/proyectos" class="scroll-down-btn magnet-target">
+                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
+                    <span>Ver casos de éxito</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+    /* Estilos extraídos EXACTAMENTE de tu styles.css original */
+    .hero-section { 
+        min-height: 100vh;
+        width: 100%;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        position: relative; 
+        overflow: hidden; 
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    .hero-bg-glow {
+        position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, var(--accent-color) 0%, transparent 60%);
+        opacity: 0.15; filter: blur(80px); top: 50%; left: 50%; transform: translate(-50%, -50%);
+        animation: pulseGlow 8s infinite alternate;
+    }
+    @keyframes pulseGlow { 0% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.2); } }
+
+    .fluid-height { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+
+    .mega-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(3.5rem, 9vw, 8.5rem); 
+        line-height: 1.15; 
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+    }
+    .line {
+        overflow: visible; 
+        display: block;
+        height: auto; 
+    }
+    .line.indent { margin-left: 10vw; }
+    
+    /* Animación de entrada: depende de la clase 'loaded' en body (gestionada en Layout.astro) */
+    .reveal-text { display: block; transform: translateY(120%); transition: transform 1.2s var(--ease-out-expo); }
+    :global(body.loaded) .reveal-text { transform: translateY(0); }
+
+    .outline-text { -webkit-text-stroke: 1px var(--white); color: transparent; transition: 0.3s; }
+    .mega-title:hover .outline-text { color: var(--accent-color); -webkit-text-stroke: 0; }
+
+    .label-wrapper { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 50px; margin-bottom: 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .status-dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 10px #00ff88; }
+
+    .hero-footer { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 30px; }
+    .hero-desc { max-width: 400px; color: var(--gray); font-size: 1.1rem; line-height: 1.6; }
+    .scroll-down-btn { display: flex; align-items: center; gap: 15px; color: var(--white); text-decoration: none; opacity: 0.7; transition: 0.3s; }
+    .scroll-down-btn:hover { opacity: 1; }
+    .arrow-down { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* Media Queries del Hero */
+    @media (max-width: 768px) {
+        .mega-title {
+            font-size: 13vw;
+            line-height: 1.2;
+        }
+        .line.indent { margin-left: 0; }
+        .hero-footer { flex-direction: column; align-items: flex-start; gap: 30px; }
+        .hero-desc { font-size: 1rem; width: 100%; }
+    }
+</style>

@@ -1,0 +1,120 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+	title: string;
+    bodyClass?: string;
+}
+
+const { title, bodyClass = "" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content="Agencia de Marketing Digital en Sevilla.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <ViewTransitions />
+</head>
+
+<body class={`loading ${bodyClass}`}>
+
+    <div class="preloader">
+        <div class="loader-text">ECENTIA</div>
+        <div class="loader-bar">
+            <div class="bar-fill"></div>
+        </div>
+    </div>
+
+    <div class="noise-overlay"></div>
+    
+    <canvas id="cursor-canvas"></canvas>
+    <div id="main-cursor"></div>
+
+    <slot />
+
+    <script>
+        // JAVASCRIPT PURO PARA QUE NO FALLE NUNCA
+        function initApp() {
+            const body = document.body;
+            const barFill = document.querySelector('.bar-fill');
+            
+            // 1. LÓGICA DE BARRA DE CARGA
+            if (barFill) {
+                let width = 0;
+                const interval = setInterval(() => {
+                    width += Math.random() * 20; 
+                    if (width > 100) width = 100;
+                    
+                    // @ts-ignore
+                    barFill.style.width = width + '%';
+                    
+                    if (width === 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            body.classList.add('loaded');
+                            body.classList.remove('loading');
+                        }, 300);
+                    }
+                }, 50);
+            } else {
+                // Si no encuentra la barra, abrimos inmediatamente
+                body.classList.add('loaded');
+                body.classList.remove('loading');
+            }
+
+            // 2. SEGURO DE VIDA: Si por cualquier error la web no abre, a los 2s forzamos la apertura
+            setTimeout(() => {
+                if (body.classList.contains('loading')) {
+                    console.warn("Forzando apertura por tiempo excedido");
+                    body.classList.add('loaded');
+                    body.classList.remove('loading');
+                }
+            }, 2000);
+
+            // 3. ANIMACIONES FADE IN
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        // @ts-ignore
+                        entry.target.style.opacity = '1';
+                        // @ts-ignore
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Ejecutar en cada navegación
+        document.addEventListener('astro:page-load', initApp);
+    </script>
+    
+    <script src="../scripts/cursor.js"></script>
+</body>
+</html>
+
+<style is:global>
+    /* CSS REFORZADO: Usamos 'html body.loading' para tener más prioridad que legal-styles.css */
+    html body.loading {
+        overflow: hidden !important;
+        height: 100vh !important;
+        position: fixed !important; /* Asegura que no se pueda scrollear */
+        width: 100% !important;
+    }
+</style>

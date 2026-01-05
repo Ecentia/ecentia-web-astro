@@ -1,0 +1,79 @@
+---
+// src/pages/proyectos.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+// Tus datos de proyectos originales
+const projects = [
+    {
+        title: "Anazon Moda",
+        category: "E-COMMERCE / MODA",
+        description: "Diseño web elegante y optimizado para potenciar la identidad de marca en el sector moda.",
+        tags: ["Diseño UX/UI", "E-Commerce", "Desarrollo"],
+        image: "/web_images/anazonmoda_sc.png",
+        link: "https://anazonmoda.com",
+        reverse: false
+    },
+    {
+        title: "Depofibra",
+        category: "LANDING WEB",
+        description: "Plataforma de comercio de depósitos con experiencia inmersiva.",
+        tags: ["HTML", "CSS", "JavaScript"],
+        image: "/web_images/depofibra_sc.png",
+        link: "https://depofibra.com",
+        reverse: true
+    },
+    {
+        title: "Eva Torres Moda",
+        category: "LANDING E-COMMERCE",
+        description: "Gestión de productos y diseño dinámico para tiendas locales.",
+        tags: ["Astro", "Tailwind CSS", "Sanity"],
+        image: "/web_images/evatorresmoda_sc.png",
+        link: "https://evatorresmoda.com",
+        reverse: false
+    }
+];
+---
+
+<Layout title="Proyectos | Ecentia">
+    <Header />
+    
+    <main style="padding-top: 100px;">
+        <section class="work-section">
+            <div class="container">
+                <div class="section-head fade-in-up">
+                    <h2 class="section-title">Todos los Proyectos</h2>
+                    <span class="section-number">PORTFOLIO</span>
+                </div>
+
+                <div class="project-list">
+                    {projects.map(project => (
+                        <ProjectCard {...project} />
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <Contact />
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* Estilos copiados de tu sección work original para mantener coherencia */
+    .work-section { padding: 80px 0 150px; }
+    .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--gutter); }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 700; color: var(--white); }
+    .section-number { font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--gray); letter-spacing: 2px; }
+    .project-list { display: flex; flex-direction: column; gap: 150px; }
+    
+    @media (max-width: 768px) {
+        .project-list { gap: 80px; }
+        .section-title { font-size: 2.2rem; }
+    }
+</style>

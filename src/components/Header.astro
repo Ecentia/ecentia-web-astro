@@ -1,0 +1,44 @@
+---
+// src/components/Header.astro
+---
+
+<nav class="nav-floating">
+    <a href="/" class="logo-text magnet-target">Ecentia<span style="color: var(--accent-color);">.</span></a>
+    
+    <div class="nav-items">
+        <a href="/proyectos" class="magnet-target">Proyectos</a>
+        <a href="/servicios" class="magnet-target">Servicios</a>
+        <a href="/contacto" class="btn-contact magnet-target">Hablemos</a>
+    </div>
+</nav>
+
+<style>
+    /* Estilos extraídos EXACTAMENTE de tu styles.css original */
+    .nav-floating {
+        position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+        width: 90%; max-width: var(--container-width);
+        display: flex; justify-content: space-between; align-items: center;
+        z-index: 100; mix-blend-mode: difference;
+    }
+    .logo-text { 
+        font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; 
+        color: var(--white); text-decoration: none; 
+    }
+    .nav-items { display: flex; gap: 30px; align-items: center; }
+    .nav-items a { 
+        text-decoration: none; color: var(--white); font-weight: 500; 
+        font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; 
+        position: relative; 
+    }
+    .nav-items a::after { 
+        content: ''; position: absolute; bottom: -5px; left: 0; 
+        width: 0; height: 1px; background: var(--white); transition: 0.3s; 
+    }
+    .nav-items a:hover::after { width: 100%; }
+
+    /* Ajuste para móvil (según tu CSS original) */
+    @media (max-width: 768px) {
+        .nav-floating { width: 95%; padding: 15px 20px; justify-content: center; }
+        .nav-items { display: none; }
+    }
+</style>
