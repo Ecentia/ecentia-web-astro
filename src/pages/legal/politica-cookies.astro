@@ -1,9 +1,10 @@
 ---
+// src/pages/legal/politica-cookies.astro
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/legal-styles.css';
 ---
 
-<Layout title="Política de Cookies - Ecentia" bodyClass="legal-body">
+<Layout title="Política de Cookies - Ecentia" bodyClass="legal-body" showLoader={false}>
     <header class="legal-header fade-in-up">
         <div class="logo">
             <a href="/" style="text-decoration: none; color: inherit;">
@@ -18,7 +19,7 @@ import '../../styles/legal-styles.css';
     <main class="legal-main fade-in-up">
         <div class="legal-title-header">
             <h1>Centro Legal</h1>
-            <p style="color: var(--text-muted);">Transparencia y confianza.</p>
+            <p style="color: var(--text-muted);">Uso de tecnologías de rastreo.</p>
         </div>
 
         <div class="legal-grid">
@@ -31,19 +32,21 @@ import '../../styles/legal-styles.css';
 
             <div class="legal-document">
                 <h2>Política de Cookies</h2>
-                <p>Esta web utiliza cookies propias y de terceros para ofrecerle una mejor experiencia y servicio.</p>
-                
-                <h3>1. ¿Qué son las cookies?</h3>
-                <p>Una cookie es un pequeño fichero de texto que se almacena en su navegador cuando visita casi cualquier página web. Su utilidad es que la web sea capaz de recordar su visita cuando vuelva a navegar por esa página.</p>
+                <div class="legal-content-block">
+                    <p>Este sitio web utiliza cookies para asegurar que obtenga la mejor experiencia en nuestra página web.</p>
 
-                <h3>2. Tipos de cookies utilizadas en esta web</h3>
-                <ul>
-                    <li><strong>Cookies técnicas:</strong> Son aquellas que permiten al usuario la navegación a través de la página web y la utilización de las diferentes opciones o servicios que en ella existan.</li>
-                    <li><strong>Cookies de análisis:</strong> Son aquellas que permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio ofertado.</li>
-                </ul>
+                    <h3>1. ¿Qué son las Cookies?</h3>
+                    <p>Una cookie es un pequeño fichero de texto que se almacena en su navegador cuando visita casi cualquier página web. Su utilidad es que la web sea capaz de recordar su visita cuando vuelva a navegar por esa página.</p>
 
-                <h3>3. Aceptación y Rechazo</h3>
-                <p>Al acceder a este sitio web por primera vez, verá un aviso donde se le informa de la utilización de las cookies y donde puede consultar esta política de cookies. Puede cambiar la configuración de su navegador para rechazar las cookies, aunque esto puede afectar al correcto funcionamiento de la página.</p>
+                    <h3>2. Tipos de Cookies que utilizamos</h3>
+                    <ul>
+                        <li><strong>Cookies técnicas:</strong> Son aquellas imprescindibles para el funcionamiento de la web (ej. control de tráfico, sesión).</li>
+                        <li><strong>Cookies de análisis:</strong> Nos permiten cuantificar el número de usuarios y realizar la medición y análisis estadístico.</li>
+                    </ul>
+
+                    <h3>3. Desactivación de Cookies</h3>
+                    <p>Usted puede permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su ordenador (Chrome, Firefox, Safari, Edge).</p>
+                </div>
             </div>
         </div>
     </main>
@@ -52,9 +55,9 @@ import '../../styles/legal-styles.css';
         <div class="container">
             <div>© 2025 Ecentia Marketing</div>
             <div class="legal-links">
-                <a href="/legal/aviso-legal">Aviso Legal</a> | 
+                <a href="/legal/aviso-legal">Aviso Legal</a> |
                 <a href="/legal/politica-privacidad">Privacidad</a> | 
-                <a href="/legal/politica-cookies">Cookies</a>
+                <span class="current-link">Cookies</span>
             </div>
         </div>
     </footer>

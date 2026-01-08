@@ -1,9 +1,10 @@
 ---
+// src/pages/legal/politica-privacidad.astro
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/legal-styles.css';
 ---
 
-<Layout title="Política de Privacidad - Ecentia" bodyClass="legal-body">
+<Layout title="Política de Privacidad - Ecentia" bodyClass="legal-body" showLoader={false}>
     <header class="legal-header fade-in-up">
         <div class="logo">
             <a href="/" style="text-decoration: none; color: inherit;">
@@ -18,7 +19,7 @@ import '../../styles/legal-styles.css';
     <main class="legal-main fade-in-up">
         <div class="legal-title-header">
             <h1>Centro Legal</h1>
-            <p style="color: var(--text-muted);">Transparencia y confianza.</p>
+            <p style="color: var(--text-muted);">Protección de tus datos.</p>
         </div>
 
         <div class="legal-grid">
@@ -31,24 +32,28 @@ import '../../styles/legal-styles.css';
 
             <div class="legal-document">
                 <h2>Política de Privacidad</h2>
-                <p>En Ecentia Marketing nos tomamos muy en serio la privacidad de sus datos. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos su información personal.</p>
-                
-                <h3>1. Responsable del Tratamiento</h3>
-                <p>Ecentia Marketing (Sevilla, España). Email de contacto: ecentiaseo@gmail.com.</p>
+                <div class="legal-content-block">
+                    <p>En Ecentia Marketing, nos tomamos muy en serio la privacidad de tus datos. Esta política describe cómo recopilamos, usamos y protegemos tu información personal.</p>
 
-                <h3>2. Finalidad del tratamiento</h3>
-                <p>Tratamos la información que nos facilitan las personas interesadas con el fin de:</p>
-                <ul>
-                    <li>Gestionar el envío de la información que nos soliciten.</li>
-                    <li>Prestar los servicios contratados.</li>
-                    <li>Enviar comunicaciones comerciales sobre nuestros servicios (si ha dado su consentimiento explícito).</li>
-                </ul>
+                    <h3>1. Responsable del Tratamiento</h3>
+                    <p>
+                        <strong>Identidad:</strong> Ecentia Marketing<br>
+                        <strong>Email:</strong> ecentiaseo@gmail.com<br>
+                        <strong>Domicilio:</strong> Sevilla, España
+                    </p>
 
-                <h3>3. Legitimación</h3>
-                <p>La base legal para el tratamiento de sus datos es la ejecución del contrato de servicios o el consentimiento del interesado (por ejemplo, al rellenar el formulario de contacto).</p>
+                    <h3>2. Finalidad del Tratamiento</h3>
+                    <p>Tratamos la información que nos facilitan las personas interesadas con el fin de gestionar el envío de la información que nos soliciten y facilitar ofertas de productos y servicios de su interés.</p>
 
-                <h3>4. Destinatarios</h3>
-                <p>Los datos no se comunicarán a terceros, salvo obligación legal.</p>
+                    <h3>3. Legitimación</h3>
+                    <p>La base legal para el tratamiento de sus datos es el consentimiento del interesado al contactar con nosotros o suscribirse a nuestros servicios.</p>
+
+                    <h3>4. Destinatarios</h3>
+                    <p>Los datos no se comunicarán a terceros, salvo obligación legal.</p>
+
+                    <h3>5. Derechos</h3>
+                    <p>Cualquier persona tiene derecho a obtener confirmación sobre si en Ecentia Marketing estamos tratando datos personales que les conciernan, o no. Las personas interesadas tienen derecho a acceder a sus datos personales, así como a solicitar la rectificación de los datos inexactos.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -57,8 +62,8 @@ import '../../styles/legal-styles.css';
         <div class="container">
             <div>© 2025 Ecentia Marketing</div>
             <div class="legal-links">
-                <a href="/legal/aviso-legal">Aviso Legal</a> | 
-                <a href="/legal/politica-privacidad">Privacidad</a> | 
+                <a href="/legal/aviso-legal">Aviso Legal</a> |
+                <span class="current-link">Privacidad</span> | 
                 <a href="/legal/politica-cookies">Cookies</a>
             </div>
         </div>

@@ -2,19 +2,165 @@
 // src/pages/servicios.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import ServicesComponent from '../components/Services.astro'; // Renombramos para evitar conflictos
+import ServicesComponent from '../components/Services.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Servicios | Ecentia">
+<Layout title="Nuestros Servicios | Ecentia">
     <Header />
     
-    <main style="padding-top: 80px;">
-        <ServicesComponent />
+    <main>
+        <section class="page-header services-header">
+            <div class="container">
+                <div class="page-header-content fade-in-up">
+                    <span class="subtitle">LO QUE HACEMOS</span>
+                    <h1 class="page-title">Digital <br> <span class="text-gradient">Craftsmanship.</span></h1>
+                    <p class="page-description">
+                        No somos solo ejecutores. Somos consultores estratégicos que dominan el código y el diseño para construir ecosistemas digitales escalables.
+                    </p>
+                </div>
+            </div>
+            <div class="header-glow services-glow"></div>
+        </section>
+
+        <div class="services-wrapper fade-in-up">
+            <ServicesComponent />
+        </div>
         
+        <section class="capabilities-break">
+            <div class="container">
+                <div class="capabilities-grid">
+                    <div class="cap-item">
+                        <span class="cap-number">01</span>
+                        <h3>Estrategia</h3>
+                        <p>Auditoría SEO, análisis de competencia y roadmaps de producto.</p>
+                    </div>
+                    <div class="cap-item">
+                        <span class="cap-number">02</span>
+                        <h3>Diseño</h3>
+                        <p>Sistemas de diseño, UI Kits y experiencias inmersivas.</p>
+                    </div>
+                    <div class="cap-item">
+                        <span class="cap-number">03</span>
+                        <h3>Desarrollo</h3>
+                        <p>Arquitecturas JAMstack, Astro, React y optimización Core Web Vitals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <Contact />
     </main>
 
     <Footer />
 </Layout>
+
+<style>
+    main {
+        overflow: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+    }
+
+    /* Page Header (Consistente con Proyectos pero con variantes) */
+    .page-header {
+        padding: 180px 0 80px;
+        position: relative;
+    }
+
+    .subtitle {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: block;
+        font-weight: 700;
+    }
+
+    .page-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(3.5rem, 8vw, 6rem);
+        line-height: 1.1;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 30px;
+    }
+
+    .text-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .page-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        max-width: 650px;
+    }
+
+    /* Variación del Glow para Servicios (más azulado/morado) */
+    .services-glow {
+        position: absolute;
+        top: -30%;
+        left: -10%; /* Diferente posición que en proyectos */
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .services-wrapper {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Capabilities Break */
+    .capabilities-break {
+        padding: 100px 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(255,255,255,0.01);
+    }
+
+    .capabilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 60px;
+    }
+
+    .cap-item h3 {
+        font-family: 'Syne', sans-serif;
+        font-size: 2rem;
+        color: var(--white);
+        margin-bottom: 15px;
+    }
+
+    .cap-number {
+        font-family: 'Syne', sans-serif;
+        font-size: 1rem;
+        color: var(--accent-color);
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .cap-item p {
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .page-header { padding: 140px 0 40px; }
+        .capabilities-grid { gap: 40px; }
+    }
+</style>

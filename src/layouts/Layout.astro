@@ -6,9 +6,10 @@ import { ViewTransitions } from 'astro:transitions';
 interface Props {
 	title: string;
     bodyClass?: string;
+    showLoader?: boolean; // Nueva prop para controlar la precarga
 }
 
-const { title, bodyClass = "" } = Astro.props;
+const { title, bodyClass = "", showLoader = true } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -27,14 +28,16 @@ const { title, bodyClass = "" } = Astro.props;
     <ViewTransitions />
 </head>
 
-<body class={`loading ${bodyClass}`}>
+<body class={`${showLoader ? 'loading' : ''} ${bodyClass}`}>
 
-    <div class="preloader">
-        <div class="loader-text">ECENTIA</div>
-        <div class="loader-bar">
-            <div class="bar-fill"></div>
+    {showLoader && (
+        <div class="preloader">
+            <div class="loader-text">ECENTIA</div>
+            <div class="loader-bar">
+                <div class="bar-fill"></div>
+            </div>
         </div>
-    </div>
+    )}
 
     <div class="noise-overlay"></div>
     
@@ -44,13 +47,13 @@ const { title, bodyClass = "" } = Astro.props;
     <slot />
 
     <script>
-        // JAVASCRIPT PURO PARA QUE NO FALLE NUNCA
+        // JAVASCRIPT PURO PARA GESTIONAR CARGA Y ANIMACIONES
         function initApp() {
             const body = document.body;
             const barFill = document.querySelector('.bar-fill');
             
-            // 1. LÓGICA DE BARRA DE CARGA
-            if (barFill) {
+            // 1. LÓGICA DE BARRA DE CARGA (Solo si existe el elemento)
+            if (barFill && body.classList.contains('loading')) {
                 let width = 0;
                 const interval = setInterval(() => {
                     width += Math.random() * 20; 
@@ -68,12 +71,12 @@ const { title, bodyClass = "" } = Astro.props;
                     }
                 }, 50);
             } else {
-                // Si no encuentra la barra, abrimos inmediatamente
+                // Si no hay barra o no hay clase loading, aseguramos que se vea el contenido
                 body.classList.add('loaded');
                 body.classList.remove('loading');
             }
 
-            // 2. SEGURO DE VIDA: Si por cualquier error la web no abre, a los 2s forzamos la apertura
+            // 2. SEGURO DE VIDA: Si por cualquier error la web no abre
             setTimeout(() => {
                 if (body.classList.contains('loading')) {
                     console.warn("Forzando apertura por tiempo excedido");
@@ -82,7 +85,7 @@ const { title, bodyClass = "" } = Astro.props;
                 }
             }, 2000);
 
-            // 3. ANIMACIONES FADE IN
+            // 3. ANIMACIONES FADE IN (Observer)
             const observerOptions = { threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -96,12 +99,12 @@ const { title, bodyClass = "" } = Astro.props;
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main').forEach(el => {
+            document.querySelectorAll('.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content').forEach(el => {
                 observer.observe(el);
             });
         }
 
-        // Ejecutar en cada navegación
+        // Ejecutar en cada navegación de Astro
         document.addEventListener('astro:page-load', initApp);
     </script>
     
@@ -110,11 +113,10 @@ const { title, bodyClass = "" } = Astro.props;
 </html>
 
 <style is:global>
-    /* CSS REFORZADO: Usamos 'html body.loading' para tener más prioridad que legal-styles.css */
     html body.loading {
         overflow: hidden !important;
         height: 100vh !important;
-        position: fixed !important; /* Asegura que no se pueda scrollear */
+        position: fixed !important;
         width: 100% !important;
     }
 </style>
