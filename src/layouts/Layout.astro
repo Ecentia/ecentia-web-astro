@@ -51,6 +51,8 @@ const baseSchema = {
   "description": seoDescription,
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "Sevilla",
+    "addressRegion": "Andalucía",
     "addressCountry": "ES"
   },
   "sameAs": [
@@ -72,56 +74,55 @@ const jsonLd = {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>{seoTitle}</title>
-    <meta name="description" content={seoDescription}>
-    <meta name="keywords" content={seoKeywords}>
-    <link rel="canonical" href={canonicalURL}>
+    <meta name="description" content={seoDescription} />
+    <meta name="keywords" content={seoKeywords} />
+    <link rel="canonical" href={canonicalURL} />
 
     {noindex ? (
-        <meta name="robots" content="noindex, nofollow">
+        <meta name="robots" content="noindex, nofollow" />
     ) : (
-        <meta name="robots" content="index, follow">
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     )}
 
-    <!-- Open Graph -->
-    <meta property="og:title" content={seoTitle}>
-    <meta property="og:description" content={seoDescription}>
-    <meta property="og:image" content={seoImage}>
-    <meta property="og:url" content={canonicalURL}>
-    <meta property="og:type" content={pageKey === 'home' ? 'website' : 'article'}>
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
+    <meta property="og:image" content={seoImage} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={seoConfig.siteName} />
+    <meta property="og:type" content={pageKey === 'home' ? 'website' : 'article'} />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content={seoTitle}>
-    <meta name="twitter:description" content={seoDescription}>
-    <meta name="twitter:image" content={seoImage}>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
+    <meta name="twitter:image" content={seoImage} />
 
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico">
-    <meta name="theme-color" content="#a855f7">
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#a855f7" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Google Tag Manager -->
-    <script>
+    <script is:inline>
     (function(w,d,s,l,i){
+      // @ts-ignore - Solución al error de indexado implícito 'any'
       w[l]=w[l]||[];
+      // @ts-ignore
       w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-      const f = d.getElementsByTagName(s)[0];
-      const j = d.createElement(s) as HTMLScriptElement;
-      const dl = l!='dataLayer' ? '&l='+l : '';
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l='+l : '';
+      // @ts-ignore
       j.async = true;
+      // @ts-ignore
       j.src = 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      if (f?.parentNode) f.parentNode.insertBefore(j,f);
+      f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','G-FKEZKR17FN');
     </script>
 
