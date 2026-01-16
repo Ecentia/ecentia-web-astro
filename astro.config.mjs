@@ -1,13 +1,13 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel/serverless';
-import sitemap from '@astrojs/sitemap'; 
+import vercel from '@astrojs/vercel'; 
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://ecentia.es', 
+  site: 'https://ecentia.es',
   integrations: [
-    tailwind(), 
-    sitemap() 
+    tailwind(),
+    sitemap()
   ],
   output: 'server',
   adapter: vercel(),
