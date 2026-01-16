@@ -5,46 +5,91 @@
 <section class="marquee-section">
     <div class="marquee-inner">
         <div class="marquee-part">
-            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
-            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
+            DISEÑO WEB <span class="sep">•</span> 
+            ECOMMERCE <span class="sep">•</span> 
+            AUTOMATIZACIÓN <span class="sep">•</span> 
+            REDES <span class="sep">•</span> 
+            SEO <span class="sep">•</span>
+            DISEÑO WEB <span class="sep">•</span> 
+            ECOMMERCE <span class="sep">•</span> 
+            AUTOMATIZACIÓN <span class="sep">•</span> 
+            REDES <span class="sep">•</span> 
+            SEO <span class="sep">•</span>
         </div>
-        <div class="marquee-part">
-            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
-            DISEÑO WEB • ECOMMERCE • AUTOMATIZACIÓN • REDES • SEO •
+        
+        <div class="marquee-part" aria-hidden="true">
+            DISEÑO WEB <span class="sep">•</span> 
+            ECOMMERCE <span class="sep">•</span> 
+            AUTOMATIZACIÓN <span class="sep">•</span> 
+            REDES <span class="sep">•</span> 
+            SEO <span class="sep">•</span>
+            DISEÑO WEB <span class="sep">•</span> 
+            ECOMMERCE <span class="sep">•</span> 
+            AUTOMATIZACIÓN <span class="sep">•</span> 
+            REDES <span class="sep">•</span> 
+            SEO <span class="sep">•</span>
         </div>
     </div>
 </section>
 
 <style>
-    /* CSS Original extraído de styles.css */
     .marquee-section { 
-        padding: 80px 0; 
+        padding: 40px 0;
         border-top: 1px solid rgba(255,255,255,0.05); 
         border-bottom: 1px solid rgba(255,255,255,0.05); 
         overflow: hidden; 
-        background: #080808; 
+        background: var(--bg-color);
+        user-select: none;
     }
+
     .marquee-inner { 
         display: flex; 
-        width: fit-content; 
-        animation: scrollMarquee 20s linear infinite; 
+        width: fit-content;
+        animation: scrollMarquee 30s linear infinite; 
     }
+
+    .marquee-section:hover .marquee-inner {
+        animation-play-state: paused;
+    }
+
     .marquee-part { 
-        font-family: 'Syne', sans-serif; 
-        font-size: 4rem; 
-        font-weight: 700; 
+        font-family: 'Syne', sans-serif;
+        font-size: 3rem; 
+        font-weight: 800; 
         white-space: nowrap; 
-        padding-right: 50px; 
-        color: rgba(255,255,255,0.05); 
-        transition: 0.3s; 
+        
+        /* ESTADO NORMAL: Morado medio visible (Ya no se ve gris) */
+        color: rgba(168, 85, 247, 0.6); 
+        
+        transition: all 0.4s ease;
+        display: flex;
+        align-items: center;
+        gap: 3rem; 
+        margin-right: 3rem; 
     }
+
+    .sep {
+        color: var(--accent-color);
+        opacity: 0.5;
+        font-size: 1.5rem;
+    }
+
+    /* ESTADO HOVER: Se enciende en blanco con resplandor MORADO FUERTE */
     .marquee-section:hover .marquee-part { 
-        color: var(--accent-color); 
-        opacity: 0.5; 
+        color: #ffffff; /* Núcleo blanco para que brille más */
+        opacity: 1;
+        text-shadow: 
+            0 0 10px rgba(168, 85, 247, 1), 
+            0 0 20px rgba(168, 85, 247, 0.8), 
+            0 0 40px rgba(168, 85, 247, 0.6);
     }
     
     @keyframes scrollMarquee { 
         0% { transform: translateX(0); } 
         100% { transform: translateX(-50%); } 
+    }
+
+    @media (max-width: 768px) {
+        .marquee-part { font-size: 2rem; gap: 2rem; margin-right: 2rem; }
     }
 </style>

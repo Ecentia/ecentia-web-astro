@@ -1,0 +1,126 @@
+---
+// src/components/About.astro
+---
+
+<section class="about-section">
+    <div class="pattern-grid"></div>
+
+    <div class="container">
+        <div class="about-content fade-in-up">
+            <span class="subtitle">NUESTRA FILOSOFÍA</span>
+            <h2 class="title">
+                Digitalizamos tu visión con <span class="text-gradient">estrategia y carácter.</span>
+            </h2>
+            
+            <div class="text-block-wrapper">
+                <div class="accent-line"></div>
+                
+                <div class="text-block">
+                    <p class="lead-paragraph">
+                        En <strong>Ecentia</strong> entendemos que una web no es un adorno, es el motor de tu negocio. 
+                    </p>
+                    <p>
+                        Nos alejamos de lo genérico para diseñar experiencias digitales que no solo impactan visualmente, 
+                        sino que están construidas para convertir visitantes en clientes leales.
+                        Fusionamos creatividad y tecnología para crear marcas que dejan huella en un entorno saturado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about-section {
+        padding: 160px 0;
+        background: var(--bg-color);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Nueva textura de fondo sutil (puntos/red) */
+    .pattern-grid {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.4;
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%); /* Difuminado en los bordes */
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .container { position: relative; z-index: 1; }
+
+    .about-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        display: block;
+        font-weight: 700;
+    }
+
+    .title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(3rem, 7vw, 5rem); /* Título más grande */
+        line-height: 1.05;
+        margin-bottom: 60px;
+        font-weight: 800;
+        color: var(--white);
+    }
+
+    .text-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Nuevo contenedor de texto con línea lateral */
+    .text-block-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        text-align: left; /* Cambiamos a alineación izquierda para mejor lectura */
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .accent-line {
+        width: 3px;
+        background: var(--primary-gradient);
+        border-radius: 3px;
+        flex-shrink: 0;
+    }
+
+    .text-block {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .lead-paragraph {
+        font-size: 1.4rem;
+        color: var(--white);
+        font-weight: 500;
+        line-height: 1.6;
+    }
+
+    .text-block p:not(.lead-paragraph) {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: var(--text-muted);
+    }
+
+    .text-block strong {
+        color: var(--accent-color);
+    }
+</style>

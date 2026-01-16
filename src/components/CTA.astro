@@ -1,0 +1,110 @@
+---
+// src/components/CTA.astro
+---
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">
+                ¿Tienes un proyecto en mente? <br>
+                <span class="text-gradient">Hagámoslo realidad.</span>
+            </h2>
+            <p class="cta-desc">
+                Desde el diseño hasta el lanzamiento, te acompañamos en cada etapa 
+                para asegurar el éxito de tu producto digital.
+            </p>
+            <div class="cta-actions">
+                <a href="/contacto" class="btn-primary">
+                    Iniciar Conversación
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="glow-effect"></div>
+</section>
+
+<style>
+    .cta-section {
+        padding: 120px 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(180deg, var(--bg-color) 0%, #0a0a15 100%);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .cta-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.1;
+        font-weight: 700;
+        color: var(--white);
+    }
+
+    .text-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .cta-desc {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        max-width: 600px;
+    }
+
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        padding: 18px 45px;
+        background: var(--white);
+        color: var(--bg-color);
+        border-radius: 50px;
+        text-decoration: none;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary i {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover i {
+        transform: translateX(5px);
+    }
+
+    /* Glow de fondo */
+    .glow-effect {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 800px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(0,0,0,0) 70%);
+        pointer-events: none;
+        z-index: 1;
+    }
+</style>

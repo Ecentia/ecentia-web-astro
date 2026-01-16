@@ -46,20 +46,35 @@ const { title, bodyClass = "", showLoader = true } = Astro.props;
 
     <slot />
 
-    <script>
-        // JAVASCRIPT PURO PARA GESTIONAR CARGA Y ANIMACIONES
-        function initApp() {
-            const body = document.body;
-            const barFill = document.querySelector('.bar-fill');
-            
-            // 1. LÓGICA DE BARRA DE CARGA (Solo si existe el elemento)
+   <script>
+    document.addEventListener('astro:page-load', () => {
+        const body = document.body;
+        const preloader = document.querySelector('.preloader') as HTMLElement | null;
+        const barFill = document.querySelector('.bar-fill') as HTMLElement | null;
+
+        // 1. LOGICA DEL LOADER INTELIGENTE
+        const hasVisited = sessionStorage.getItem('visited');
+
+        if (hasVisited) {
+            // --- CASO A: YA VISITÓ (Navegación interna) ---
+            // Ocultamos el loader inmediatamente sin animaciones
+            if (preloader) {
+                preloader.style.display = 'none'; 
+            }
+            body.classList.add('loaded');
+            body.classList.remove('loading');
+
+        } else {
+            // --- CASO B: PRIMERA VISITA (Carga inicial) ---
+            sessionStorage.setItem('visited', 'true');
+
+            // Ejecutamos la animación de la barra de carga (tu lógica original)
             if (barFill && body.classList.contains('loading')) {
                 let width = 0;
                 const interval = setInterval(() => {
                     width += Math.random() * 20; 
                     if (width > 100) width = 100;
                     
-                    // @ts-ignore
                     barFill.style.width = width + '%';
                     
                     if (width === 100) {
@@ -71,42 +86,41 @@ const { title, bodyClass = "", showLoader = true } = Astro.props;
                     }
                 }, 50);
             } else {
-                // Si no hay barra o no hay clase loading, aseguramos que se vea el contenido
-                body.classList.add('loaded');
-                body.classList.remove('loading');
+                // Fallback si no existe la barra
+                setTimeout(() => {
+                    body.classList.add('loaded');
+                    body.classList.remove('loading');
+                }, 500);
             }
 
-            // 2. SEGURO DE VIDA: Si por cualquier error la web no abre
+            // Seguro de vida (solo necesario en la primera carga)
             setTimeout(() => {
                 if (body.classList.contains('loading')) {
-                    console.warn("Forzando apertura por tiempo excedido");
                     body.classList.add('loaded');
                     body.classList.remove('loading');
                 }
-            }, 2000);
-
-            // 3. ANIMACIONES FADE IN (Observer)
-            const observerOptions = { threshold: 0.1 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        // @ts-ignore
-                        entry.target.style.opacity = '1';
-                        // @ts-ignore
-                        entry.target.style.transform = 'translateY(0)';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content').forEach(el => {
-                observer.observe(el);
-            });
+            }, 2500);
         }
 
-        // Ejecutar en cada navegación de Astro
-        document.addEventListener('astro:page-load', initApp);
-    </script>
+        // 2. ANIMACIONES SCROLL (Observer)
+        // Esto debe ejecutarse SIEMPRE, en cada navegación
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const target = entry.target as HTMLElement;
+                    target.style.opacity = '1';
+                    target.style.transform = 'translateY(0)';
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
     
     <script src="../scripts/cursor.js"></script>
 </body>

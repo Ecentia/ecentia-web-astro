@@ -1,146 +1,296 @@
 ---
 // src/components/Services.astro
+const services = [
+    {
+        num: "01",
+        title: "Diseño Web Premium",
+        subtitle: "Experiencias que venden por sí solas.",
+        desc: "Rompemos el molde de lo convencional. No usamos plantillas prefabricadas; diseñamos arquitecturas digitales a medida centradas en la conversión. Fusionamos estética de vanguardia con psicología de usuario para que tu web no solo sea bonita, sino una máquina de ventas.",
+        tags: ["UI/UX Design", "Figma Prototyping", "Animaciones WebGL", "Desarrollo a Medida"],
+        icon: "fa-plus"
+    },
+    {
+        num: "02",
+        title: "Automatización & IA",
+        subtitle: "Tu negocio trabajando en piloto automático.",
+        desc: "El tiempo es tu activo más valioso. Implementamos ecosistemas de Inteligencia Artificial y automatizaciones (Zapier/Make) que eliminan tareas repetitivas. Desde chatbots que cierran ventas hasta sistemas de facturación automática. Escala sin aumentar personal.",
+        tags: ["Chatbots IA", "Integraciones API", "CRM Automations", "Lead Scoring"],
+        icon: "fa-plus"
+    },
+    {
+        num: "03",
+        title: "E-Commerce Avanzado",
+        subtitle: "Tiendas rápidas, seguras y rentables.",
+        desc: "Desarrollamos plataformas de comercio electrónico robustas preparadas para altos volúmenes de tráfico. Optimizamos cada paso del checkout para reducir carritos abandonados e implementamos estrategias de venta cruzada (Upselling) inteligentes.",
+        tags: ["Shopify & WooCommerce", "Pasarelas de Pago", "Gestión de Stock", "CRO"],
+        icon: "fa-plus"
+    },
+    {
+        num: "04",
+        title: "SEO & Growth",
+        subtitle: "Domina los resultados de búsqueda.",
+        desc: "Tener la mejor web del mundo no sirve de nada si es invisible. Trazamos estrategias de posicionamiento agresivas (SEO On-Page, Técnico y Linkbuilding) para colocarte por delante de tu competencia en las palabras clave que realmente generan facturación.",
+        tags: ["Auditoría Técnica", "Estrategia de Contenidos", "SEO Local", "Analítica Avanzada"],
+        icon: "fa-plus"
+    }
+];
 ---
 
-<section id="services" class="services-section">
+<section id="services-list" class="services-list-section">
     <div class="container">
-        <div class="section-head">
-            <h2 class="section-title">Nuestra Alquimia</h2>
-            <span class="section-number">02</span>
-        </div>
+        <div class="accordion-wrapper">
+            {services.map((service, index) => (
+                <div class="service-item" tabindex="0">
+                    <div class="service-header">
+                        <div class="header-left">
+                            <span class="service-number">/{service.num}</span>
+                            <h3 class="service-title">{service.title}</h3>
+                        </div>
+                        <div class="icon-wrapper">
+                            <i class={`fas ${service.icon} toggle-icon`}></i>
+                        </div>
+                    </div>
 
-        <div class="services-list">
-            <div class="service-row magnet-target" tabindex="0">
-                <div class="service-header">
-                    <span class="service-num">01/</span>
-                    <h3 class="service-name">Diseño Web Premium</h3>
-                    <i class="fas fa-plus service-icon"></i>
+                    <div class="service-body">
+                        <div class="body-inner">
+                            <h4 class="service-subtitle">{service.subtitle}</h4>
+                            <div class="content-grid">
+                                <p class="service-desc">{service.desc}</p>
+                                <div class="tags-container">
+                                    <span class="tags-label">Tecnologías:</span>
+                                    <ul class="tags-list">
+                                        {service.tags.map(tag => (
+                                            <li>{tag}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="separator"></div>
                 </div>
-                <div class="service-body">
-                    <p>Olvídate de las plantillas. Diseñamos interfaces píxel a píxel que seducen, retienen y guían
-                        al usuario hacia la compra. Tu marca merece exclusividad.</p>
-                    <ul class="service-tags">
-                        <li>UI/UX</li>
-                        <li>Figma</li>
-                        <li>Desarrollo a medida</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="service-row magnet-target" tabindex="0">
-                <div class="service-header">
-                    <span class="service-num">02/</span>
-                    <h3 class="service-name">Automatización & IA</h3>
-                    <i class="fas fa-plus service-icon"></i>
-                </div>
-                <div class="service-body">
-                    <p>Integramos inteligencia artificial para que tu negocio trabaje por ti. Chatbots, emails
-                        automáticos y procesos que venden mientras duermes.</p>
-                    <ul class="service-tags">
-                        <li>Zapier/Make</li>
-                        <li>Chatbots</li>
-                        <li>CRM</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="service-row magnet-target" tabindex="0">
-                <div class="service-header">
-                    <span class="service-num">03/</span>
-                    <h3 class="service-name">E-Commerce Avanzado</h3>
-                    <i class="fas fa-plus service-icon"></i>
-                </div>
-                <div class="service-body">
-                    <p>Tiendas online ultra-rápidas diseñadas con psicología de consumo para aumentar el ticket
-                        medio y reducir carritos abandonados.</p>
-                    <ul class="service-tags">
-                        <li>Shopify</li>
-                        <li>Woocommerce</li>
-                        <li>Pasarelas de pago</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="service-row magnet-target" tabindex="0">
-                <div class="service-header">
-                    <span class="service-num">04/</span>
-                    <h3 class="service-name">SEO Estratégico</h3>
-                    <i class="fas fa-plus service-icon"></i>
-                </div>
-                <div class="service-body">
-                    <p>No se trata solo de estar en Google, sino de dominarlo. Estrategias de posicionamiento para
-                        captar tráfico que realmente compra.</p>
-                    <ul class="service-tags">
-                        <li>Auditoría</li>
-                        <li>Linkbuilding</li>
-                        <li>SEO Local</li>
-                    </ul>
-                </div>
-            </div>
-
+            ))}
         </div>
     </div>
 </section>
 
 <style>
-    /* CSS Original extraído de styles.css para la sección de servicios */
-    .services-section { padding: 100px 0; background: #080808; }
-    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .section-title { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 700; }
-    .section-number { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--gray); }
+    .services-list-section {
+        padding: 100px 0;
+        background: transparent;
+    }
 
-    .services-list {
-        display: flex; flex-direction: column; border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .accordion-wrapper {
+        display: flex;
+        flex-direction: column;
     }
-    .service-row {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 40px 20px; cursor: pointer; transition: background-color 0.4s ease;
-        position: relative; overflow: hidden;
+
+    .service-item {
+        position: relative;
+        cursor: pointer;
+        padding: 40px 0;
+        transition: background-color 0.3s ease;
     }
-    .service-row:hover, .service-row:focus-within { background-color: rgba(255, 255, 255, 0.03); }
-    
-    .service-header { display: flex; align-items: center; justify-content: space-between; }
-    .service-num { font-family: 'Syne', sans-serif; color: var(--accent-color); font-size: 1rem; margin-right: 30px; opacity: 0.7; }
-    .service-name { flex-grow: 1; font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--text-muted); transition: color 0.4s ease, transform 0.4s ease; }
-    .service-icon { font-size: 1.5rem; color: var(--white); transition: transform 0.4s ease; }
-    
-    .service-row:hover .service-name { color: var(--white); transform: translateX(10px); }
-    .service-row:hover .service-icon { transform: rotate(45deg); color: var(--accent-color); }
-    
-    /* El body empieza oculto */
+
+    /* CABECERA */
+    .service-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 20px;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: baseline;
+        gap: 40px;
+    }
+
+    .service-number {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        opacity: 0.8;
+        font-weight: 600;
+    }
+
+    .service-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(2rem, 5vw, 4rem); /* Títulos gigantes */
+        font-weight: 700;
+        color: var(--text-muted); /* Gris por defecto */
+        transition: color 0.4s ease, transform 0.4s ease;
+        margin: 0;
+        line-height: 1;
+    }
+
+    /* Hover en el título */
+    .service-item:hover .service-title {
+        color: var(--white);
+        transform: translateX(20px);
+    }
+
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: all 0.4s ease;
+    }
+
+    .toggle-icon {
+        font-size: 1.5rem;
+        color: var(--white);
+        transition: transform 0.4s ease;
+    }
+
+    /* ESTADO ACTIVO (Abierto) */
+    .service-item.active .service-title {
+        color: var(--white);
+        /* text-shadow: 0 0 20px rgba(168, 85, 247, 0.3); Efecto glow opcional */
+    }
+
+    .service-item.active .icon-wrapper {
+        border-color: var(--accent-color);
+        background: var(--accent-color);
+    }
+
+    .service-item.active .toggle-icon {
+        transform: rotate(45deg); /* La cruz se convierte en X */
+        color: var(--white);
+    }
+
+    /* CUERPO DESPLEGABLE */
     .service-body {
-        max-height: 0; overflow: hidden; opacity: 0;
-        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        padding-left: 60px; margin-top: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0.5;
     }
-    .service-body p { font-size: 1.1rem; color: var(--gray); max-width: 600px; margin-bottom: 20px; line-height: 1.6; }
-    .service-tags { display: flex; gap: 10px; list-style: none; }
-    .service-tags li { font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; color: var(--white); }
 
-    /* Clase activa para abrirlo (Gestionada por JS) */
-    .service-row.active .service-body {
-        max-height: 300px; opacity: 1; margin-top: 30px;
+    .service-item.active .service-body {
+        max-height: 500px; /* Altura suficiente */
+        opacity: 1;
     }
-    .service-row.active .service-icon { transform: rotate(45deg); color: var(--accent-color); }
-    .service-row.active .service-name { color: var(--white); transform: translateX(10px); }
+
+    .body-inner {
+        padding: 40px 0 20px 80px; /* Indentación estética */
+    }
+
+    .service-subtitle {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.5rem;
+        color: var(--white);
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 60px;
+    }
+
+    .service-desc {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+    }
+
+    /* TAGS */
+    .tags-container {
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 30px;
+    }
+
+    .tags-label {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--accent-color);
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .tags-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tags-list li {
+        font-family: 'Syne', sans-serif;
+        color: var(--white);
+        font-size: 1.1rem;
+        position: relative;
+        padding-left: 15px;
+    }
+
+    .tags-list li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+    }
+
+    /* SEPARADOR */
+    .separator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+    }
+
+    .service-item:hover .separator {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .service-item.active .separator {
+        background: var(--accent-color);
+        box-shadow: 0 0 10px var(--accent-color);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+        .header-left { gap: 20px; }
+        .body-inner { padding-left: 0; padding-top: 30px; }
+        .content-grid { grid-template-columns: 1fr; gap: 30px; }
+        .tags-container { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .tags-list { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+    }
 
     @media (max-width: 768px) {
-        .service-row { padding: 30px 10px; }
         .service-header { align-items: flex-start; }
-        .service-num { display: none; }
-        .service-name { font-size: 1.8rem; }
-        .service-body { padding-left: 0; }
+        .service-number { display: none; } /* Ocultar numero en movil para ganar espacio */
+        .service-title { font-size: 2rem; }
     }
 </style>
 
 <script>
-    // Corrección del error 'this' y tipos
+    // Lógica del acordeón (Solo uno abierto a la vez)
     document.addEventListener('astro:page-load', () => {
-        const rows = document.querySelectorAll('.service-row');
-        rows.forEach(row => {
-            row.addEventListener('click', () => {
-                // Al usar arrow function, 'row' es la variable correcta, no 'this'
-                row.classList.toggle('active');
+        const items = document.querySelectorAll('.service-item');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // 1. Cerrar todos
+                items.forEach(i => i.classList.remove('active'));
+
+                // 2. Si no estaba activo, abrirlo
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
         });
     });
