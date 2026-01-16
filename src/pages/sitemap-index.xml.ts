@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async () => {
   const sitemaps = [
-    'https://ecentia.com/sitemap-0.xml',
+    'https://ecentia.es/sitemap-0.xml',
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

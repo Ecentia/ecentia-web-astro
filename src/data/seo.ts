@@ -1,6 +1,6 @@
 export const seoConfig = {
   siteName: 'Ecentia Marketing',
-  siteUrl: 'https://ecentia.com',
+  siteUrl: 'https://ecentia.es',
   defaultTitle: 'Ecentia Marketing | Agencia de Marketing Digital y Diseño Web',
   defaultDescription: 'Agencia de marketing digital especializada en diseño web, SEO, automatización y e-commerce. Transformamos negocios con soluciones digitales a medida en toda España.',
   defaultImage: '/logo.avif',
@@ -30,8 +30,8 @@ export const seoConfig = {
         "@type": "Organization",
         "name": "Ecentia Marketing",
         "alternateName": "Ecentia",
-        "url": "https://ecentia.com",
-        "logo": "https://ecentia.com/logo.avif",
+        "url": "https://ecentia.es",
+        "logo": "https://ecentia.es/logo.avif",
         "description": "Agencia de marketing digital especializada en diseño web, SEO y automatización",
         "foundingDate": "2023",
         "contactPoint": {
