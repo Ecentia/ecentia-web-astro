@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ecentia.com/sitemap-index.xml
+
+# Bloquear páginas de prueba o desarrollo si las hubiera
+Disallow: /admin/
+Disallow: /test/

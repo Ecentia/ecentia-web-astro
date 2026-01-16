@@ -1,15 +1,72 @@
 ---
-// src/layouts/Layout.astro
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
+import { seoConfig, type PageKey } from '../data/seo';
 
 interface Props {
-	title: string;
+    title?: string;
+    description?: string;
+    keywords?: string;
+    image?: string;
+    pageKey?: PageKey;
     bodyClass?: string;
-    showLoader?: boolean; // Nueva prop para controlar la precarga
+    showLoader?: boolean;
+    noindex?: boolean;
 }
 
-const { title, bodyClass = "", showLoader = true } = Astro.props;
+const { 
+    title, 
+    description, 
+    keywords,
+    image,
+    pageKey,
+    bodyClass = "", 
+    showLoader = true,
+    noindex = false 
+} = Astro.props;
+
+// ✅ Acceso tipado correctamente
+const currentPage = pageKey ? seoConfig.pages[pageKey as PageKey] : null;
+
+const seoTitle = title || currentPage?.title || seoConfig.defaultTitle;
+const seoDescription = description || currentPage?.description || seoConfig.defaultDescription;
+const seoKeywords = keywords || currentPage?.keywords || seoConfig.keywords.join(', ');
+const seoImage = image || `${seoConfig.siteUrl}${seoConfig.defaultImage}`;
+const canonicalURL = new URL(Astro.url.pathname, seoConfig.siteUrl).href;
+
+
+// ---------------- JSON-LD ----------------
+
+const baseSchema = {
+  "@type": "ProfessionalService",
+  "name": seoConfig.siteName,
+  "url": seoConfig.siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${seoConfig.siteUrl}/logo.avif`,
+    "width": 512,
+    "height": 512
+  },
+  "image": seoImage,
+  "description": seoDescription,
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ES"
+  },
+  "sameAs": [
+    "https://www.instagram.com/ecentiamarketing/",
+    "https://www.linkedin.com/company/ecentia-marketing/"
+  ],
+  "priceRange": "$$",
+  "telephone": "+34722625288",
+  "email": "ecentiaseo@gmail.com"
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  ...(currentPage?.schema ?? {}),
+  ...baseSchema
+};
 ---
 
 <!DOCTYPE html>
@@ -17,18 +74,66 @@ const { title, bodyClass = "", showLoader = true } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <meta name="description" content="Agencia de Marketing Digital en Sevilla.">
-    <link rel="icon" href="/favicon.ico?=v2" type="image/x-icon">
+    
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription}>
+    <meta name="keywords" content={seoKeywords}>
+    <link rel="canonical" href={canonicalURL}>
+
+    {noindex ? (
+        <meta name="robots" content="noindex, nofollow">
+    ) : (
+        <meta name="robots" content="index, follow">
+    )}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={seoTitle}>
+    <meta property="og:description" content={seoDescription}>
+    <meta property="og:image" content={seoImage}>
+    <meta property="og:url" content={canonicalURL}>
+    <meta property="og:type" content={pageKey === 'home' ? 'website' : 'article'}>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={seoTitle}>
+    <meta name="twitter:description" content={seoDescription}>
+    <meta name="twitter:image" content={seoImage}>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico">
+    <meta name="theme-color" content="#a855f7">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      const f = d.getElementsByTagName(s)[0];
+      const j = d.createElement(s) as HTMLScriptElement;
+      const dl = l!='dataLayer' ? '&l='+l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      if (f?.parentNode) f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5D6TJ5ZX');
+    </script>
+
     <ViewTransitions />
 </head>
 
 <body class={`${showLoader ? 'loading' : ''} ${bodyClass}`}>
+
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6TJ5ZX"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
     {showLoader && (
         <div class="preloader">
@@ -40,43 +145,33 @@ const { title, bodyClass = "", showLoader = true } = Astro.props;
     )}
 
     <div class="noise-overlay"></div>
-    
     <canvas id="cursor-canvas"></canvas>
     <div id="main-cursor"></div>
 
     <slot />
 
-   <script>
+    <script>
     document.addEventListener('astro:page-load', () => {
-        const body = document.body;
+        const body = document.body as HTMLBodyElement;
         const preloader = document.querySelector('.preloader') as HTMLElement | null;
         const barFill = document.querySelector('.bar-fill') as HTMLElement | null;
 
-        // 1. LOGICA DEL LOADER INTELIGENTE
         const hasVisited = sessionStorage.getItem('visited');
 
         if (hasVisited) {
-            // --- CASO A: YA VISITÓ (Navegación interna) ---
-            // Ocultamos el loader inmediatamente sin animaciones
-            if (preloader) {
-                preloader.style.display = 'none'; 
-            }
+            if (preloader) preloader.style.display = 'none';
             body.classList.add('loaded');
             body.classList.remove('loading');
-
         } else {
-            // --- CASO B: PRIMERA VISITA (Carga inicial) ---
             sessionStorage.setItem('visited', 'true');
 
-            // Ejecutamos la animación de la barra de carga (tu lógica original)
             if (barFill && body.classList.contains('loading')) {
                 let width = 0;
                 const interval = setInterval(() => {
-                    width += Math.random() * 20; 
+                    width += Math.random() * 20;
                     if (width > 100) width = 100;
-                    
                     barFill.style.width = width + '%';
-                    
+
                     if (width === 100) {
                         clearInterval(interval);
                         setTimeout(() => {
@@ -85,15 +180,8 @@ const { title, bodyClass = "", showLoader = true } = Astro.props;
                         }, 300);
                     }
                 }, 50);
-            } else {
-                // Fallback si no existe la barra
-                setTimeout(() => {
-                    body.classList.add('loaded');
-                    body.classList.remove('loading');
-                }, 500);
             }
 
-            // Seguro de vida (solo necesario en la primera carga)
             setTimeout(() => {
                 if (body.classList.contains('loading')) {
                     body.classList.add('loaded');
@@ -102,35 +190,34 @@ const { title, bodyClass = "", showLoader = true } = Astro.props;
             }, 2500);
         }
 
-        // 2. ANIMACIONES SCROLL (Observer)
-        // Esto debe ejecutarse SIEMPRE, en cada navegación
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
+                if (entry.isIntersecting) {
                     const target = entry.target as HTMLElement;
                     target.style.opacity = '1';
                     target.style.transform = 'translateY(0)';
                     observer.unobserve(target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content').forEach(el => {
-            observer.observe(el);
-        });
+        const animatedElements = document.querySelectorAll<HTMLElement>(
+            '.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content'
+        );
+
+        animatedElements.forEach(el => observer.observe(el));
     });
-</script>
-    
+    </script>
+
     <script src="../scripts/cursor.js"></script>
 </body>
 </html>
 
 <style is:global>
-    html body.loading {
-        overflow: hidden !important;
-        height: 100vh !important;
-        position: fixed !important;
-        width: 100% !important;
-    }
+html body.loading {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed !important;
+    width: 100% !important;
+}
 </style>
