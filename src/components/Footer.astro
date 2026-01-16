@@ -1,12 +1,16 @@
 ---
 // src/components/Footer.astro
+const fechaActual = new Date();
+
+// Obtener el año actual de cuatro dígitos
+const añoActual = fechaActual.getFullYear();
 ---
 
 <footer class="site-footer">
     <div class="container footer-inner">
         <div class="copyright">
             <h4>Ecentia.</h4>
-            <p>© 2025 Ecentia Marketing. Sevilla.</p>
+            <p>© {añoActual} Ecentia Marketing. Sevilla.</p>
         </div>
         <div class="footer-nav">
             <a href="/legal/aviso-legal">Legal</a>

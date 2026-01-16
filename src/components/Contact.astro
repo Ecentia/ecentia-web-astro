@@ -1,5 +1,7 @@
 ---
 // src/components/Contact.astro
+const fecha = new Date()
+const anioActual = fecha.getFullYear()
 ---
 
 <section id="contact" class="aurora-contact-section">
@@ -15,7 +17,7 @@
             <div class="contact-left-col fade-in-up">
                 <div class="badge-status">
                     <span class="pulse-dot"></span>
-                    <span>Proyectos Abiertos 2025</span>
+                    <span>Proyectos Abiertos {anioActual}</span>
                 </div>
                 <h2 class="cta-title">¿Tienes una idea? <br><span class="outline-text reveal-text">Hagámosla épica.</span></h2>
                 <p class="contact-desc-hero">Estrategia, diseño y tecnología para marcas que no piden permiso. Rellena el formulario para despegar o usa la vía rápida por WhatsApp.</p>
