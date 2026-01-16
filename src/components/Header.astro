@@ -3,7 +3,10 @@
 ---
 
 <nav class="nav-floating">
-    <a href="/" class="logo-text magnet-target">Ecentia<span style="color: var(--accent-color);">.</span></a>
+    <a href="/" class="branding magnet-target">
+        <img src="/favicon.ico" alt="Ecentia Logo" class="logo-icon" />
+        <span class="logo-text">Ecentia<span style="color: var(--accent-color);">.</span></span>
+    </a>
     
     <div class="nav-items">
         <a href="/proyectos" class="magnet-target">Proyectos</a>
@@ -20,10 +23,30 @@
         display: flex; justify-content: space-between; align-items: center;
         z-index: 100; mix-blend-mode: difference;
     }
+
+    /* NUEVO: Clase contenedora para alinear icono y texto */
+    .branding {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Espacio entre el logo y el texto */
+        text-decoration: none;
+    }
+
+    /* NUEVO: Estilos para el icono */
+    .logo-icon {
+        width: 27px;  /* Tamaño ajustado para que se vea bien en el header */
+        height: 27px;
+        object-fit: contain;
+    }
+
+    /* Modificado: Ahora solo aplica al texto, no al enlace completo */
     .logo-text { 
         font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; 
-        color: var(--white); text-decoration: none; 
+        color: var(--white); 
+        /* Eliminamos text-decoration aquí porque ya está en .branding, 
+           pero mantenemos la fuente y color */
     }
+
     .nav-items { display: flex; gap: 30px; align-items: center; }
     .nav-items a { 
         text-decoration: none; color: var(--white); font-weight: 500; 
