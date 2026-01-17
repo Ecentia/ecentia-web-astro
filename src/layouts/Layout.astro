@@ -34,9 +34,7 @@ const seoKeywords = keywords || currentPage?.keywords || seoConfig.keywords.join
 const seoImage = image || `${seoConfig.siteUrl}${seoConfig.defaultImage}`;
 const canonicalURL = new URL(Astro.url.pathname, seoConfig.siteUrl).href;
 
-
 // ---------------- JSON-LD ----------------
-
 const baseSchema = {
   "@type": "ProfessionalService",
   "name": seoConfig.siteName,
@@ -75,7 +73,7 @@ const jsonLd = {
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
     <title>{seoTitle}</title>
     <meta name="description" content={seoDescription} />
@@ -101,7 +99,7 @@ const jsonLd = {
     <meta name="twitter:image" content={seoImage} />
 
     <link rel="icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#a855f7" />
+    <meta name="theme-color" content="#050510" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -111,7 +109,7 @@ const jsonLd = {
 
     <script is:inline>
     (function(w,d,s,l,i){
-      // @ts-ignore - Solución al error de indexado implícito 'any'
+      // @ts-ignore
       w[l]=w[l]||[];
       // @ts-ignore
       w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
@@ -149,11 +147,13 @@ const jsonLd = {
     <canvas id="cursor-canvas"></canvas>
     <div id="main-cursor"></div>
 
-    <slot />
+    <main id="main-content">
+        <slot />
+    </main>
 
     <script>
     document.addEventListener('astro:page-load', () => {
-        const body = document.body as HTMLBodyElement;
+        const body = document.body;
         const preloader = document.querySelector('.preloader') as HTMLElement | null;
         const barFill = document.querySelector('.bar-fill') as HTMLElement | null;
 
@@ -165,7 +165,6 @@ const jsonLd = {
             body.classList.remove('loading');
         } else {
             sessionStorage.setItem('visited', 'true');
-
             if (barFill && body.classList.contains('loading')) {
                 let width = 0;
                 const interval = setInterval(() => {
@@ -183,6 +182,7 @@ const jsonLd = {
                 }, 50);
             }
 
+            // Fallback de seguridad
             setTimeout(() => {
                 if (body.classList.contains('loading')) {
                     body.classList.add('loaded');
@@ -202,10 +202,9 @@ const jsonLd = {
             });
         }, { threshold: 0.1 });
 
-        const animatedElements = document.querySelectorAll<HTMLElement>(
+        const animatedElements = document.querySelectorAll(
             '.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content'
         );
-
         animatedElements.forEach(el => observer.observe(el));
     });
     </script>
@@ -215,10 +214,24 @@ const jsonLd = {
 </html>
 
 <style is:global>
-html body.loading {
-    overflow: hidden !important;
-    height: 100vh !important;
-    position: fixed !important;
-    width: 100% !important;
-}
+    /* Estilos Críticos de Layout */
+    html {
+        -webkit-text-size-adjust: 100%; /* Evita cambio de tamaño de fuente al girar móvil */
+    }
+
+    /* Corrección del Preloader: 
+       Usamos fixed para asegurar que cubra todo, pero evitamos bugs de scroll */
+    html body.loading {
+        overflow: hidden !important;
+        height: 100dvh !important; /* Usar dvh para móviles */
+        width: 100% !important;
+        position: fixed; /* Mantiene la pantalla quieta mientras carga */
+    }
+
+    /* Scroll suave nativo para iOS */
+    #main-content {
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        overflow-x: hidden; /* Doble seguridad */
+    }
 </style>

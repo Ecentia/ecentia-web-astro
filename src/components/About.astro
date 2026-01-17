@@ -56,6 +56,8 @@
         max-width: 900px;
         margin: 0 auto;
         text-align: center;
+        /* Aseguramos que el contenido no desborde */
+        width: 100%;
     }
 
     .subtitle {
@@ -71,11 +73,13 @@
 
     .title {
         font-family: 'Syne', sans-serif;
-        font-size: clamp(3rem, 7vw, 5rem); /* Título más grande */
+        /* AJUSTE: Mínimo bajado de 3rem a 2.5rem para móviles pequeños */
+        font-size: clamp(2.5rem, 7vw, 5rem);
         line-height: 1.05;
         margin-bottom: 60px;
         font-weight: 800;
         color: var(--white);
+        word-wrap: break-word; /* Evita cortes en palabras largas */
     }
 
     .text-gradient {
@@ -89,7 +93,7 @@
         display: flex;
         justify-content: center;
         gap: 30px;
-        text-align: left; /* Cambiamos a alineación izquierda para mejor lectura */
+        text-align: left;
         max-width: 800px;
         margin: 0 auto;
     }
@@ -122,5 +126,31 @@
 
     .text-block strong {
         color: var(--accent-color);
+    }
+
+    /* --- MEDIA QUERIES PARA MÓVIL --- */
+    @media (max-width: 768px) {
+        .about-section {
+            padding: 80px 0; /* Menos padding vertical */
+        }
+
+        .title {
+            margin-bottom: 40px;
+            /* Asegura que no rompa palabras incorrectamente */
+            hyphens: auto; 
+        }
+
+        .text-block-wrapper {
+            gap: 20px; /* Reducimos el hueco entre línea y texto */
+            padding: 0 10px; /* Margen de seguridad lateral */
+        }
+
+        .lead-paragraph {
+            font-size: 1.2rem; /* Texto un poco más pequeño para leer mejor */
+        }
+
+        .text-block p:not(.lead-paragraph) {
+            font-size: 1rem;
+        }
     }
 </style>

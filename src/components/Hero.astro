@@ -20,7 +20,8 @@
 
             <div class="hero-footer fade-in-up delay-2">
                 <p class="hero-desc">
-                    No hacemos simples páginas web. Creamos <strong>activos digitales</strong> diseñados con
+                    No hacemos simples páginas web.
+                    Creamos <strong>activos digitales</strong> diseñados con
                     psicología de venta y automatización para que tu negocio en Sevilla (o el mundo) no pare de
                     crecer.
                 </p>
@@ -34,43 +35,51 @@
 </header>
 
 <style>
-    /* Estilos extraídos y CORREGIDOS */
+    /* Estilos Base */
     .hero-section { 
         min-height: 100vh;
+        min-height: 100dvh; /* Soporte móvil moderno */
         width: 100%;
         display: flex; 
         align-items: center; 
         justify-content: center;
         position: relative; 
         overflow: hidden; 
-        padding-top: 100px;
+        padding-top: 80px;
         padding-bottom: 50px;
     }
 
     .hero-bg-glow {
-        position: absolute; width: 800px; height: 800px;
+        position: absolute; 
+        width: 800px; height: 800px;
         background: radial-gradient(circle, var(--accent-color) 0%, transparent 60%);
-        opacity: 0.15; filter: blur(80px); top: 50%; left: 50%; transform: translate(-50%, -50%);
+        opacity: 0.15; 
+        filter: blur(80px); 
+        top: 50%; left: 50%; 
+        transform: translate(-50%, -50%);
         animation: pulseGlow 8s infinite alternate;
+        z-index: 0;
     }
+    
     @keyframes pulseGlow { 
         0% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); } 
         100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.2); } 
     }
 
     .fluid-height { 
-        height: 100%; 
+        height: 100%;
         display: flex;
         flex-direction: column; 
         justify-content: center; 
+        position: relative;
+        z-index: 1;
     }
 
     .mega-title {
         font-family: 'Syne', sans-serif;
-        /* MODIFICADO: Ajustado el clamp para portátiles. 
-           Bajamos de 9vw a 8vw en el valor preferido para dar aire. */
+        /* Desktop: fluido pero controlado */
         font-size: clamp(3rem, 8vw, 8.5rem); 
-        line-height: 1.15; 
+        line-height: 1.1; 
         font-weight: 800;
         text-transform: uppercase;
         color: var(--white);
@@ -79,46 +88,46 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        /* IMPORTANTE: Evita desbordamientos horizontales accidentales */
-        max-width: 100%; 
-        overflow-wrap: break-word;
+        width: 100%;
     }
     
     .line {
-        overflow: visible; 
         display: block;
-        height: auto; 
+        padding: 5px 0; 
+        overflow: visible;
+        /* IMPORTANTE: Evita que el navegador rompa la palabra si falta espacio */
+        white-space: nowrap; 
     }
 
-    /* MODIFICADO: Lógica de indentación más inteligente */
     .line.indent { 
-        /* Por defecto (portátiles pequeños/tablets) reducimos la indentación */
-        margin-left: 5vw; 
+        margin-left: 5vw;
     }
 
     /* Animación de entrada */
     .reveal-text { 
         display: block;
         transform: translateY(120%); 
-        transition: transform 1.2s var(--ease-out-expo); 
+        transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
     }
+    
     :global(body.loaded) .reveal-text { 
         transform: translateY(0);
     }
 
     .outline-text { 
         -webkit-text-stroke: 1px var(--white); 
-        color: transparent; 
+        color: transparent;
         transition: 0.3s;
     }
+    
     .mega-title:hover .outline-text { 
-        color: var(--accent-color); 
+        color: var(--accent-color);
         -webkit-text-stroke: 0; 
     }
 
     .label-wrapper { 
         display: inline-flex;
-        align-items: center; 
+        align-items: center;
         gap: 10px; 
         border: 1px solid rgba(255,255,255,0.2); 
         padding: 8px 16px; 
@@ -126,73 +135,109 @@
         margin-bottom: 30px; 
         font-size: 0.8rem; 
         text-transform: uppercase;
-        letter-spacing: 1px; 
+        letter-spacing: 1px;
+        width: fit-content;
     }
+    
     .status-dot { 
-        width: 8px; height: 8px; background: #00ff88; border-radius: 50%;
+        width: 8px; height: 8px; background: #00ff88;
+        border-radius: 50%;
         box-shadow: 0 0 10px #00ff88; 
     }
 
     .hero-footer { 
-        display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between; 
+        align-items: flex-end; 
+        flex-wrap: wrap;
         gap: 30px; 
     }
+    
     .hero-desc { 
-        max-width: 400px; color: var(--gray); font-size: 1.1rem; line-height: 1.6;
+        max-width: 400px;
+        color: var(--gray); 
+        font-size: 1.1rem; 
+        line-height: 1.6;
     }
+    
     .scroll-down-btn { 
-        display: flex; align-items: center; gap: 15px; color: var(--white); text-decoration: none; opacity: 0.7; transition: 0.3s;
+        display: flex;
+        align-items: center; 
+        gap: 15px; 
+        color: var(--white); 
+        text-decoration: none; 
+        opacity: 0.7; 
+        transition: 0.3s;
     }
+    
     .scroll-down-btn:hover { opacity: 1; }
+    
     .arrow-down { 
         width: 40px; height: 40px;
-        border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(255,255,255,0.3); 
+        border-radius: 50%; 
+        display: flex; align-items: center; justify-content: center;
     }
 
-    /* --- MEDIA QUERIES CORREGIDAS --- */
+    /* --- MEDIA QUERIES --- */
 
-    /* 1. Pantallas Grandes (Desktop normal y superior) */
     @media (min-width: 1200px) {
-        .line.indent { 
-            /* Solo recuperamos el 10vw si la pantalla es realmente grande */
-            margin-left: 10vw; 
-        }
+        .line.indent { margin-left: 10vw; }
     }
 
-    /* 2. Portátiles Pequeños y Tablets (Landscape) */
     @media (max-width: 1024px) {
-        .line.indent { 
-            /* Eliminamos la indentación antes para ganar espacio lateral */
-            margin-left: 0; 
-        }
+        .line.indent { margin-left: 0; }
+        .mega-title { font-size: 7vw; }
     }
 
-    /* 3. Móvil (Portrait) */
+    /* MÓVIL (Portrait) */
     @media (max-width: 768px) {
+        .hero-section {
+            padding-top: 110px; 
+            align-items: flex-start; 
+        }
+
+        .fluid-height {
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
         .mega-title {
-            /* CORRECCIÓN CRÍTICA: 
-               13vw * 9 letras = 117% del ancho (se corta).
-               11.5vw * 9 letras ≈ 103% (ajustado con el espaciado).
-               Bajamos a 11vw para ir sobre seguro. */
-            font-size: 11vw;
+            /* AJUSTE CRÍTICO: 9vw asegura que AUTORIDAD quepa sin romperse */
+            font-size: 9vw; 
             line-height: 1.1;
+            margin-bottom: 30px;
         }
         
-        /* Aseguramos que no haya indentación en móvil */
         .line.indent { 
-            margin-left: 0;
+            /* Forzar margen 0 en móvil */
+            margin-left: 0 !important; 
         }
 
         .hero-footer { 
-            flex-direction: column; align-items: flex-start; gap: 30px;
+            flex-direction: column;
+            align-items: flex-start; 
+            gap: 25px;
+            margin-top: auto;
+            padding-bottom: 30px;
         }
-        .hero-desc { font-size: 1rem; width: 100%; }
+        
+        .hero-desc { 
+            font-size: 1rem; 
+            width: 100%;
+        }
+
+        .label-wrapper {
+            margin-bottom: 20px;
+            font-size: 0.75rem;
+        }
     }
     
-    /* 4. Móviles muy pequeños (iPhone SE, Fold, etc) */
+    /* MÓVILES MUY PEQUEÑOS */
     @media (max-width: 380px) {
         .mega-title {
-            font-size: 10vw; /* Un poco más pequeño para pantallas estrechas */
+            /* Si la pantalla es diminuta, bajamos un poco más */
+            font-size: 8.5vw; 
         }
     }
 </style>

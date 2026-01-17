@@ -1,92 +1,113 @@
 ---
 // src/components/Contact.astro
-const formAction = "https://formspree.io/f/xnnwwebz"; // Tu URL de Formspree
+const formAction = "https://formspree.io/f/xnnwwebz"; 
 ---
 
 <section id="contact" class="contact-section">
+    <div class="ambient-glow"></div>
+    <div class="ambient-orb"></div>
+
     <div class="container">
         <div class="contact-wrapper">
             
-            <div class="contact-info">
-                <span class="subtitle">HABLEMOS DE NEGOCIOS</span>
-                <h2 class="title">¿Listo para <br><span class="text-gradient">escalar?</span></h2>
-                <p class="description">
-                    Ya sea que necesites una web desde cero, una auditoría SEO o automatizar tus procesos. 
-                    Estamos aquí para construir la solución exacta que necesitas.
+            <div class="info-col fade-in-up">
+                <div class="badge-pill"><span class="dot"></span>CONTACTO</div>
+                <h2 class="display-title">¿Listo para <span class="txt-gradient">escalar?</span></h2>
+                <p class="hero-desc">
+                    La diferencia entre una web más y una herramienta de ventas es la estrategia. 
+                    Hablemos de tu proyecto hoy mismo.
                 </p>
 
-                <div class="direct-channels">
-                    <a href="https://wa.me/34722625288" target="_blank" class="channel-card">
-                        <div class="icon-box whatsapp">
-                            <i class="fab fa-whatsapp"></i>
+                <div class="channels-grid">
+                    <a href="https://wa.me/34722625288" target="_blank" class="glass-card">
+                        <div class="icon-holder wa"><i class="fab fa-whatsapp"></i></div>
+                        <div class="card-txt">
+                            <span class="lbl">WhatsApp</span>
+                            <span class="val">+34 722 625 288</span>
                         </div>
-                        <div class="channel-details">
-                            <span class="channel-label">Respuesta rápida</span>
-                            <span class="channel-value">+34 722 625 288</span>
-                        </div>
-                        <i class="fas fa-arrow-right arrow-icon"></i>
+                        <i class="fas fa-chevron-right arrow"></i>
                     </a>
 
-                    <a href="mailto:ecentiaseo@gmail.com" class="channel-card">
-                        <div class="icon-box email">
-                            <i class="far fa-envelope"></i>
+                    <a href="mailto:ecentiaseo@gmail.com" class="glass-card">
+                        <div class="icon-holder mail"><i class="far fa-envelope"></i></div>
+                        <div class="card-txt">
+                            <span class="lbl">Email</span>
+                            <span class="val">ecentiaseo@gmail.com</span>
                         </div>
-                        <div class="channel-details">
-                            <span class="channel-label">Escríbenos</span>
-                            <span class="channel-value">ecentiaseo@gmail.com</span>
-                        </div>
-                        <i class="fas fa-arrow-right arrow-icon"></i>
+                        <i class="fas fa-chevron-right arrow"></i>
                     </a>
                 </div>
             </div>
 
-            <div class="contact-form-container">
-                <form id="home-contact-form" action={formAction} method="POST" class="modern-form">
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu negocio">
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="email">Email Corporativo</label>
-                        <input type="email" id="email" name="email" placeholder="hola@tuempresa.com" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Me interesa...</label>
-                        <div class="tags-container">
-                            {['Diseño Web', 'E-Commerce', 'SEO', 'Automatización'].map(tag => (
-                                <label class="tag-checkbox">
-                                    <input type="checkbox" name="interes[]" value={tag}>
-                                    <span class="tag-label">{tag}</span>
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="mensaje">Detalles del proyecto</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos tus objetivos..." required></textarea>
-                    </div>
-
-                    <div class="form-footer">
-                        <label class="privacy-check">
-                            <input type="checkbox" required>
-                            <span>Acepto la <a href="/legal/politica-privacidad">política de privacidad</a></span>
-                        </label>
+            <div class="form-col fade-in-up delay-1">
+                <div class="form-shell">
+                    <form id="home-contact-form" action={formAction} method="POST">
                         
-                        <button type="submit" id="submit-btn" class="submit-btn">
-                            <span>Enviar Propuesta</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </form>
+                        <div class="mobile-header">
+                            <h3>Envíanos un mensaje</h3>
+                            <p>Te respondemos en menos de 24h.</p>
+                        </div>
+
+                        <div class="inputs-row">
+                            <div class="field-wrap">
+                                <label>Tu Nombre</label>
+                                <div class="input-inner">
+                                    <i class="fas fa-user ico"></i>
+                                    <input type="text" name="nombre" placeholder="Nombre completo" required>
+                                </div>
+                            </div>
+                            <div class="field-wrap">
+                                <label>Empresa / Marca</label>
+                                <div class="input-inner">
+                                    <i class="fas fa-building ico"></i>
+                                    <input type="text" name="empresa" placeholder="Nombre del negocio">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-wrap">
+                            <label>Email Profesional</label>
+                            <div class="input-inner">
+                                <i class="fas fa-at ico"></i>
+                                <input type="email" name="email" placeholder="hola@tuempresa.com" required>
+                            </div>
+                        </div>
+
+                        <div class="field-wrap">
+                            <label>¿En qué podemos ayudarte?</label>
+                            <div class="chips-container">
+                                {['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Automatización'].map(tag => (
+                                    <label class="choice-chip">
+                                        <input type="checkbox" name="interes[]" value={tag}>
+                                        <span class="chip-content">
+                                            <i class="fas fa-check"></i> {tag}
+                                        </span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="field-wrap">
+                            <label>Detalles del Proyecto</label>
+                            <div class="input-inner">
+                                <i class="fas fa-comment-dots ico top-ico"></i>
+                                <textarea name="mensaje" rows="3" placeholder="Cuéntanos tus objetivos..." required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-bottom">
+                            <label class="privacy-row">
+                                <input type="checkbox" required>
+                                <span>He leído y acepto la <a href="/legal/politica-privacidad">política de privacidad</a>.</span>
+                            </label>
+                            
+                            <button type="submit" id="submit-btn" class="cta-submit">
+                                <span>Solicitar Propuesta</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -94,233 +115,21 @@ const formAction = "https://formspree.io/f/xnnwwebz"; // Tu URL de Formspree
 </section>
 
 <style>
-    .contact-section {
-        padding: 140px 0;
-        background: #050510; /* Color de fondo oscuro sólido para contraste */
-        position: relative;
-    }
-
-    .contact-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 80px;
-        align-items: start;
-    }
-
-    /* Columna Izquierda */
-    .subtitle {
-        font-family: 'Syne', sans-serif;
-        font-size: 0.9rem;
-        letter-spacing: 3px;
-        color: var(--accent-color);
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        display: block;
-        font-weight: 700;
-    }
-
-    .title {
-        font-family: 'Syne', sans-serif;
-        font-size: clamp(3rem, 5vw, 4.5rem);
-        line-height: 1.1;
-        margin-bottom: 30px;
-        font-weight: 700;
-        color: var(--white);
-    }
-
-    .text-gradient {
-        background: var(--primary-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .description {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        color: var(--text-muted);
-        margin-bottom: 50px;
-        max-width: 90%;
-    }
-
-    .direct-channels {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .channel-card {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .channel-card:hover {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.1);
-        transform: translateX(10px);
-    }
-
-    .icon-box {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-    }
-
-    .icon-box.whatsapp { background: rgba(37, 211, 102, 0.1); color: #25D366; }
-    .icon-box.email { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
-
-    .channel-details {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-    }
-
-    .channel-label { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
-    .channel-value { font-size: 1.1rem; color: var(--white); font-weight: 600; font-family: 'Syne', sans-serif; }
-
-    .arrow-icon { color: var(--gray); transition: transform 0.3s ease; }
-    .channel-card:hover .arrow-icon { color: var(--white); transform: translateX(5px); }
-
-    /* Columna Derecha (Formulario) */
-    .contact-form-container {
-        background: rgba(255, 255, 255, 0.02);
-        padding: 50px;
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-    }
-
-    .modern-form { display: flex; flex-direction: column; gap: 25px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-    .input-group { display: flex; flex-direction: column; gap: 10px; }
-    
-    .input-group label {
-        font-size: 0.9rem;
-        color: var(--gray);
-        font-weight: 500;
-    }
-
-    .input-group input, 
-    .input-group textarea {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 15px;
-        color: var(--white);
-        font-size: 1rem;
-        font-family: 'Inter', sans-serif;
-        transition: all 0.3s ease;
-        outline: none;
-    }
-
-    .input-group input:focus, 
-    .input-group textarea:focus {
-        border-color: var(--accent-color);
-        background: rgba(168, 85, 247, 0.05);
-        box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
-    }
-
-    /* Tags */
-    .tags-container { display: flex; flex-wrap: wrap; gap: 10px; }
-    .tag-checkbox input { display: none; }
-    .tag-label {
-        display: inline-block;
-        padding: 8px 16px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50px;
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .tag-checkbox input:checked + .tag-label {
-        background: var(--accent-color);
-        color: var(--white);
-        border-color: var(--accent-color);
-    }
-
-    /* Footer Form */
-    .form-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    .privacy-check {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.85rem;
-        color: var(--gray);
-        cursor: pointer;
-    }
-    .privacy-check a { color: var(--white); text-decoration: underline; }
-
-    .submit-btn {
-        padding: 16px 35px;
-        background: var(--white);
-        color: var(--bg-color);
-        border: none;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.3s ease;
-    }
-
-    .submit-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
-    }
-
-    /* Botones de estado (JS) */
-    .btn-success { background: #10B981 !important; color: white !important; }
-    .btn-error { background: #EF4444 !important; color: white !important; }
-
-    @media (max-width: 992px) {
-        .contact-wrapper { grid-template-columns: 1fr; gap: 50px; }
-        .contact-form-container { padding: 30px; }
-        .form-footer { flex-direction: column; gap: 20px; align-items: stretch; }
-        .submit-btn { justify-content: center; }
-    }
-    
-    @media (max-width: 600px) {
-        .form-grid { grid-template-columns: 1fr; }
-    }
+.contact-section{position:relative;padding:120px 0;background:#050510;overflow:hidden;z-index:1}.ambient-glow{position:absolute;top:-10%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.15),transparent 70%);filter:blur(100px);z-index:-1}.ambient-orb{position:absolute;bottom:10%;right:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(99,102,241,0.1),transparent 70%);filter:blur(80px);z-index:-1}.contact-wrapper{display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:center}@media(max-width:1024px){.contact-wrapper{grid-template-columns:1fr;gap:50px}}.badge-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-size:0.75rem;color:var(--accent-color);font-weight:700;letter-spacing:1px;margin-bottom:20px}.badge-pill .dot{width:6px;height:6px;background:var(--accent-color);border-radius:50%;box-shadow:0 0 8px var(--accent-color)}.display-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,3.8rem);line-height:1.1;color:#fff;margin-bottom:25px;font-weight:700}.txt-gradient{background:linear-gradient(90deg,#fff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero-desc{font-size:1.15rem;color:var(--text-muted);line-height:1.6;margin-bottom:40px;max-width:90%}.channels-grid{display:flex;flex-direction:column;gap:15px}.glass-card{display:flex;align-items:center;gap:20px;padding:18px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:16px;text-decoration:none;transition:0.3s cubic-bezier(0.25,0.8,0.25,1)}.glass-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(168,85,247,0.3);transform:translateY(-3px)}.icon-holder{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem}.wa{background:rgba(37,211,102,0.1);color:#25d366}.mail{background:rgba(168,85,247,0.1);color:#a855f7}.card-txt{flex:1;display:flex;flex-direction:column}.card-txt .lbl{font-size:0.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px}.card-txt .val{font-size:1.05rem;color:#fff;font-weight:600;font-family:'Syne'}.arrow{color:rgba(255,255,255,0.3);transition:0.3s}.glass-card:hover .arrow{color:#fff;transform:translateX(5px)}.form-shell{background:rgba(20,20,35,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:40px;border-radius:24px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 25px 50px -12px rgba(0,0,0,0.5)}.mobile-header{display:none;margin-bottom:25px}.mobile-header h3{font-family:'Syne';font-size:1.5rem;color:#fff;margin-bottom:5px}.mobile-header p{font-size:0.9rem;color:var(--gray)}.inputs-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.field-wrap{margin-bottom:20px;display:flex;flex-direction:column;gap:8px}.field-wrap label{font-size:0.85rem;color:var(--gray);font-weight:500;margin-left:4px}.input-inner{position:relative}.input-inner .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.3);font-size:1rem;pointer-events:none;transition:0.3s}.input-inner .ico.top-ico{top:20px;transform:none}.input-inner input,.input-inner textarea{width:100%;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 16px 16px 48px;color:#fff;font-size:0.95rem;font-family:'Inter';transition:0.3s;outline:none}.input-inner textarea{min-height:120px;resize:vertical}.input-inner input:focus,.input-inner textarea:focus{background:rgba(168,85,247,0.05);border-color:var(--accent-color);box-shadow:0 0 0 4px rgba(168,85,247,0.1)}.input-inner input:focus+.ico,.input-inner textarea:focus+.ico{color:var(--accent-color)}.chips-container{display:flex;flex-wrap:wrap;gap:10px}.choice-chip input{display:none}.chip-content{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50px;color:var(--gray);font-size:0.85rem;cursor:pointer;transition:0.3s;user-select:none}.choice-chip input:checked+.chip-content{background:var(--accent-color);color:#fff;border-color:var(--accent-color);box-shadow:0 4px 15px rgba(168,85,247,0.3)}.choice-chip .fa-check{font-size:0.7rem;opacity:0;transform:scale(0);transition:0.3s}.choice-chip input:checked+.chip-content .fa-check{opacity:1;transform:scale(1)}.form-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:10px}.privacy-row{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--gray);cursor:pointer;max-width:60%}.privacy-row a{color:#fff;text-decoration:underline}.cta-submit{padding:16px 36px;background:#fff;color:#000;border:none;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:0.3s}.cta-submit:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(255,255,255,0.2)}.btn-success{background:#10b981!important;color:#fff!important}.btn-error{background:#ef4444!important;color:#fff!important}@media(max-width:768px){.contact-section{padding:80px 0}.inputs-row{grid-template-columns:1fr}.form-shell{padding:25px 20px;background:rgba(20,20,35,0.8)}.mobile-header{display:block}.input-inner input,.input-inner textarea{font-size:16px!important;padding:16px 16px 16px 45px}.chip-content{flex:1;justify-content:center;padding:12px}.form-bottom{flex-direction:column;gap:25px;align-items:stretch}.privacy-row{max-width:100%;justify-content:center;text-align:center}.cta-submit{width:100%;justify-content:center}}
 </style>
 
 <script>
-    // Lógica de envío del formulario
     document.addEventListener('astro:page-load', () => {
         const form = document.getElementById('home-contact-form') as HTMLFormElement;
         const btn = document.getElementById('submit-btn') as HTMLButtonElement;
 
         if (form && btn) {
             const originalText = btn.innerHTML;
-
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = new FormData(form);
-
-                // Estado Cargando
                 btn.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
-                btn.style.opacity = '0.7';
+                btn.style.opacity = '0.8';
                 btn.disabled = true;
 
                 try {
@@ -331,12 +140,11 @@ const formAction = "https://formspree.io/f/xnnwwebz"; // Tu URL de Formspree
                     });
 
                     if (response.ok) {
-                        btn.innerHTML = '¡Enviado! <i class="fas fa-check"></i>';
+                        btn.innerHTML = '¡Mensaje Enviado! <i class="fas fa-check"></i>';
                         btn.classList.add('btn-success');
                         form.reset();
-                    } else {
-                        throw new Error('Error en el envío');
-                    }
+                        // Resetear visual de chips si es necesario
+                    } else { throw new Error('Falló'); }
                 } catch (error) {
                     btn.innerHTML = 'Error al enviar <i class="fas fa-times"></i>';
                     btn.classList.add('btn-error');

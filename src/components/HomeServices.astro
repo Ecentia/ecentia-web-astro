@@ -54,11 +54,12 @@ const tags = [
 </section>
 
 <style>
+    /* --- ESTILOS BASE (Desktop) --- */
     .home-services-section {
         padding: 140px 0;
         position: relative;
         overflow: hidden;
-        background: linear-gradient(180deg, var(--bg-color) 0%, #080810 100%); /* Ligero degradado */
+        background: linear-gradient(180deg, var(--bg-color) 0%, #080810 100%);
         border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -69,7 +70,7 @@ const tags = [
         align-items: center;
     }
 
-    /* COLUMNA IZQUIERDA (Igual que antes pero ajustada) */
+    /* COLUMNA IZQUIERDA */
     .content-col { position: relative; z-index: 2; }
     .label-box { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 25px; padding: 8px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; }
     .pulse-icon { width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%; box-shadow: 0 0 10px var(--accent-color); animation: pulse 2s infinite; }
@@ -77,15 +78,16 @@ const tags = [
     .title { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.15; color: var(--white); margin-bottom: 30px; font-weight: 700; }
     .text-highlight { color: var(--accent-color); }
     .description { font-size: 1.15rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 40px; max-width: 90%; }
+    
     .btn-tech { position: relative; display: inline-flex; align-items: center; gap: 15px; padding: 18px 40px; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: var(--white); text-decoration: none; font-family: 'Syne', sans-serif; font-weight: 600; border-radius: 4px; overflow: hidden; transition: all 0.3s ease; }
     .btn-tech:hover { border-color: var(--accent-color); transform: translateX(5px); box-shadow: -5px 0 20px rgba(168, 85, 247, 0.2); }
     .btn-glow { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent); transition: 0.6s; }
     .btn-tech:hover .btn-glow { left: 100%; }
 
-    /* NUEVO: CONECTOR DE ENERGÍA CENTRAL */
+    /* CONECTOR CENTRAL */
     .energy-connector {
         position: relative;
-        height: 200px; /* Altura de la línea */
+        height: 200px;
         display: flex;
         align-items: center;
     }
@@ -115,7 +117,7 @@ const tags = [
         position: relative;
         padding: 40px;
         border-radius: 20px;
-        background: rgba(20, 20, 30, 0.3); /* Fondo sutil para agrupar */
+        background: rgba(20, 20, 30, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -124,7 +126,6 @@ const tags = [
     .hash { color: var(--accent-color); opacity: 0.7; }
     .tech-tag:hover { border-color: var(--accent-color); color: var(--white); transform: translateY(-3px) scale(1.05); box-shadow: 0 5px 15px rgba(168, 85, 247, 0.15); }
 
-    /* Fondo de red neuronal detrás de los tags */
     .network-bg {
         position: absolute;
         top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -140,16 +141,62 @@ const tags = [
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); } 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); } }
     @keyframes flowRight { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100px; opacity: 0; } }
 
-    /* RESPONSIVE */
+    /* --- RESPONSIVE OPTIMIZADO (AQUÍ ESTÁ LA MEJORA) --- */
     @media (max-width: 992px) {
-        .services-wrapper {
-            grid-template-columns: 1fr; /* Volvemos a una columna */
-            gap: 50px;
+        .home-services-section {
+            padding: 80px 0; /* Padding más cómodo para móvil */
         }
-        /* Ocultamos el conector en móvil porque no tiene sentido verticalmente */
-        .energy-connector { display: none; } 
+
+        .services-wrapper {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            /* Alineamos todo al centro para mayor impacto visual */
+            text-align: center;
+        }
+
+        .content-col {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        .description {
+            max-width: 100%; /* Aprovecha el ancho */
+            margin-left: auto; margin-right: auto;
+            font-size: 1rem;
+        }
         
-        .tags-cloud { justify-content: flex-start; }
-        .tags-cloud-container { padding: 20px; background: transparent; border: none; }
+        .energy-connector { display: none; }
+
+        /* MEJORA VISUAL: Contenedor destacado en móvil */
+        .tags-cloud-container { 
+            padding: 30px 20px; 
+            /* Fondo oscuro para contraste */
+            background: rgba(15, 15, 25, 0.6); 
+            /* Borde brillante sutil */
+            border: 1px solid rgba(168, 85, 247, 0.2); 
+            /* Sombra para dar profundidad */
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
+            width: 100%;
+        }
+
+        .tags-cloud { 
+            justify-content: center; /* Tags centrados */
+            gap: 12px;
+        }
+
+        .tech-tag {
+            font-size: 0.85rem;
+            padding: 8px 14px;
+        }
+        
+        /* BOTÓN MÁS LLAMATIVO */
+        .btn-tech {
+            width: 100%; /* Botón ancho para dedo fácil */
+            max-width: 320px; /* Pero con límite */
+            justify-content: center;
+            background: rgba(168, 85, 247, 0.05); /* Tinte púrpura muy suave */
+            border-color: rgba(168, 85, 247, 0.4);
+        }
     }
 </style>
