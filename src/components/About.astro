@@ -12,18 +12,20 @@
                 Digitalizamos tu visión con <span class="text-gradient">estrategia y carácter.</span>
             </h2>
             
+    
             <div class="text-block-wrapper">
                 <div class="accent-line"></div>
                 
                 <div class="text-block">
                     <p class="lead-paragraph">
-                        En <strong>Ecentia</strong> entendemos que una web no es un adorno, es el motor de tu negocio. 
-                    </p>
+                    
+    En <strong>Ecentia</strong> entendemos que una web no es un adorno, es el motor de tu negocio.
+</p>
                     <p>
                         Nos alejamos de lo genérico para diseñar experiencias digitales que no solo impactan visualmente, 
                         sino que están construidas para convertir visitantes en clientes leales.
-                        Fusionamos creatividad y tecnología para crear marcas que dejan huella en un entorno saturado.
-                    </p>
+Fusionamos creatividad y tecnología para crear marcas que dejan huella en un entorno saturado.
+</p>
                 </div>
             </div>
         </div>
@@ -45,12 +47,14 @@
         background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
         background-size: 30px 30px;
         opacity: 0.4;
-        mask-image: radial-gradient(circle at center, black 40%, transparent 100%); /* Difuminado en los bordes */
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        /* Difuminado en los bordes */
         pointer-events: none;
         z-index: 0;
     }
 
-    .container { position: relative; z-index: 1; }
+    .container { position: relative; z-index: 1;
+    }
 
     .about-content {
         max-width: 900px;
@@ -73,13 +77,14 @@
 
     .title {
         font-family: 'Syne', sans-serif;
-        /* AJUSTE: Mínimo bajado de 3rem a 2.5rem para móviles pequeños */
-        font-size: clamp(2.5rem, 7vw, 5rem);
+        /* AJUSTE: Mínimo bajado de 2.5rem a 1.75rem para evitar cortes en móviles */
+        font-size: clamp(1.75rem, 6vw, 5rem);
         line-height: 1.05;
         margin-bottom: 60px;
         font-weight: 800;
         color: var(--white);
-        word-wrap: break-word; /* Evita cortes en palabras largas */
+        word-wrap: break-word;
+        /* Evita cortes en palabras largas */
     }
 
     .text-gradient {
@@ -131,22 +136,26 @@
     /* --- MEDIA QUERIES PARA MÓVIL --- */
     @media (max-width: 768px) {
         .about-section {
-            padding: 80px 0; /* Menos padding vertical */
+            padding: 80px 0;
+            /* Menos padding vertical */
         }
 
         .title {
             margin-bottom: 40px;
-            /* Asegura que no rompa palabras incorrectamente */
-            hyphens: auto; 
+            /* CAMBIO: Desactivamos la partición de palabras con guiones */
+            hyphens: none;
         }
 
         .text-block-wrapper {
-            gap: 20px; /* Reducimos el hueco entre línea y texto */
-            padding: 0 10px; /* Margen de seguridad lateral */
+            gap: 20px;
+            /* Reducimos el hueco entre línea y texto */
+            padding: 0 10px;
+            /* Margen de seguridad lateral */
         }
 
         .lead-paragraph {
-            font-size: 1.2rem; /* Texto un poco más pequeño para leer mejor */
+            font-size: 1.2rem;
+            /* Texto un poco más pequeño para leer mejor */
         }
 
         .text-block p:not(.lead-paragraph) {
