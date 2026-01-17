@@ -2,7 +2,7 @@
 // src/pages/contacto.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import ContactComponent from '../components/Contact.astro'; // Reutilizamos el potente componente
+import ContactComponent from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -12,11 +12,20 @@ import Footer from '../components/Footer.astro';
     <main>
         <section class="contact-page-header">
             <div class="container">
-                <h1 class="page-title">Hablemos de tu <br><span class="text-gradient">siguiente paso.</span></h1>
+                <div class="header-content fade-in-up">
+                    <span class="subtitle">CONTACTO</span>
+                    
+                    <h1 class="page-title">Hablemos de <br><span class="text-gradient">Tu Proyecto.</span></h1>
+                    
+                    <p class="page-description">
+                        ¿Tienes una idea en mente? Cuéntanos sobre ella y te ayudaremos a convertirla en una solución digital sólida y escalable.
+                    </p>
+                </div>
             </div>
+             <div class="header-glow"></div>
         </section>
 
-        <div class="contact-wrapper-page">
+        <div class="contact-wrapper-page fade-in-up">
             <ContactComponent />
         </div>
     </main>
@@ -28,6 +37,7 @@ import Footer from '../components/Footer.astro';
     main {
         position: relative;
         overflow: hidden;
+        width: 100%;
     }
 
     .container {
@@ -38,16 +48,41 @@ import Footer from '../components/Footer.astro';
     }
 
     .contact-page-header {
-        padding: 180px 0 40px;
+        /* Reducido ligeramente para que el formulario suba un poco más */
+        padding: 160px 0 60px;
+        position: relative;
         text-align: center;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subtitle {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: block;
+        font-weight: 700;
     }
 
     .page-title {
         font-family: 'Syne', sans-serif;
-        font-size: clamp(3rem, 6vw, 5rem);
+        /* CLAVE: clamp ajustado (min 2.5rem) para móviles */
+        font-size: clamp(2.5rem, 7vw, 5rem);
         line-height: 1.1;
         font-weight: 800;
         color: var(--white);
+        margin-bottom: 20px;
+        
+        /* ESTÉTICA: Evita cortes feos */
+        text-wrap: balance;
+        max-width: 100%;
     }
 
     .text-gradient {
@@ -55,10 +90,50 @@ import Footer from '../components/Footer.astro';
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    .page-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+    }
     
-    /* Ajuste para que el componente Contact no tenga doble padding superior excesivo */
+    .header-glow {
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .contact-wrapper-page {
+        padding-bottom: 100px;
+    }
+
+    /* Ajuste para que el componente Contact se integre bien */
     .contact-wrapper-page :global(.contact-section) {
-        padding-top: 40px;
-        background: transparent; /* Para que se funda con el fondo si es necesario */
+        padding-top: 20px;
+        background: transparent;
+    }
+
+    @media (max-width: 768px) {
+        .contact-page-header {
+            padding: 130px 0 40px;
+        }
+        
+        .page-title {
+             /* Ajuste fino para móviles pequeños */
+             margin-bottom: 15px;
+        }
+        
+        .page-description {
+            font-size: 1.1rem;
+            padding: 0 10px;
+        }
     }
 </style>

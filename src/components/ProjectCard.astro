@@ -6,69 +6,221 @@ interface Props {
     description: string;
     tags: string[];
     image: string;
-    link?: string;
+    link: string;
     reverse?: boolean;
 }
 
-const { title, category, description, tags, image, link = "#", reverse = false } = Astro.props;
+const { title, category, description, tags, image, link, reverse = false } = Astro.props;
 ---
 
-<div class={`project-item ${reverse ? 'reverse' : ''}`}>
-    <div class="project-info">
-        <span class="cat">{category}</span>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <ul class="tags">
-            {tags.map((tag) => <li>{tag}</li>)}
+<article class:list={['project-card fade-in-up', { reverse }]}>
+    
+    <a href={link} target="_blank" rel="noopener noreferrer" class="project-image-container">
+        <div class="image-overlay">
+            <span>Ver Proyecto</span>
+        </div>
+        <img src={image} alt={`Captura del proyecto ${title}`} loading="lazy" />
+    </a>
+
+    <div class="project-content">
+        <div class="content-header">
+            <span class="project-category">{category}</span>
+            <h3 class="project-title">
+                <a href={link} target="_blank" rel="noopener noreferrer">{title}</a>
+            </h3>
+        </div>
+        
+        <p class="project-description">{description}</p>
+        
+        <ul class="project-tags">
+            {tags.map(tag => (
+                <li>{tag}</li>
+            ))}
         </ul>
     </div>
-    
-    <div class="project-visual magnet-target">
-        <div class="visual-inner" style={`background: url('${image}') center/contain no-repeat;`}>
-            <a href={link} target="_blank" class="overlay-reveal">Ir a la web</a>
-        </div>
-    </div>
-</div>
+</article>
 
 <style>
-    /* CSS Original para los items de proyecto */
-    .project-item { display: flex; gap: 60px; align-items: center; margin-bottom: 150px; }
-    /* Ajuste para el último item si quieres que no tenga margen */
-    .project-item:last-child { margin-bottom: 0; }
-    
-    .project-item.reverse { flex-direction: row-reverse; }
-
-    .project-info { flex: 1; }
-    .cat { color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 15px; display: block; }
-    .project-info h3 { font-family: 'Syne', sans-serif; font-size: 3.5rem; margin-bottom: 20px; line-height: 1; }
-    .project-info p { color: var(--gray); font-size: 1.1rem; margin-bottom: 30px; max-width: 400px; }
-    
-    .tags { display: flex; gap: 10px; list-style: none; }
-    .tags li { border: 1px solid rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; color: var(--text-color); }
-
-    .project-visual { flex: 1.5; height: 500px; position: relative; border-radius: 10px; overflow: hidden; transform-origin: center; transition: transform 0.5s; }
-    .visual-inner { 
-        width: 100%; height: 100%; transition: transform 0.6s; display: flex; align-items: center; justify-content: center; 
-        background-color: #1a1a1a; 
+    /* =========================================
+       ESTILOS BASE (MOBILE FIRST)
+       ========================================= */
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        /* Separación entre la imagen y el bloque de texto en móvil */
+        gap: 30px;
+        position: relative;
     }
-    .project-visual:hover { transform: scale(0.98); }
-    .project-visual:hover .visual-inner { transform: scale(1.1); }
 
-    .overlay-reveal { 
-        opacity: 0; 
-        font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; 
-        color: #000000; background: #ffffff; padding: 15px 30px; border-radius: 4px;     
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.3s; z-index: 2; 
-        text-transform: uppercase; letter-spacing: 1px; transform: translateY(20px); 
-        text-decoration: none; display: inline-block; 
+    /* --- IMAGEN GRANDE EN MÓVIL --- */
+    .project-image-container {
+        display: block;
+        width: 100%;
+        /* CLAVE: aspect-ratio asegura que la imagen sea alta y grande en móvil.
+           4/3 es un buen compromiso entre panorámico y cuadrado. */
+        aspect-ratio: 4/3;
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Sombra sutil para darle profundidad */
+        box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5);
     }
-    .project-visual:hover .overlay-reveal { opacity: 1; transform: translateY(0); }
 
-    /* Media Queries */
-    @media (max-width: 768px) {
-        .project-item, .project-item.reverse { flex-direction: column-reverse; gap: 30px; }
-        .project-visual { width: 100%; height: 300px; }
-        .project-info { text-align: left; padding: 0 10px; }
-        .project-info h3 { font-size: 2.2rem; }
+    .project-image-container img {
+        width: 100%;
+        height: 100%;
+        /* cover es esencial para que la imagen llene el contenedor sin deformarse */
+        object-fit: cover;
+        /* Alinear arriba suele funcionar mejor para capturas web */
+        object-position: top center;
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* --- CONTENIDO EN MÓVIL --- */
+    .project-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Un poco de padding lateral para seguridad */
+        padding: 0 5px;
+    }
+
+    .project-category {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-weight: 700;
+        display: block;
+    }
+
+    .project-title {
+        font-family: 'Syne', sans-serif;
+        /* Tamaño sólido para móvil */
+        font-size: 2rem; 
+        margin: 0 0 20px 0;
+        line-height: 1.1;
+        font-weight: 700;
+    }
+
+    .project-title a {
+        color: var(--white);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .project-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        margin-bottom: 30px;
+    }
+
+    /* Tags en móvil */
+    .project-tags {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .project-tags li {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.8);
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-family: 'Syne', sans-serif;
+        font-weight: 500;
+    }
+
+    /* Overlay de "Ver Proyecto" (oculto en móvil por defecto) */
+    .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 2;
+        backdrop-filter: blur(2px);
+    }
+
+    .image-overlay span {
+        padding: 12px 25px;
+        background: var(--white);
+        color: var(--bg-color);
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+    }
+
+    /* =========================================
+       ESTILOS DESKTOP (min-width: 992px)
+       ========================================= */
+    @media (min-width: 992px) {
+        .project-card {
+            display: grid;
+            /* Grid de 2 columnas: Imagen (1.2fr) - Texto (1fr) */
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        /* Lógica para alternar izquierda/derecha solo en desktop */
+        .project-card.reverse .project-image-container {
+            order: 2;
+        }
+        .project-card.reverse .project-content {
+            order: 1;
+            /* Si está revertido, alineamos el texto a la derecha para equilibrio visual */
+            text-align: right;
+        }
+        .project-card.reverse .project-tags {
+            justify-content: flex-end;
+        }
+
+        /* Ajuste de imagen en desktop */
+        .project-image-container {
+            /* En escritorio usamos un formato más panorámico */
+            aspect-ratio: 16/9;
+            /* Sombra más pronunciada en desktop */
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6);
+        }
+
+        .project-title {
+            /* Título más grande en desktop */
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+        }
+
+        /* --- INTERACCIONES HOVER (Solo Desktop con ratón) --- */
+        @media (hover: hover) {
+            .project-image-container:hover img {
+                transform: scale(1.03); /* Zoom sutil */
+            }
+            
+            .project-image-container:hover .image-overlay {
+                opacity: 1;
+            }
+            
+            .project-image-container:hover .image-overlay span {
+                transform: translateY(0);
+            }
+
+            .project-title a:hover {
+                color: var(--accent-color);
+            }
+        }
     }
 </style>

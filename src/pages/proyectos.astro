@@ -5,7 +5,6 @@ import Header from '../components/Header.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Footer from '../components/Footer.astro';
 
-// CORRECCIÓN: Rutas de imágenes actualizadas a '/webs_images/' (plural)
 const projects = [
     {
         title: "Depofibra",
@@ -16,7 +15,7 @@ const projects = [
         link: "https://depofibra.com",
         reverse: true
     },
-        {
+    {
         title: "Anazon Moda",
         category: "E-COMMERCE / MODA",
         description: "Diseño web elegante y optimizado para potenciar la identidad de marca en el sector moda.",
@@ -25,7 +24,7 @@ const projects = [
         link: "https://anazonmoda.com",
         reverse: false
     },
-      {
+    {
         title: "Pizzas a Todo Gas",
         category: "E-COMMERCE / RESTAURACIÓN",
         description: "Plataforma de delivery optimizada para la velocidad. Gestión de pedidos en tiempo real y experiencia de usuario fluida para maximizar conversiones.",
@@ -53,8 +52,10 @@ const projects = [
         <section class="page-header">
             <div class="container">
                 <div class="page-header-content fade-in-up">
-                    <span class="subtitle">NUESTRO TRABAJO</span>
-                    <h1 class="page-title">Digital <br> <span class="text-gradient">Experience.</span></h1>
+                    <span class="subtitle">CASOS DE ÉXITO</span>
+                    
+                    <h1 class="page-title">Experiencia <br> <span class="text-gradient">Digital.</span></h1>
+                    
                     <p class="page-description">
                         Una selección de proyectos donde la estrategia, el diseño y la tecnología convergen para crear resultados medibles.
                     </p>
@@ -92,6 +93,7 @@ const projects = [
     main {
         position: relative;
         overflow: hidden;
+        width: 100%; /* Blindaje contra scroll horizontal */
     }
 
     .container { 
@@ -109,7 +111,7 @@ const projects = [
 
     .page-header-content {
         max-width: 800px;
-        opacity: 0; /* Animación gestionada por JS global */
+        opacity: 0;
         transform: translateY(30px);
     }
 
@@ -126,11 +128,16 @@ const projects = [
 
     .page-title {
         font-family: 'Syne', sans-serif;
-        font-size: clamp(3.5rem, 8vw, 6rem);
+        /* CLAVE: clamp ajustado para móviles (min 2.25rem) */
+        font-size: clamp(2.25rem, 7vw, 6rem);
         line-height: 1.1;
         font-weight: 800;
         color: var(--white);
         margin-bottom: 30px;
+        
+        /* ESTÉTICA: Balanceo de texto para evitar palabras sueltas */
+        text-wrap: balance;
+        max-width: 100%;
     }
 
     .text-gradient {
@@ -165,7 +172,7 @@ const projects = [
     .project-list { 
         display: flex;
         flex-direction: column; 
-        gap: 150px; 
+        gap: 150px; /* Separación amplia en escritorio */
     }
 
     /* CTA Section */
@@ -185,7 +192,7 @@ const projects = [
 
     .cta-box h2 {
         font-family: 'Syne', sans-serif;
-        font-size: 3rem;
+        font-size: clamp(2rem, 5vw, 3rem); /* Responsivo */
         margin-bottom: 20px;
         color: var(--white);
     }
@@ -213,8 +220,17 @@ const projects = [
     }
     
     @media (max-width: 768px) {
-        .page-header { padding: 140px 0 60px; }
-        .project-list { gap: 80px; }
-        .cta-box h2 { font-size: 2rem; }
+        .page-header { 
+            padding: 130px 0 60px; /* Menos padding superior */
+        }
+        
+        .project-list { 
+            /* MEJORA: Reducimos el gap drásticamente en móvil para mejorar UX */
+            gap: 60px; 
+        }
+        
+        .cta-box {
+            padding: 50px 20px; /* Padding interno reducido */
+        }
     }
 </style>

@@ -25,9 +25,15 @@
                     psicología de venta y automatización para que tu negocio en Sevilla (o el mundo) no pare de
                     crecer.
                 </p>
+                
                 <a href="/proyectos" class="scroll-down-btn magnet-target">
-                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <span>Ver casos de éxito</span>
+                    <div class="arrow-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                    </div>
+                    <span class="btn-text">Ver casos de éxito</span>
                 </a>
             </div>
         </div>
@@ -38,10 +44,10 @@
     /* Estilos Base */
     .hero-section { 
         min-height: 100vh;
-        min-height: 100dvh; /* Soporte móvil moderno */
+        min-height: 100dvh;
         width: 100%;
         display: flex; 
-        align-items: center; 
+        align-items: center;
         justify-content: center;
         position: relative; 
         overflow: hidden; 
@@ -77,9 +83,8 @@
 
     .mega-title {
         font-family: 'Syne', sans-serif;
-        /* Desktop: fluido pero controlado */
         font-size: clamp(3rem, 8vw, 8.5rem); 
-        line-height: 1.1; 
+        line-height: 1.1;
         font-weight: 800;
         text-transform: uppercase;
         color: var(--white);
@@ -95,13 +100,10 @@
         display: block;
         padding: 5px 0; 
         overflow: visible;
-        /* IMPORTANTE: Evita que el navegador rompa la palabra si falta espacio */
-        white-space: nowrap; 
+        white-space: nowrap;
     }
 
-    .line.indent { 
-        margin-left: 5vw;
-    }
+    .line.indent { margin-left: 5vw; }
 
     /* Animación de entrada */
     .reveal-text { 
@@ -110,9 +112,7 @@
         transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
     }
     
-    :global(body.loaded) .reveal-text { 
-        transform: translateY(0);
-    }
+    :global(body.loaded) .reveal-text { transform: translateY(0); }
 
     .outline-text { 
         -webkit-text-stroke: 1px var(--white); 
@@ -140,15 +140,16 @@
     }
     
     .status-dot { 
-        width: 8px; height: 8px; background: #00ff88;
+        width: 8px;
+        height: 8px; background: #00ff88;
         border-radius: 50%;
-        box-shadow: 0 0 10px #00ff88; 
+        box-shadow: 0 0 10px #00ff88;
     }
 
     .hero-footer { 
         display: flex;
         justify-content: space-between; 
-        align-items: flex-end; 
+        align-items: flex-end;
         flex-wrap: wrap;
         gap: 30px; 
     }
@@ -160,23 +161,48 @@
         line-height: 1.6;
     }
     
+    /* --- ESTILOS DEL BOTÓN / LINK (DESKTOP BASE) --- */
+    
     .scroll-down-btn { 
         display: flex;
         align-items: center; 
         gap: 15px; 
         color: var(--white); 
         text-decoration: none; 
-        opacity: 0.7; 
-        transition: 0.3s;
+        opacity: 0.8; 
+        transition: all 0.3s ease;
+        position: relative;
     }
     
-    .scroll-down-btn:hover { opacity: 1; }
-    
-    .arrow-down { 
-        width: 40px; height: 40px;
+    /* Círculo de la flecha en Desktop */
+    .arrow-wrapper { 
+        width: 44px;
+        height: 44px;
         border: 1px solid rgba(255,255,255,0.3); 
         border-radius: 50%; 
-        display: flex; align-items: center; justify-content: center;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .arrow-wrapper svg {
+        transition: transform 0.3s ease;
+    }
+
+    /* Hover Desktop */
+    .scroll-down-btn:hover { 
+        opacity: 1;
+    }
+    
+    .scroll-down-btn:hover .arrow-wrapper {
+        border-color: var(--accent-color);
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.1);
+    }
+    
+    .scroll-down-btn:hover .arrow-wrapper svg {
+        transform: translateY(3px); /* Pequeño rebote de la flecha */
     }
 
     /* --- MEDIA QUERIES --- */
@@ -190,10 +216,10 @@
         .mega-title { font-size: 7vw; }
     }
 
-    /* MÓVIL (Portrait) */
+    /* === MÓVIL (EL BOTÓN CHULO) === */
     @media (max-width: 768px) {
         .hero-section {
-            padding-top: 110px; 
+            padding-top: 110px;
             align-items: flex-start; 
         }
 
@@ -203,27 +229,22 @@
         }
 
         .mega-title {
-            /* AJUSTE CRÍTICO: 9vw asegura que AUTORIDAD quepa sin romperse */
-            font-size: 9vw; 
-            line-height: 1.1;
+            font-size: 9vw;
             margin-bottom: 30px;
         }
         
-        .line.indent { 
-            /* Forzar margen 0 en móvil */
-            margin-left: 0 !important; 
-        }
+        .line.indent { margin-left: 0 !important; }
 
         .hero-footer { 
             flex-direction: column;
             align-items: flex-start; 
             gap: 25px;
             margin-top: auto;
-            padding-bottom: 30px;
+            padding-bottom: 40px; 
         }
         
         .hero-desc { 
-            font-size: 1rem; 
+            font-size: 1rem;
             width: 100%;
         }
 
@@ -231,13 +252,80 @@
             margin-bottom: 20px;
             font-size: 0.75rem;
         }
+
+        /* --- TRANSFORMACIÓN SUPER-CHULA DEL BOTÓN EN MÓVIL --- */
+        .scroll-down-btn {
+            /* Base con gradiente potente */
+            background: var(--primary-gradient); 
+            width: 100%; 
+            justify-content: center;
+            padding: 18px 24px; /* Un poco más alto */
+            border-radius: 50px; 
+            opacity: 1; 
+            
+            /* Tipografía más fuerte */
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.95rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra sutil al texto para que salte */
+
+            /* Efectos de profundidad y luz */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Borde fino para definir */
+            box-shadow: 
+                0 10px 30px -10px rgba(168, 85, 247, 0.6), /* Sombra difusa de neón abajo */
+                inset 0 0 20px rgba(255, 255, 255, 0.2); /* Luz interior */
+            
+            position: relative;
+            overflow: hidden; /* Necesario para el efecto de brillo */
+            z-index: 10;
+        }
+
+        /* Animación de "reflejo de luz" pasando por el botón */
+        .scroll-down-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%; bottom: -50%; left: -50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.5) 50%, rgba(255,255,255,0));
+            transform: rotateZ(60deg) translate(-5em, 7.5em);
+            opacity: 0;
+            animation: sheen 5s infinite ease-in-out;
+            z-index: -1;
+        }
+        
+        /* Animación del brillo */
+        @keyframes sheen {
+            0%, 70% { opacity: 0; transform: rotateZ(60deg) translate(-5em, 7.5em); }
+            75% { opacity: 0.3; }
+            100% { opacity: 0; transform: rotateZ(60deg) translate(1em, -9em); }
+        }
+
+        /* Estado activo (al tocar con el dedo) */
+        .scroll-down-btn:active {
+            transform: scale(0.97) translateY(2px); /* Efecto de presión físico */
+            box-shadow: 
+                0 5px 15px -5px rgba(168, 85, 247, 0.8), /* Sombra más intensa y corta */
+                inset 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra interior para hundirlo */
+        }
+
+        /* Ajustes internos del botón en móvil */
+        .arrow-wrapper {
+            border: none;
+            width: auto;
+            height: auto;
+            margin-right: 0; 
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Sombra al icono también */
+        }
+        
+        /* Rotamos la flecha para que apunte a la derecha, invitando a la acción */
+        .arrow-wrapper svg {
+            transform: rotate(-90deg);
+            width: 22px;
+            height: 22px;
+        }
     }
     
-    /* MÓVILES MUY PEQUEÑOS */
     @media (max-width: 380px) {
-        .mega-title {
-            /* Si la pantalla es diminuta, bajamos un poco más */
-            font-size: 8.5vw; 
-        }
+        .mega-title { font-size: 8.5vw; }
     }
 </style>
