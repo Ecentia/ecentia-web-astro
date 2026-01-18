@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Footer from '../components/Footer.astro';
+import { link } from 'framer-motion/client';
 
 const projects = [
     {
@@ -24,14 +25,23 @@ const projects = [
         link: "https://anazonmoda.com",
         reverse: false
     },
-    {
+  {
         title: "Pizzas a Todo Gas",
-        category: "E-COMMERCE / RESTAURACIÓN",
-        description: "Plataforma de delivery optimizada para la velocidad. Gestión de pedidos en tiempo real y experiencia de usuario fluida para maximizar conversiones.",
-        tags: ["Diseño UI/UX", "Delivery System", "Desarrollo Web"],
+        category: "LANDING WEB / RESTAURACIÓN",
+        description: "Plataforma para pizzería optimizada para la velocidad. Sistema de carta y experiencia de usuario fluida para maximizar conversiones.",
+        tags: ["Diseño UI/UX", "Carta online", "Desarrollo Web"],
         image: "/webs_images/pizzasatodogas_sc.png", 
         link: "https://pizzasatodogas.com", 
         reverse: true
+    },
+    {
+        title: "Daniel Rayo Portfolio",
+        category: "DIGITAL PORTFOLIO",
+        description: "Portfolio digital totalmente innovador e impactante. Sistema de gestión de contenido y personalización.",
+        tags: ["Next.js", "Supabase", "Gestión de contenidos"],
+        image: "/webs_images/danirayo3d_sc.png", 
+        link: "https://danirayo3d.es",
+        reverse: false
     },
     {
         title: "Eva Torres Moda",
@@ -40,7 +50,7 @@ const projects = [
         tags: ["Astro", "Tailwind CSS", "Sanity"],
         image: "/webs_images/evatorresmoda_sc.png",
         link: "https://evatorresmoda.com",
-        reverse: false
+        reverse: true
     }
 ];
 ---

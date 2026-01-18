@@ -25,7 +25,6 @@ const {
     noindex = false 
 } = Astro.props;
 
-// ✅ Acceso tipado correctamente
 const currentPage = pageKey ? seoConfig.pages[pageKey as PageKey] : null;
 
 const seoTitle = title || currentPage?.title || seoConfig.defaultTitle;
@@ -34,93 +33,226 @@ const seoKeywords = keywords || currentPage?.keywords || seoConfig.keywords.join
 const seoImage = image || `${seoConfig.siteUrl}${seoConfig.defaultImage}`;
 const canonicalURL = new URL(Astro.url.pathname, seoConfig.siteUrl).href;
 
-// ---------------- JSON-LD ----------------
-const baseSchema = {
-  "@type": "ProfessionalService",
-  "name": seoConfig.siteName,
+// ---------------- Schema Organization (SIN DIRECCIÓN FÍSICA) ----------------
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${seoConfig.siteUrl}/#organization`,
+  "name": seoConfig.companyInfo.name,
+  "alternateName": ["Ecentia", "Ecentia Digital", "Esentia Marketing"],
+  "legalName": seoConfig.companyInfo.legalName,
   "url": seoConfig.siteUrl,
   "logo": {
     "@type": "ImageObject",
-    "url": `${seoConfig.siteUrl}/logo.avif`,
+    "@id": `${seoConfig.siteUrl}/#logo`,
+    "url": `${seoConfig.siteUrl}/logo.png`,
+    "contentUrl": `${seoConfig.siteUrl}/logo.png`,
     "width": 512,
-    "height": 512
+    "height": 512,
+    "caption": "Ecentia Marketing Logo Oficial",
+    "inLanguage": "es-ES"
   },
-  "image": seoImage,
-  "description": seoDescription,
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Sevilla",
-    "addressRegion": "Andalucía",
-    "addressCountry": "ES"
+  "image": {
+    "@id": `${seoConfig.siteUrl}/#logo`
+  },
+  "telephone": seoConfig.companyInfo.telephone,
+  "email": seoConfig.companyInfo.email,
+  "areaServed": seoConfig.companyInfo.areasServed.map(area => ({
+    "@type": "Place",
+    "name": area
+  })),
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": seoConfig.companyInfo.geo.latitude,
+    "longitude": seoConfig.companyInfo.geo.longitude
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": seoConfig.companyInfo.telephone,
+    "contactType": "customer service",
+    "email": seoConfig.companyInfo.email,
+    "availableLanguage": ["Spanish", "English"],
+    "areaServed": "ES",
+    "contactOption": "TollFree",
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
   },
   "sameAs": [
     "https://www.instagram.com/ecentiamarketing/",
     "https://www.linkedin.com/company/ecentia-marketing/"
   ],
-  "priceRange": "$$",
-  "telephone": "+34722625288",
-  "email": "ecentiaseo@gmail.com"
+  "foundingDate": seoConfig.companyInfo.foundingDate,
+  "priceRange": seoConfig.companyInfo.priceRange,
+  "slogan": "Digitalizamos tu visión con estrategia y carácter",
+  "description": "Agencia de marketing digital profesional en Sevilla y Málaga"
 };
 
-const jsonLd = {
+// ---------------- Schema Website con SearchAction ----------------
+const websiteSchema = {
   "@context": "https://schema.org",
-  ...(currentPage?.schema ?? {}),
-  ...baseSchema
+  "@type": "WebSite",
+  "@id": `${seoConfig.siteUrl}/#website`,
+  "url": seoConfig.siteUrl,
+  "name": seoConfig.siteName,
+  "alternateName": ["Ecentia", "Ecentia Digital"],
+  "description": seoDescription,
+  "publisher": {
+    "@id": `${seoConfig.siteUrl}/#organization`
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${seoConfig.siteUrl}/proyectos?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": "es-ES"
 };
+
+// ---------------- Breadcrumb Schema ----------------
+const breadcrumbSchema = currentPage?.breadcrumb ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": currentPage.breadcrumb.map((crumb, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": crumb.name,
+    "item": `${seoConfig.siteUrl}${crumb.url}`
+  }))
+} : null;
+
+// ---------------- FAQPage Schema (Solo en Home) ----------------
+const faqSchema = pageKey === 'home' ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": seoConfig.faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : null;
+
+// ---------------- Schema Específico de Página ----------------
+const pageSchema = currentPage?.schema ? {
+  "@context": "https://schema.org",
+  ...currentPage.schema,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  },
+  "inLanguage": "es-ES",
+  "isPartOf": {
+    "@id": `${seoConfig.siteUrl}/#website`
+  }
+} : null;
+
+// Combinar todos los schemas
+const allSchemas = [
+  organizationSchema,
+  websiteSchema,
+  breadcrumbSchema,
+  faqSchema,
+  pageSchema
+].filter(Boolean);
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" prefix="og: https://ogp.me/ns#">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
+    <!-- SEO Básico -->
     <title>{seoTitle}</title>
     <meta name="description" content={seoDescription} />
     <meta name="keywords" content={seoKeywords} />
     <link rel="canonical" href={canonicalURL} />
+    <meta name="author" content="Ecentia Marketing" />
+    
+    <!-- Geo Tags para Local SEO (SIN dirección específica) -->
+    <meta name="geo.region" content="ES-AN" />
+    <meta name="geo.placename" content="Andalucía" />
+    <meta name="geo.position" content="37.3891;-5.9845" />
+    <meta name="ICBM" content="37.3891, -5.9845" />
 
     {noindex ? (
         <meta name="robots" content="noindex, nofollow" />
     ) : (
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <>
+            <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+            <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+            <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        </>
     )}
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={pageKey === 'home' ? 'website' : 'article'} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={seoDescription} />
     <meta property="og:image" content={seoImage} />
-    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image:secure_url" content={seoImage} />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Ecentia Marketing Logo" />
     <meta property="og:site_name" content={seoConfig.siteName} />
-    <meta property="og:type" content={pageKey === 'home' ? 'website' : 'article'} />
+    <meta property="og:locale" content="es_ES" />
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={seoConfig.twitterHandle} />
+    <meta name="twitter:creator" content={seoConfig.twitterHandle} />
+    <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={seoTitle} />
     <meta name="twitter:description" content={seoDescription} />
     <meta name="twitter:image" content={seoImage} />
+    <meta name="twitter:image:alt" content="Ecentia Marketing Logo" />
 
-    <link rel="icon" href="/favicon.ico" />
+    <!-- PWA & Favicons (OPTIMIZADO) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/logo.png" />
     <meta name="theme-color" content="#050510" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="application-name" content="Ecentia Marketing" />
+    <meta name="apple-mobile-web-app-title" content="Ecentia Marketing" />
 
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload del logo para indexación rápida -->
+    <link rel="preload" as="image" href="/logo.png" type="image/png" />
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
+    <!-- Google Tag Manager -->
     <script is:inline>
     (function(w,d,s,l,i){
-      // @ts-ignore
       w[l]=w[l]||[];
-      // @ts-ignore
       w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
       var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
           dl = l != 'dataLayer' ? '&l='+l : '';
-      // @ts-ignore
       j.async = true;
-      // @ts-ignore
       j.src = 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','G-FKEZKR17FN');
@@ -184,7 +316,6 @@ const jsonLd = {
                 }, 50);
             }
 
-            // Fallback de seguridad
             setTimeout(() => {
                 if (body.classList.contains('loading')) {
                     body.classList.add('loaded');
@@ -216,24 +347,22 @@ const jsonLd = {
 </html>
 
 <style is:global>
-    /* Estilos Críticos de Layout */
     html {
-        -webkit-text-size-adjust: 100%; /* Evita cambio de tamaño de fuente al girar móvil */
+        -webkit-text-size-adjust: 100%;
+        width: 100%;
+        overflow-x: hidden;
     }
 
-    /* Corrección del Preloader: 
-       Usamos fixed para asegurar que cubra todo, pero evitamos bugs de scroll */
     html body.loading {
         overflow: hidden !important;
-        height: 100dvh !important; /* Usar dvh para móviles */
+        height: 100dvh !important;
         width: 100% !important;
-        position: fixed; /* Mantiene la pantalla quieta mientras carga */
+        position: fixed;
     }
 
-    /* Scroll suave nativo para iOS */
     #main-content {
         -webkit-overflow-scrolling: touch;
         width: 100%;
-        overflow-x: hidden; /* Doble seguridad */
+        overflow-x: hidden;
     }
 </style>

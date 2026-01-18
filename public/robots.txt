@@ -1,8 +1,79 @@
+# robots.txt para Ecentia Marketing
+# Optimizado para rastreo eficiente
+
 User-agent: *
 Allow: /
 
-Sitemap: https://ecentia.es/sitemap-index.xml
+# Páginas principales (máxima prioridad)
+Allow: /
+Allow: /servicios
+Allow: /proyectos
+Allow: /contacto
 
-# Bloquear páginas de prueba o desarrollo si las hubiera
-Disallow: /admin/
-Disallow: /test/
+# Recursos permitidos
+Allow: /webs_images/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.avif$
+Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.woff2$
+
+# Bloquear archivos innecesarios
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*
+Disallow: /_astro/
+Disallow: /node_modules/
+
+# Sitemaps (IMPORTANTE)
+Sitemap: https://ecentia.es/sitemap-index.xml
+Sitemap: https://ecentia.es/sitemap-0.xml
+
+# Rastreadores específicos optimizados
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /webs_images/
+Allow: /*.avif$
+Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+
+# Control de bots agresivos
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# Bloquear bots maliciosos
+User-agent: MauiBot
+Disallow: /
+
+User-agent: AlphaBot
+Disallow: /
+
+User-agent: BlackWidow
+Disallow: /
