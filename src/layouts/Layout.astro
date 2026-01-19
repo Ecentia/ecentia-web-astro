@@ -1,35 +1,37 @@
 ---
-import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
-import { seoConfig, type PageKey } from '../data/seo';
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+import { seoConfig, type PageKey } from "../data/seo";
 
 interface Props {
-    title?: string;
-    description?: string;
-    keywords?: string;
-    image?: string;
-    pageKey?: PageKey;
-    bodyClass?: string;
-    showLoader?: boolean;
-    noindex?: boolean;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  pageKey?: PageKey;
+  bodyClass?: string;
+  showLoader?: boolean;
+  noindex?: boolean;
 }
 
-const { 
-    title, 
-    description, 
-    keywords,
-    image,
-    pageKey,
-    bodyClass = "", 
-    showLoader = true,
-    noindex = false 
+const {
+  title,
+  description,
+  keywords,
+  image,
+  pageKey,
+  bodyClass = "",
+  showLoader = true,
+  noindex = false,
 } = Astro.props;
 
 const currentPage = pageKey ? seoConfig.pages[pageKey as PageKey] : null;
 
 const seoTitle = title || currentPage?.title || seoConfig.defaultTitle;
-const seoDescription = description || currentPage?.description || seoConfig.defaultDescription;
-const seoKeywords = keywords || currentPage?.keywords || seoConfig.keywords.join(', ');
+const seoDescription =
+  description || currentPage?.description || seoConfig.defaultDescription;
+const seoKeywords =
+  keywords || currentPage?.keywords || seoConfig.keywords.join(", ");
 const seoImage = image || `${seoConfig.siteUrl}${seoConfig.defaultImage}`;
 const canonicalURL = new URL(Astro.url.pathname, seoConfig.siteUrl).href;
 
@@ -38,57 +40,57 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${seoConfig.siteUrl}/#organization`,
-  "name": seoConfig.companyInfo.name,
-  "alternateName": ["Ecentia", "Ecentia Digital", "Esentia Marketing"],
-  "legalName": seoConfig.companyInfo.legalName,
-  "url": seoConfig.siteUrl,
-  "logo": {
+  name: seoConfig.companyInfo.name,
+  alternateName: ["Ecentia", "Ecentia Digital", "Esentia Marketing"],
+  legalName: seoConfig.companyInfo.legalName,
+  url: seoConfig.siteUrl,
+  logo: {
     "@type": "ImageObject",
     "@id": `${seoConfig.siteUrl}/#logo`,
-    "url": `${seoConfig.siteUrl}/logo.png`,
-    "contentUrl": `${seoConfig.siteUrl}/logo.png`,
-    "width": 512,
-    "height": 512,
-    "caption": "Ecentia Marketing Logo Oficial",
-    "inLanguage": "es-ES"
+    url: `${seoConfig.siteUrl}/logo.png`,
+    contentUrl: `${seoConfig.siteUrl}/logo.png`,
+    width: 512,
+    height: 512,
+    caption: "Ecentia Marketing Logo Oficial",
+    inLanguage: "es-ES",
   },
-  "image": {
-    "@id": `${seoConfig.siteUrl}/#logo`
+  image: {
+    "@id": `${seoConfig.siteUrl}/#logo`,
   },
-  "telephone": seoConfig.companyInfo.telephone,
-  "email": seoConfig.companyInfo.email,
-  "areaServed": seoConfig.companyInfo.areasServed.map(area => ({
+  telephone: seoConfig.companyInfo.telephone,
+  email: seoConfig.companyInfo.email,
+  areaServed: seoConfig.companyInfo.areasServed.map((area) => ({
     "@type": "Place",
-    "name": area
+    name: area,
   })),
-  "geo": {
+  geo: {
     "@type": "GeoCoordinates",
-    "latitude": seoConfig.companyInfo.geo.latitude,
-    "longitude": seoConfig.companyInfo.geo.longitude
+    latitude: seoConfig.companyInfo.geo.latitude,
+    longitude: seoConfig.companyInfo.geo.longitude,
   },
-  "contactPoint": {
+  contactPoint: {
     "@type": "ContactPoint",
-    "telephone": seoConfig.companyInfo.telephone,
-    "contactType": "customer service",
-    "email": seoConfig.companyInfo.email,
-    "availableLanguage": ["Spanish", "English"],
-    "areaServed": "ES",
-    "contactOption": "TollFree",
-    "hoursAvailable": {
+    telephone: seoConfig.companyInfo.telephone,
+    contactType: "customer service",
+    email: seoConfig.companyInfo.email,
+    availableLanguage: ["Spanish", "English"],
+    areaServed: "ES",
+    contactOption: "TollFree",
+    hoursAvailable: {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "09:00",
-      "closes": "20:00"
-    }
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "20:00",
+    },
   },
-  "sameAs": [
+  sameAs: [
     "https://www.instagram.com/ecentiamarketing/",
-    "https://www.linkedin.com/company/ecentia-marketing/"
+    "https://www.linkedin.com/company/ecentia-marketing/",
   ],
-  "foundingDate": seoConfig.companyInfo.foundingDate,
-  "priceRange": seoConfig.companyInfo.priceRange,
-  "slogan": "Digitalizamos tu visión con estrategia y carácter",
-  "description": "Agencia de marketing digital profesional en Sevilla y Málaga"
+  foundingDate: seoConfig.companyInfo.foundingDate,
+  priceRange: seoConfig.companyInfo.priceRange,
+  slogan: "Digitalizamos tu visión con estrategia y carácter",
+  description: "Agencia de marketing digital profesional en Sevilla y Málaga",
 };
 
 // ---------------- Schema Website con SearchAction ----------------
@@ -96,63 +98,70 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${seoConfig.siteUrl}/#website`,
-  "url": seoConfig.siteUrl,
-  "name": seoConfig.siteName,
-  "alternateName": ["Ecentia", "Ecentia Digital"],
-  "description": seoDescription,
-  "publisher": {
-    "@id": `${seoConfig.siteUrl}/#organization`
+  url: seoConfig.siteUrl,
+  name: seoConfig.siteName,
+  alternateName: ["Ecentia", "Ecentia Digital"],
+  description: seoDescription,
+  publisher: {
+    "@id": `${seoConfig.siteUrl}/#organization`,
   },
-  "potentialAction": {
+  potentialAction: {
     "@type": "SearchAction",
-    "target": {
+    target: {
       "@type": "EntryPoint",
-      "urlTemplate": `${seoConfig.siteUrl}/proyectos?q={search_term_string}`
+      urlTemplate: `${seoConfig.siteUrl}/proyectos?q={search_term_string}`,
     },
-    "query-input": "required name=search_term_string"
+    "query-input": "required name=search_term_string",
   },
-  "inLanguage": "es-ES"
+  inLanguage: "es-ES",
 };
 
 // ---------------- Breadcrumb Schema ----------------
-const breadcrumbSchema = currentPage?.breadcrumb ? {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": currentPage.breadcrumb.map((crumb, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "name": crumb.name,
-    "item": `${seoConfig.siteUrl}${crumb.url}`
-  }))
-} : null;
+const breadcrumbSchema = currentPage?.breadcrumb
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: currentPage.breadcrumb.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: `${seoConfig.siteUrl}${crumb.url}`,
+      })),
+    }
+  : null;
 
 // ---------------- FAQPage Schema (Solo en Home) ----------------
-const faqSchema = pageKey === 'home' ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": seoConfig.faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-} : null;
+const faqSchema =
+  pageKey === "home"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: seoConfig.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
 
 // ---------------- Schema Específico de Página ----------------
-const pageSchema = currentPage?.schema ? {
-  "@context": "https://schema.org",
-  ...currentPage.schema,
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": canonicalURL
-  },
-  "inLanguage": "es-ES",
-  "isPartOf": {
-    "@id": `${seoConfig.siteUrl}/#website`
-  }
-} : null;
+const pageSchema = currentPage?.schema
+  ? {
+      "@context": "https://schema.org",
+      ...currentPage.schema,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL,
+      },
+      inLanguage: "es-ES",
+      isPartOf: {
+        "@id": `${seoConfig.siteUrl}/#website`,
+      },
+    }
+  : null;
 
 // Combinar todos los schemas
 const allSchemas = [
@@ -160,42 +169,59 @@ const allSchemas = [
   websiteSchema,
   breadcrumbSchema,
   faqSchema,
-  pageSchema
+  pageSchema,
 ].filter(Boolean);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" prefix="og: https://ogp.me/ns#">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
+
     <!-- SEO Básico -->
     <title>{seoTitle}</title>
     <meta name="description" content={seoDescription} />
     <meta name="keywords" content={seoKeywords} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="author" content="Ecentia Marketing" />
-    
+
     <!-- Geo Tags para Local SEO (SIN dirección específica) -->
     <meta name="geo.region" content="ES-AN" />
     <meta name="geo.placename" content="Andalucía" />
     <meta name="geo.position" content="37.3891;-5.9845" />
     <meta name="ICBM" content="37.3891, -5.9845" />
 
-    {noindex ? (
+    {
+      noindex ? (
         <meta name="robots" content="noindex, nofollow" />
-    ) : (
+      ) : (
         <>
-            <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-            <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          />
+          <meta
+            name="googlebot"
+            content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
+          <meta
+            name="bingbot"
+            content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
         </>
-    )}
+      )
+    }
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={pageKey === 'home' ? 'website' : 'article'} />
+    <meta
+      property="og:type"
+      content={pageKey === "home" ? "website" : "article"}
+    />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={seoDescription} />
@@ -224,7 +250,10 @@ const allSchemas = [
     <meta name="theme-color" content="#050510" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="application-name" content="Ecentia Marketing" />
     <meta name="apple-mobile-web-app-title" content="Ecentia Marketing" />
 
@@ -233,136 +262,156 @@ const allSchemas = [
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <!-- Preload del logo para indexación rápida -->
     <link rel="preload" as="image" href="/logo.png" type="image/png" />
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerPolicy="no-referrer"
+    />
 
     <!-- JSON-LD Schemas -->
     <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
 
     <!-- Google Tag Manager -->
     <script is:inline>
-    (function(w,d,s,l,i){
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-      var f = d.getElementsByTagName(s)[0],
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l='+l : '';
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','G-FKEZKR17FN');
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "G-FKEZKR17FN");
     </script>
 
     <ViewTransitions />
-</head>
+  </head>
 
-<body class={`${showLoader ? 'loading' : ''} ${bodyClass}`}>
-
+  <body class={`${showLoader ? "loading" : ""} ${bodyClass}`}>
     <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=G-FKEZKR17FN"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=G-FKEZKR17FN"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
     </noscript>
 
-    {showLoader && (
+    {
+      showLoader && (
         <div class="preloader">
-            <div class="loader-text">ECENTIA</div>
-            <div class="loader-bar">
-                <div class="bar-fill"></div>
-            </div>
+          <div class="loader-text">ECENTIA</div>
+          <div class="loader-bar">
+            <div class="bar-fill" />
+          </div>
         </div>
-    )}
+      )
+    }
 
     <div class="noise-overlay"></div>
     <canvas id="cursor-canvas"></canvas>
     <div id="main-cursor"></div>
 
     <main id="main-content">
-        <slot />
+      <slot />
     </main>
 
     <script>
-    document.addEventListener('astro:page-load', () => {
+      document.addEventListener("astro:page-load", () => {
         const body = document.body;
-        const preloader = document.querySelector('.preloader') as HTMLElement | null;
-        const barFill = document.querySelector('.bar-fill') as HTMLElement | null;
+        const preloader = document.querySelector(
+          ".preloader",
+        ) as HTMLElement | null;
+        const barFill = document.querySelector(
+          ".bar-fill",
+        ) as HTMLElement | null;
 
-        const hasVisited = sessionStorage.getItem('visited');
+        const hasVisited = sessionStorage.getItem("visited");
 
         if (hasVisited) {
-            if (preloader) preloader.style.display = 'none';
-            body.classList.add('loaded');
-            body.classList.remove('loading');
+          if (preloader) preloader.style.display = "none";
+          body.classList.add("loaded");
+          body.classList.remove("loading");
         } else {
-            sessionStorage.setItem('visited', 'true');
-            if (barFill && body.classList.contains('loading')) {
-                let width = 0;
-                const interval = setInterval(() => {
-                    width += Math.random() * 20;
-                    if (width > 100) width = 100;
-                    barFill.style.width = width + '%';
+          sessionStorage.setItem("visited", "true");
+          if (barFill && body.classList.contains("loading")) {
+            let width = 0;
+            const interval = setInterval(() => {
+              width += Math.random() * 20;
+              if (width > 100) width = 100;
+              barFill.style.width = width + "%";
 
-                    if (width === 100) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            body.classList.add('loaded');
-                            body.classList.remove('loading');
-                        }, 300);
-                    }
-                }, 50);
+              if (width === 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                  body.classList.add("loaded");
+                  body.classList.remove("loading");
+                }, 300);
+              }
+            }, 50);
+          }
+
+          setTimeout(() => {
+            if (body.classList.contains("loading")) {
+              body.classList.add("loaded");
+              body.classList.remove("loading");
             }
-
-            setTimeout(() => {
-                if (body.classList.contains('loading')) {
-                    body.classList.add('loaded');
-                    body.classList.remove('loading');
-                }
-            }, 2500);
+          }, 2500);
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target as HTMLElement;
-                    target.style.opacity = '1';
-                    target.style.transform = 'translateY(0)';
-                    observer.unobserve(target);
-                }
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = entry.target as HTMLElement;
+                target.style.opacity = "1";
+                target.style.transform = "translateY(0)";
+                observer.unobserve(target);
+              }
             });
-        }, { threshold: 0.1 });
+          },
+          { threshold: 0.1 },
+        );
 
         const animatedElements = document.querySelectorAll(
-            '.fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content'
+          ".fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content",
         );
-        animatedElements.forEach(el => observer.observe(el));
-    });
+        animatedElements.forEach((el) => observer.observe(el));
+      });
     </script>
 
     <script src="../scripts/cursor.js"></script>
-</body>
+  </body>
 </html>
 
 <style is:global>
-    html {
-        -webkit-text-size-adjust: 100%;
-        width: 100%;
-        overflow-x: hidden;
-    }
+  html {
+    -webkit-text-size-adjust: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-    html body.loading {
-        overflow: hidden !important;
-        height: 100dvh !important;
-        width: 100% !important;
-        position: fixed;
-    }
+  html body.loading {
+    overflow: hidden !important;
+    height: 100dvh !important;
+    width: 100% !important;
+    position: fixed;
+  }
 
-    #main-content {
-        -webkit-overflow-scrolling: touch;
-        width: 100%;
-        overflow-x: hidden;
-    }
+  #main-content {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    overflow-x: hidden;
+  }
 </style>

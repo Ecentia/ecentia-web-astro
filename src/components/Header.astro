@@ -3,241 +3,256 @@
 ---
 
 <nav class="nav-floating" id="main-nav">
-    <div class="nav-content">
-        <a href="/" class="branding magnet-target">
-            <span class="logo-text">Ecentia<span style="color: var(--accent-color);">.</span></span>
-        </a>
-        
-        <div class="nav-items">
-            <a href="/proyectos" class="magnet-target">Proyectos</a>
-            <a href="/servicios" class="magnet-target">Servicios</a>
-            <a href="/contacto" class="btn-contact magnet-target">Contacto</a>
-        </div>
+  <div class="nav-content">
+    <a href="/" class="branding magnet-target">
+      <span class="logo-text"
+        >Ecentia<span style="color: var(--accent-color);">.</span></span
+      >
+    </a>
 
-        <button class="menu-toggle" aria-label="Abrir menú" id="menu-btn">
-            <span class="hamburger-line top"></span>
-            <span class="hamburger-line bottom"></span>
-        </button>
+    <div class="nav-items">
+      <a href="/" class="magnet-target">Inicio</a>
+      <a href="/proyectos" class="magnet-target">Proyectos</a>
+      <a href="/servicios" class="magnet-target">Servicios</a>
+      <a href="/contacto" class="btn-contact magnet-target">Contacto</a>
     </div>
+
+    <button class="menu-toggle" aria-label="Abrir menú" id="menu-btn">
+      <span class="hamburger-line top"></span>
+      <span class="hamburger-line bottom"></span>
+    </button>
+  </div>
 </nav>
 
 <div class="mobile-menu-overlay" id="mobile-menu">
-    <div class="mobile-links">
-        <a href="/" class="mobile-link">Inicio</a>
-        <a href="/proyectos" class="mobile-link">Proyectos</a>
-        <a href="/servicios" class="mobile-link">Servicios</a>
-        <a href="/contacto" class="mobile-link highlight">Contacto</a>
-    </div>
+  <div class="mobile-links">
+    <a href="/" class="mobile-link">Inicio</a>
+    <a href="/proyectos" class="mobile-link">Proyectos</a>
+    <a href="/servicios" class="mobile-link">Servicios</a>
+    <a href="/contacto" class="mobile-link highlight">Contacto</a>
+  </div>
 </div>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        const nav = document.getElementById('main-nav');
+  document.addEventListener("astro:page-load", () => {
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+    const nav = document.getElementById("main-nav");
 
-        if (!menuBtn || !mobileMenu) return;
+    if (!menuBtn || !mobileMenu) return;
 
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-            
-            // Quitar el blend mode cuando el menú está abierto para ver bien el botón
-            if (mobileMenu.classList.contains('active')) {
-                nav?.classList.add('nav-open');
-            } else {
-                nav?.classList.remove('nav-open');
-            }
-        });
+    menuBtn.addEventListener("click", () => {
+      menuBtn.classList.toggle("active");
+      mobileMenu.classList.toggle("active");
+      document.body.classList.toggle("menu-open");
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuBtn.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                nav?.classList.remove('nav-open');
-            });
-        });
+      if (mobileMenu.classList.contains("active")) {
+        nav?.classList.add("nav-open");
+      } else {
+        nav?.classList.remove("nav-open");
+      }
     });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        menuBtn.classList.remove("active");
+        mobileMenu.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        nav?.classList.remove("nav-open");
+      });
+    });
+  });
 </script>
 
 <style>
-    /* --- ESTILOS DE ESCRITORIO (ORIGINALES RESTAURADOS) --- */
-    .nav-floating {
-        position: fixed;
-        top: 30px; 
-        left: 50%; 
-        transform: translateX(-50%);
-        width: 90%; 
-        max-width: var(--container-width);
-        z-index: 100;
-        /* CLAVE: Esto recupera el efecto de color invertido original */
-        mix-blend-mode: difference;
-        transition: top 0.3s ease;
-    }
+  /* --- ESTILOS DE ESCRITORIO --- */
+  .nav-floating {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: var(--container-width);
+    z-index: 100;
+    mix-blend-mode: difference;
+    transition: top 0.3s ease;
+  }
 
-    /* Cuando el menú móvil está abierto, quitamos el difference para que se vea el botón blanco sobre fondo oscuro */
-    .nav-floating.nav-open {
-        mix-blend-mode: normal;
-        z-index: 1001;
+  .nav-floating.nav-open {
+    mix-blend-mode: normal;
+    z-index: 1001;
+  }
+
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--white);
+  }
+
+  .nav-items {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .nav-items a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+  }
+
+  .nav-items a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--white);
+    transition: 0.3s;
+  }
+
+  .nav-items a:hover::after {
+    width: 100%;
+  }
+
+  /* --- OCULTAR ELEMENTOS MÓVILES EN ESCRITORIO --- */
+  .menu-toggle {
+    display: none;
+  }
+  .mobile-menu-overlay {
+    display: none;
+  }
+
+  /* --- ESTILOS MÓVILES --- */
+  @media (max-width: 768px) {
+    .nav-floating {
+      width: 92%;
+      padding: 10px 0;
+      top: 15px;
+      mix-blend-mode: normal;
     }
 
     .nav-content {
-        display: flex; 
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+      padding: 0 15px;
+      min-height: 40px;
     }
 
-    .branding {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
+    /* Ocultar menú de escritorio */
+    .nav-items {
+      display: none;
     }
 
-    .logo-text { 
-        font-family: 'Syne', sans-serif;
-        font-weight: 800; 
-        font-size: 1.5rem; 
-        color: var(--white); 
+    /* Mostrar botón móvil */
+    .menu-toggle {
+      display: flex;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 6px;
+      padding: 0;
+      z-index: 1002;
+      position: relative;
     }
 
-    .nav-items { 
-        display: flex;
-        gap: 30px; 
-        align-items: center; 
+    .hamburger-line {
+      display: block;
+      height: 2px;
+      background-color: var(--white);
+      transition: all 0.3s ease;
     }
-    
-    .nav-items a { 
-        text-decoration: none;
-        color: var(--white); 
-        font-weight: 500; 
-        font-size: 0.9rem; 
-        text-transform: uppercase; 
-        letter-spacing: 1px; 
-        position: relative;
+
+    .hamburger-line.top {
+      width: 28px;
     }
-    
-    .nav-items a::after { 
-        content: '';
-        position: absolute;
-        bottom: -5px; left: 0; 
-        width: 0; height: 1px; 
-        background: var(--white); 
-        transition: 0.3s;
+    .hamburger-line.bottom {
+      width: 18px;
     }
-    
-    .nav-items a:hover::after { width: 100%; }
 
-    /* --- OCULTAR ELEMENTOS MÓVILES EN ESCRITORIO --- */
-    .menu-toggle { display: none; }
-    .mobile-menu-overlay { display: none; }
-
-    /* --- ESTILOS MÓVILES (SOLO SE ACTIVAN EN PANTALLAS PEQUEÑAS) --- */
-    @media (max-width: 768px) {
-        .nav-floating { 
-            width: 92%; /* Ligeramente más ancho en móvil para aprovechar espacio */
-            padding: 10px 0; /* Reducido de 15px para que no se vea tan "abajo" o grande */
-            top: 15px; /* Ajustado para que se vea equilibrado */
-            /* En móvil quitamos el difference para evitar conflictos con el overlay */
-            mix-blend-mode: normal;
-        }
-
-        .nav-content {
-            padding: 0 15px; /* Ajuste de padding lateral */
-            min-height: 40px; /* Asegura altura mínima para centrado vertical */
-        }
-
-        /* Ocultar menú de escritorio */
-        .nav-items { display: none; }
-
-        /* Mostrar botón móvil */
-        .menu-toggle {
-            display: flex;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-end; /* Alineado a la derecha por defecto */
-            gap: 6px;
-            padding: 0;
-            z-index: 1002;
-            position: relative; /* Necesario para la animación absoluta */
-        }
-
-        .hamburger-line {
-            display: block;
-            height: 2px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
-        }
-        
-        .hamburger-line.top { width: 28px; }
-        .hamburger-line.bottom { width: 18px; }
-
-        /* --- ANIMACIÓN BOTÓN TIPO X (CORREGIDA) --- */
-        /* Al activar, usamos posición absoluta para centrar perfectamente la X */
-        .menu-toggle.active .hamburger-line {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 28px; /* Ambas líneas del mismo tamaño */
-            margin: 0; /* Reset margins */
-        }
-
-        .menu-toggle.active .hamburger-line.top {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-        
-        .menu-toggle.active .hamburger-line.bottom {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-
-        /* Overlay */
-        .mobile-menu-overlay {
-            display: flex;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100vh;
-            background-color: #050510;
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: all;
-        }
-
-        .mobile-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .mobile-link {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .mobile-link.highlight { color: var(--accent-color); }
+    .menu-toggle.active .hamburger-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 28px;
+      margin: 0;
     }
+
+    .menu-toggle.active .hamburger-line.top {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .menu-toggle.active .hamburger-line.bottom {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    /* Overlay */
+    .mobile-menu-overlay {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #050510;
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    .mobile-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .mobile-link {
+      font-family: "Syne", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .mobile-link.highlight {
+      color: var(--accent-color);
+    }
+  }
 </style>
