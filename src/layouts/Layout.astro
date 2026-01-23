@@ -183,14 +183,12 @@ const allSchemas = [
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- SEO Básico -->
     <title>{seoTitle}</title>
     <meta name="description" content={seoDescription} />
     <meta name="keywords" content={seoKeywords} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="author" content="Ecentia Marketing" />
 
-    <!-- Geo Tags para Local SEO (SIN dirección específica) -->
     <meta name="geo.region" content="ES-AN" />
     <meta name="geo.placename" content="Andalucía" />
     <meta name="geo.position" content="37.3891;-5.9845" />
@@ -217,7 +215,6 @@ const allSchemas = [
       )
     }
 
-    <!-- Open Graph / Facebook -->
     <meta
       property="og:type"
       content={pageKey === "home" ? "website" : "article"}
@@ -233,7 +230,6 @@ const allSchemas = [
     <meta property="og:site_name" content={seoConfig.siteName} />
     <meta property="og:locale" content="es_ES" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content={seoConfig.twitterHandle} />
     <meta name="twitter:creator" content={seoConfig.twitterHandle} />
@@ -243,7 +239,6 @@ const allSchemas = [
     <meta name="twitter:image" content={seoImage} />
     <meta name="twitter:image:alt" content="Ecentia Marketing Logo" />
 
-    <!-- PWA & Favicons (OPTIMIZADO) -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="512x512" href="/logo.png" />
     <link rel="apple-touch-icon" sizes="512x512" href="/logo.png" />
@@ -257,16 +252,13 @@ const allSchemas = [
     <meta name="application-name" content="Ecentia Marketing" />
     <meta name="apple-mobile-web-app-title" content="Ecentia Marketing" />
 
-    <!-- DNS Prefetch & Preconnect -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Preload del logo para indexación rápida -->
     <link rel="preload" as="image" href="/logo.png" type="image/png" />
 
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -279,10 +271,8 @@ const allSchemas = [
       referrerPolicy="no-referrer"
     />
 
-    <!-- JSON-LD Schemas -->
     <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
 
-    <!-- Google Tag Manager -->
     <script is:inline>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -300,6 +290,13 @@ const allSchemas = [
   </head>
 
   <body class={`${showLoader ? "loading" : ""} ${bodyClass}`}>
+    <script is:inline>
+      if (sessionStorage.getItem("visited")) {
+        document.body.classList.remove("loading");
+        document.body.classList.add("loaded");
+      }
+    </script>
+
     <noscript>
       <iframe
         src="https://www.googletagmanager.com/ns.html?id=G-FKEZKR17FN"
@@ -360,6 +357,12 @@ const allSchemas = [
                 }, 300);
               }
             }, 50);
+          } else {
+            // Safety fallback si no hay barra de carga
+             setTimeout(() => {
+                body.classList.add("loaded");
+                body.classList.remove("loading");
+             }, 300);
           }
 
           setTimeout(() => {
@@ -383,7 +386,6 @@ const allSchemas = [
           },
           { threshold: 0.1 },
         );
-
         const animatedElements = document.querySelectorAll(
           ".fade-in-up, .project-item, .hero-footer, .legal-header, .legal-main, .page-header-content",
         );

@@ -1,5 +1,12 @@
 ---
 // src/components/Header.astro
+const pathname = new URL(Astro.request.url).pathname;
+// Normalizamos para evitar problemas con barras finales (ej: /contacto vs /contacto/)
+const currentPath = pathname === '/' ? '/' : pathname.replace(/\/$/, "");
+
+const isActive = (path: string) => {
+  return currentPath === path;
+};
 ---
 
 <nav class="nav-floating" id="main-nav">
@@ -26,10 +33,30 @@
 
 <div class="mobile-menu-overlay" id="mobile-menu">
   <div class="mobile-links">
-    <a href="/" class="mobile-link">Inicio</a>
-    <a href="/proyectos" class="mobile-link">Proyectos</a>
-    <a href="/servicios" class="mobile-link">Servicios</a>
-    <a href="/contacto" class="mobile-link highlight">Contacto</a>
+    <a 
+      href="/" 
+      class:list={["mobile-link", { "highlight": isActive('/') }]}
+    >
+      Inicio
+    </a>
+    <a 
+      href="/proyectos" 
+      class:list={["mobile-link", { "highlight": isActive('/proyectos') }]}
+    >
+      Proyectos
+    </a>
+    <a 
+      href="/servicios" 
+      class:list={["mobile-link", { "highlight": isActive('/servicios') }]}
+    >
+      Servicios
+    </a>
+    <a 
+      href="/contacto" 
+      class:list={["mobile-link", { "highlight": isActive('/contacto') }]}
+    >
+      Contacto
+    </a>
   </div>
 </div>
 
@@ -42,24 +69,30 @@
 
     if (!menuBtn || !mobileMenu) return;
 
-    menuBtn.addEventListener("click", () => {
-      menuBtn.classList.toggle("active");
-      mobileMenu.classList.toggle("active");
-      document.body.classList.toggle("menu-open");
+    // Función para cerrar menú
+    const closeMenu = () => {
+      menuBtn.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      document.body.classList.remove("menu-open");
+      nav?.classList.remove("nav-open");
+    };
 
-      if (mobileMenu.classList.contains("active")) {
-        nav?.classList.add("nav-open");
+    menuBtn.addEventListener("click", () => {
+      const isActive = menuBtn.classList.contains("active");
+      
+      if (isActive) {
+        closeMenu();
       } else {
-        nav?.classList.remove("nav-open");
+        menuBtn.classList.add("active");
+        mobileMenu.classList.add("active");
+        document.body.classList.add("menu-open");
+        nav?.classList.add("nav-open");
       }
     });
 
     mobileLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        menuBtn.classList.remove("active");
-        mobileMenu.classList.remove("active");
-        document.body.classList.remove("menu-open");
-        nav?.classList.remove("nav-open");
+        closeMenu();
       });
     });
   });

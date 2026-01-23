@@ -26,9 +26,7 @@ const services = ['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Redes / Automatizac
                     <a href="https://wa.me/34655600555" target="_blank" class="connect-item whatsapp">
                         <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
                         <div class="meta">
-                            <span class="label">
-                             Respuesta rápida
-                            </span>
+                            <span class="label">Respuesta rápida</span>
                             <span class="value">+34 655 60 05 55</span>
                         </div>
                         <i class="fas fa-arrow-right action-icon"></i>
@@ -37,9 +35,7 @@ const services = ['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Redes / Automatizac
                     <a href="mailto:ecentiaseo@gmail.com" class="connect-item email">
                         <div class="icon-box"><i class="far fa-envelope"></i></div>
                         <div class="meta">
-                            <span class="label">
-                              Propuestas detalladas
-                            </span>
+                            <span class="label">Propuestas detalladas</span>
                             <span class="value">ecentiaseo@gmail.com</span>
                         </div>
                         <i class="fas fa-arrow-right action-icon"></i>
@@ -49,7 +45,6 @@ const services = ['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Redes / Automatizac
 
             <div class="form-col">
                 <form id="home-contact-form" action={formAction} method="POST" class="glass-form">
-                    
                     <div class="form-header mobile-only">
                         <h3>¿Empezamos?</h3>
                         <p>Completa tus datos o escríbenos directamente.</p>
@@ -87,9 +82,7 @@ const services = ['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Redes / Automatizac
                             {services.map((tag) => (
                                 <label class="tag-checkbox">
                                     <input type="checkbox" name="interes[]" value={tag}>
-                                    <span class="tag-body">
-                                        {tag}
-                                    </span>
+                                    <span class="tag-body">{tag}</span>
                                 </label>
                             ))}
                         </div>
@@ -115,101 +108,81 @@ const services = ['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Redes / Automatizac
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </section>
 
 <style>
-    /* --- ESTRUCTURA GENERAL --- */
-    .contact-section { position: relative; padding: 100px 0; overflow: hidden; }
+    .contact-section { position: relative; padding: 100px 0; overflow: hidden; background: #070712; }
     .ambient-glow { position: absolute; width: 50vw; height: 50vw; border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1; pointer-events: none; }
     .top-glow { background: var(--accent-color); top: -20%; left: -20%; }
     .bottom-glow { background: #6366f1; bottom: -10%; right: -10%; }
     
     .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
 
-    /* --- INFO COL --- */
     .header-group { margin-bottom: 40px; }
-    .badge-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; color: var(--accent-color); margin-bottom: 24px; }
+    .badge-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: var(--accent-color); margin-bottom: 24px; }
     .badge-pill .dot { width: 6px; height: 6px; background: currentColor; border-radius: 50%; box-shadow: 0 0 10px currentColor; }
     .display-title { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 24px; }
     .txt-gradient { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-desc { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; max-width: 90%; }
 
-    /* --- CARDS DE CONTACTO --- */
     .connect-cards { display: flex; flex-direction: column; gap: 16px; }
-    
-    .connect-item { 
-        display: flex; align-items: center; gap: 16px; padding: 20px; 
-        background: rgba(255, 255, 255, 0.02); 
-        border: 1px solid rgba(255, 255, 255, 0.05); 
-        border-radius: 16px; text-decoration: none; 
-        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); 
-    }
+    .connect-item { display: flex; align-items: center; gap: 16px; padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; text-decoration: none; transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     .connect-item:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); transform: translateX(10px); }
-    
     .icon-box { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.4rem; transition: 0.3s; }
     .whatsapp .icon-box { background: rgba(37, 211, 102, 0.1); color: #25D366; }
     .email .icon-box { background: rgba(168, 85, 247, 0.1); color: var(--accent-color); }
-    
     .meta { flex: 1; display: flex; flex-direction: column; }
-    
-    /* ESTILOS DE LOS ICONOS PEQUEÑOS EN EL LABEL */
-    .meta .label { 
-        font-size: 0.75rem; 
-        text-transform: uppercase; 
-        color: var(--gray); 
-        letter-spacing: 0.5px; 
-        margin-bottom: 4px; 
-        display: flex; 
-        align-items: center; 
-        gap: 8px; /* Espacio entre icono y texto */
-    }
-    .meta .label i { 
-        font-size: 0.9rem; /* Tamaño del icono */
-        color: var(--accent-color); /* Color del icono */
-    } 
-    
+    .meta .label { font-size: 0.75rem; text-transform: uppercase; color: var(--gray); letter-spacing: 0.5px; margin-bottom: 4px; }
     .meta .value { font-family: 'Syne', sans-serif; font-weight: 600; color: #fff; font-size: 1.1rem; }
-    
     .action-icon { color: var(--gray); opacity: 0.5; transition: 0.3s; }
     .connect-item:hover .action-icon { color: #fff; opacity: 1; transform: translateX(5px); }
 
-    /* --- FORMULARIO --- */
-    .glass-form { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); }
+    /* FORMULARIO ADAPTADO */
+    .glass-form { 
+        background: #070712; /* Color exacto solicitado */
+        padding: 40px; 
+        border-radius: 24px; 
+        border: 1px solid rgba(255, 255, 255, 0.05); 
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); 
+    }
     
     .mobile-only { display: none; }
-    
     .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .input-group { margin-bottom: 24px; }
     .input-group label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; margin-left: 4px; }
-    
     .input-wrapper { position: relative; }
     .input-icon { position: absolute; left: 18px; top: 18px; color: rgba(255, 255, 255, 0.3); pointer-events: none; transition: 0.3s; }
 
-    input, textarea { width: 100%; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 16px 16px 16px 50px; color: #fff; font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s ease; outline: none; }
+    input, textarea { 
+        width: 100%; 
+        background: rgba(255, 255, 255, 0.02); /* Fondo sutil para inputs */
+        border: 1px solid rgba(255, 255, 255, 0.08); 
+        border-radius: 12px; 
+        padding: 16px 16px 16px 50px; 
+        color: #fff; 
+        font-family: 'Inter', sans-serif; 
+        font-size: 1rem; 
+        transition: all 0.3s ease; 
+        outline: none; 
+    }
     textarea { padding-left: 16px; min-height: 120px; resize: vertical; }
     input:focus, textarea:focus { background: rgba(168, 85, 247, 0.05); border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15); }
-    input:focus + .input-icon { color: var(--accent-color); }
 
     .tags-grid { display: flex; flex-wrap: wrap; gap: 10px; }
     .tag-checkbox input { display: none; }
-    .tag-body { display: inline-block; padding: 12px 20px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px; color: var(--text-muted); font-size: 0.9rem; cursor: pointer; transition: 0.3s; user-select: none; }
+    .tag-body { display: inline-block; padding: 12px 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 50px; color: var(--text-muted); font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
     .tag-checkbox input:checked + .tag-body { background: var(--accent-color); color: #fff; border-color: var(--accent-color); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4); }
 
     .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 20px; }
     .privacy-check { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.85rem; color: var(--text-muted); }
-    .privacy-check input { width: 18px; height: 18px; padding: 0; margin: 0; accent-color: var(--accent-color); }
+    .privacy-check input { width: 18px; height: 18px; accent-color: var(--accent-color); }
     .privacy-check a { color: #fff; text-decoration: underline; }
     
-    .submit-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px; background: #fff; color: #000; border: none; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; white-space: nowrap; }
+    .submit-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px; background: #fff; color: #000; border: none; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; }
     .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2); }
-    .submit-btn.loading { opacity: 0.7; pointer-events: none; }
-    .submit-btn.success { background: #10b981; color: white; }
-    .submit-btn.error { background: #ef4444; color: white; }
 
-    /* --- RESPONSIVE --- */
     @media (max-width: 1024px) {
         .contact-layout { grid-template-columns: 1fr; gap: 50px; }
         .info-col { text-align: center; }
@@ -223,63 +196,8 @@ const services = ['Diseño Web', 'E-Commerce', 'SEO / Ads', 'Redes / Automatizac
         .glass-form { padding: 25px 20px; }
         .mobile-only { display: block; margin-bottom: 30px; }
         .mobile-only h3 { font-family: 'Syne'; font-size: 1.8rem; color: #fff; margin-bottom: 5px; }
-        .mobile-only p { color: var(--text-muted); font-size: 0.95rem; }
         .input-grid { grid-template-columns: 1fr; }
-        .tag-body { padding: 10px 15px; font-size: 0.85rem; width: 100%; text-align: center; }
-        .form-footer { flex-direction: column; align-items: stretch; gap: 20px; }
-        .privacy-check { justify-content: center; text-align: center; padding: 10px 0; }
+        .form-footer { flex-direction: column; align-items: stretch; }
         .submit-btn { width: 100%; }
-        .ambient-glow { opacity: 0.1; }
     }
 </style>
-
-<script>
-    document.addEventListener('astro:page-load', () => {
-        const form = document.getElementById('home-contact-form') as HTMLFormElement;
-        const btn = document.getElementById('submit-btn') as HTMLButtonElement;
-        const btnText = btn?.querySelector('.btn-text');
-        const btnIcon = btn?.querySelector('.btn-icon');
-
-        if (form && btn) {
-            const originalText = btnText ? btnText.textContent : 'Enviar';
-            const originalIcon = btnIcon ? btnIcon.innerHTML : '';
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(form);
-                
-                // UI Loading
-                btn.classList.add('loading');
-                if(btnText) btnText.textContent = 'Enviando...';
-                if(btnIcon) btnIcon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
-                    });
-
-                    if (response.ok) {
-                        btn.classList.remove('loading');
-                        btn.classList.add('success');
-                        if(btnText) btnText.textContent = '¡Mensaje Enviado!';
-                        if(btnIcon) btnIcon.innerHTML = '<i class="fas fa-check"></i>';
-                        form.reset();
-                    } else { throw new Error('Error en el envío'); }
-                } catch (error) {
-                    btn.classList.remove('loading');
-                    btn.classList.add('error');
-                    if(btnText) btnText.textContent = 'Error al enviar';
-                    if(btnIcon) btnIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
-                } finally {
-                    setTimeout(() => {
-                        btn.classList.remove('success', 'error', 'loading');
-                        if(btnText) btnText.textContent = originalText;
-                        if(btnIcon) btnIcon.innerHTML = originalIcon;
-                    }, 4000);
-                }
-            });
-        }
-    });
-</script>
