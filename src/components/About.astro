@@ -26,11 +26,98 @@
                         sino que están construidas para convertir visitantes en clientes leales.
 Fusionamos creatividad y tecnología para crear marcas que dejan huella en un entorno saturado.
 </p>
+                    <p>
+                        Como agencia digital con base en <strong>Sevilla y Málaga</strong>, llevamos el diseño web y el SEO 
+                        al siguiente nivel. No nos limitamos a construir páginas: desarrollamos ecosistemas digitales completos 
+                        que generan <strong>autoridad online</strong>, tráfico orgánico y ventas reales para tu negocio. 
+                        Cada proyecto es único, cada estrategia es a medida.
+                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- Por qué Ecentia: Pilares -->
+        <div class="pillars-grid fade-in-up">
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="pillar-title">Diseño Web Premium</h3>
+                <p class="pillar-desc">
+                    Creamos páginas web en <strong>Sevilla y Málaga</strong> con un diseño moderno y 
+                    orientado a la conversión. Tecnología de última generación (Astro, React) para 
+                    webs ultrarrápidas que posicionan en Google.
+                </p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="pillar-title">SEO y Autoridad Digital</h3>
+                <p class="pillar-desc">
+                    Posicionamiento web estratégico para que tu negocio aparezca en los primeros resultados de Google. 
+                    Auditamos, optimizamos y construimos la <strong>autoridad digital</strong> de tu marca en Andalucía y España.
+                </p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="pillar-title">Automatización con IA</h3>
+                <p class="pillar-desc">
+                    Integramos inteligencia artificial en tus procesos de marketing y atención al cliente. 
+                    Chatbots, flujos de automatización y herramientas que trabajan por ti las 24 horas.
+                </p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3 class="pillar-title">E-Commerce y Tiendas Online</h3>
+                <p class="pillar-desc">
+                    Desarrollamos tiendas online optimizadas para vender. Desde marketplaces en Sevilla 
+                    hasta e-commerce de alcance nacional, construimos plataformas que convierten visitas en ingresos.
+                </p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="pillar-title">Google Ads y Social Ads</h3>
+                <p class="pillar-desc">
+                    Campañas de publicidad digital en Google, Instagram y LinkedIn con segmentación precisa. 
+                    Maximizamos tu ROI y captamos clientes potenciales en Sevilla, Málaga y toda España.
+                </p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <h3 class="pillar-title">Redes Sociales y Branding</h3>
+                <p class="pillar-desc">
+                    Gestionamos tu presencia en redes con contenido de valor que genera comunidad. 
+                    Diseñamos identidades de marca coherentes que reflejan la esencia de tu negocio.
+                </p>
+            </div>
+        </div>
+
+        <div class="about-cta fade-in-up">
+            <p class="about-cta-text">
+                ¿Listo para que tu negocio domine el mundo digital en Sevilla, Málaga y más allá?
+            </p>
+            <a href="/contacto" class="btn-about-cta" aria-label="Solicitar presupuesto gratuito de diseño web o SEO">
+                Solicitar presupuesto gratis
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </div>
 </section>
+
 
 <style>
     .about-section {
@@ -160,6 +247,147 @@ Fusionamos creatividad y tecnología para crear marcas que dejan huella en un en
 
         .text-block p:not(.lead-paragraph) {
             font-size: 1rem;
+        }
+
+        .pillars-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .about-cta {
+            margin-top: 50px;
+            padding: 30px 20px;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+    }
+
+    /* Pillars Grid */
+    .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 80px;
+    }
+
+    .pillar-card {
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .pillar-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 2px;
+        background: var(--primary-gradient);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .pillar-card:hover {
+        border-color: rgba(168, 85, 247, 0.3);
+        transform: translateY(-5px);
+        background: rgba(168, 85, 247, 0.04);
+    }
+
+    .pillar-card:hover::before {
+        opacity: 1;
+    }
+
+    .pillar-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(168, 85, 247, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--accent-color);
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    .pillar-card:hover .pillar-icon {
+        background: rgba(168, 85, 247, 0.2);
+        transform: scale(1.1);
+    }
+
+    .pillar-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .pillar-desc {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+    }
+
+    .pillar-desc strong {
+        color: var(--accent-color);
+    }
+
+    /* About CTA */
+    .about-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        margin-top: 80px;
+        padding: 40px 50px;
+        background: rgba(168, 85, 247, 0.05);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        border-radius: 20px;
+        flex-wrap: wrap;
+    }
+
+    .about-cta-text {
+        font-size: 1.2rem;
+        color: var(--white);
+        font-weight: 500;
+        max-width: 500px;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .btn-about-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 36px;
+        background: var(--primary-gradient);
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 50px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .btn-about-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(168, 85, 247, 0.5);
+    }
+
+    @media (max-width: 1024px) {
+        .pillars-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 </style>

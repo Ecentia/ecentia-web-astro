@@ -1,8 +1,8 @@
 export const seoConfig = {
   siteName: 'Ecentia',
   siteUrl: 'https://ecentia.es',
-  defaultTitle: 'Ecentia | Agencia Digital Líder en Sevilla y Málaga | Diseño Web y SEO',
-  defaultDescription: '🚀 Ecentia - Agencia Digital Profesional ✓ Diseño Web Premium ✓ SEO Avanzado ✓ Automatización IA ✓ E-commerce ✓ Google Ads ✓ Redes Sociales | Servicios en Sevilla, Málaga y Andalucía. Presupuesto gratis 24h.',
+  defaultTitle: 'Ecentia | Agencia Digital en Sevilla y Málaga',
+  defaultDescription: 'Agencia digital en Sevilla y Málaga especializada en diseño web, SEO, automatización con IA y e-commerce. Presupuesto gratis en 24h.',
   defaultImage: '/logo.png',
   twitterHandle: '@ecentia',
   locale: 'es_ES',
@@ -81,8 +81,8 @@ export const seoConfig = {
 
   pages: {
     home: {
-      title: 'Ecentia | Agencia Digital Líder en Sevilla y Málaga | Diseño Web y SEO',
-      description: '🚀 Ecentia - Agencia Digital Profesional ✓ Diseño Web Premium ✓ SEO Avanzado ✓ Automatización IA ✓ E-commerce ✓ Google Ads ✓ Redes Sociales | Servicios en Sevilla, Málaga y Andalucía. Presupuesto gratis 24h.',
+      title: 'Ecentia | Agencia Digital en Sevilla y Málaga',
+      description: 'Agencia digital en Sevilla y Málaga especializada en diseño web, SEO, automatización con IA y e-commerce. Presupuesto gratis en 24h.',
       keywords: 'ecentia, esentia, ecentia sevilla, esentia sevilla, ecentia málaga, esentia málaga, ecentia marketing, esentia marketing, agencia digital sevilla, diseño web sevilla',
       breadcrumb: [
         { name: 'Inicio', url: '/' }
@@ -237,8 +237,8 @@ export const seoConfig = {
     },
     
     servicios: {
-      title: 'Servicios Digitales Profesionales | Ecentia Sevilla y Málaga',
-      description: '✅ Diseño web ✅ SEO ✅ Automatización IA ✅ E-Commerce ✅ Google Ads ✅ Redes sociales. Ecentia ofrece servicios profesionales en Sevilla, Málaga y Andalucía.',
+      title: 'Servicios Digitales | Diseño Web, SEO e IA | Ecentia',
+      description: 'Diseño web, SEO, automatización con IA, e-commerce y Google Ads en Sevilla y Málaga. Ecentia: tu agencia digital con resultados medibles.',
       keywords: 'ecentia servicios, esentia servicios, diseño web sevilla, seo sevilla, ecommerce málaga',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
@@ -312,8 +312,8 @@ export const seoConfig = {
     },
     
     proyectos: {
-      title: 'Portfolio de Proyectos Web | Casos de Éxito | Ecentia',
-      description: '🎯 Portfolio de Ecentia: Diseño web, e-commerce y marketing digital. Casos reales con resultados medibles en Sevilla, Málaga y España.',
+      title: 'Portfolio y Proyectos Web | Casos de Éxito | Ecentia',
+      description: 'Portfolio de Ecentia: diseño web, e-commerce y marketing digital con resultados reales. Casos de éxito en Sevilla, Málaga y toda España.',
       keywords: 'ecentia portfolio, esentia proyectos, casos éxito diseño web, proyectos ecentia',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
@@ -332,8 +332,8 @@ export const seoConfig = {
     },
     
     contacto: {
-      title: 'Contacto Ecentia | Presupuesto Gratis 24h | Sevilla y Málaga',
-      description: '📞 Contacta con Ecentia para consultoría gratuita. Atendemos Sevilla, Málaga y Andalucía. Presupuesto sin compromiso en 24h. ☎ +34 655 60 05 55 · WhatsApp',
+      title: 'Contacto | Presupuesto Gratis 24h | Ecentia Sevilla',
+      description: 'Contacta con Ecentia y recibe tu presupuesto de diseño web o SEO en menos de 24h sin compromiso. Atendemos Sevilla, Málaga y toda Andalucía.',
       keywords: 'ecentia contacto, esentia contacto, presupuesto diseño web, ecentia telefono',
       breadcrumb: [
         { name: 'Inicio', url: '/' },

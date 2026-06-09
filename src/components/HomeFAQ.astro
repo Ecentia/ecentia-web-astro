@@ -1,0 +1,247 @@
+---
+// src/components/HomeFAQ.astro
+// Componente de FAQ para la homepage - incrementa el conteo de palabras y mejora el SEO
+const faqs = [
+  {
+    question: "¿Qué es Ecentia y qué servicios ofrece?",
+    answer: "Ecentia es una agencia digital profesional con base en Sevilla y Málaga especializada en diseño web premium, SEO avanzado, automatización con inteligencia artificial, e-commerce, gestión de redes sociales y Google Ads. Creamos ecosistemas digitales completos orientados a resultados medibles y crecimiento real para negocios en Andalucía y toda España."
+  },
+  {
+    question: "¿Cuánto cuesta el diseño web con Ecentia?",
+    answer: "Los precios de diseño web en Ecentia varían según la complejidad del proyecto. Las webs corporativas parten desde 800€, los e-commerce avanzados desde 2.500€ y los proyectos de SEO tienen planes mensuales adaptados a cada negocio. Ofrecemos presupuestos personalizados y gratuitos con respuesta en menos de 24 horas."
+  },
+  {
+    question: "¿En qué ciudades trabaja Ecentia?",
+    answer: "Ecentia atiende clientes principalmente en Sevilla y Málaga, y trabajamos con empresas de toda Andalucía y España de forma remota. Nos desplazamos para reuniones presenciales en Sevilla y Málaga cuando el proyecto lo requiere. Nuestra metodología digital nos permite entregar proyectos de diseño web y SEO de alta calidad a cualquier empresa española."
+  },
+  {
+    question: "¿Cuánto tiempo tarda en posicionar mi web en Google?",
+    answer: "Los resultados de SEO dependen de la competencia de tu sector y el estado actual de tu web. En proyectos de SEO local en Sevilla y Málaga, comenzamos a ver mejoras en el posicionamiento de Google en 3-6 meses. Para keywords más competitivas a nivel nacional el proceso toma entre 6-12 meses. Ecentia trabaja con estrategias SEO sostenibles y técnicas White Hat."
+  },
+  {
+    question: "¿Qué diferencia a Ecentia de otras agencias digitales?",
+    answer: "Ecentia destaca por su enfoque en resultados medibles y transparencia total. Utilizamos tecnología de vanguardia como Astro, React y herramientas de IA para crear webs ultrarrápidas que posicionan mejor en Google. A diferencia de agencias tradicionales, ofrecemos atención personalizada, precios competitivos sin costes ocultos y estrategias digitales completamente adaptadas a cada cliente."
+  },
+  {
+    question: "¿Qué incluye el servicio de diseño web de Ecentia?",
+    answer: "El servicio de diseño web de Ecentia incluye: análisis de competencia y estrategia digital, diseño UX/UI personalizado, desarrollo web con tecnologías modernas, optimización SEO técnica desde el inicio, integración de analítica web (Google Analytics), formularios de contacto, certificado SSL, adaptación total a móviles y tablets, y soporte post-lanzamiento. Todo orientado a que tu web convierta visitas en clientes."
+  }
+];
+---
+
+<section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+    <div class="container">
+        <div class="faq-header fade-in-up">
+            <span class="faq-label">PREGUNTAS FRECUENTES</span>
+            <h2 class="faq-title">Todo lo que necesitas <span class="text-gradient">saber sobre Ecentia</span></h2>
+            <p class="faq-subtitle">Resolvemos las dudas más comunes sobre nuestros servicios de diseño web, SEO y marketing digital en Sevilla y Málaga.</p>
+        </div>
+
+        <div class="faq-list fade-in-up">
+            {faqs.map((faq, index) => (
+                <details class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <summary class="faq-question" itemprop="name">
+                        <span class="faq-num">{String(index + 1).padStart(2, '0')}</span>
+                        <span class="faq-q-text">{faq.question}</span>
+                        <div class="faq-toggle">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </summary>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p itemprop="text">{faq.answer}</p>
+                    </div>
+                </details>
+            ))}
+        </div>
+
+        <div class="faq-cta fade-in-up">
+            <p>¿Tienes otras preguntas? Contáctanos directamente.</p>
+            <a href="/contacto" class="btn-faq-cta" aria-label="Contactar con Ecentia para consultar sobre diseño web y SEO">
+                Consulta gratuita
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-section {
+        padding: 120px 0;
+        background: var(--bg-color);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .faq-header {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+
+    .faq-label {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 4px;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .faq-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .text-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .faq-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .faq-list {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .faq-item {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+    }
+
+    .faq-item[open] {
+        border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .faq-question {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 28px;
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+        transition: background 0.3s ease;
+    }
+
+    .faq-question::-webkit-details-marker {
+        display: none;
+    }
+
+    .faq-question:hover {
+        background: rgba(168, 85, 247, 0.04);
+    }
+
+    .faq-num {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        opacity: 0.7;
+        flex-shrink: 0;
+    }
+
+    .faq-q-text {
+        flex: 1;
+        font-family: 'Syne', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--white);
+        line-height: 1.4;
+    }
+
+    .faq-toggle {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-color);
+        font-size: 0.8rem;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+    }
+
+    .faq-item[open] .faq-toggle {
+        background: var(--accent-color);
+        border-color: var(--accent-color);
+        color: white;
+        transform: rotate(45deg);
+    }
+
+    .faq-answer {
+        padding: 0 28px 24px 68px;
+    }
+
+    .faq-answer p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    .faq-cta {
+        text-align: center;
+        margin-top: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .faq-cta p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        margin: 0;
+    }
+
+    .btn-faq-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        color: var(--white);
+        text-decoration: none;
+        font-family: 'Syne', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-faq-cta:hover {
+        background: var(--white);
+        color: var(--bg-color);
+        border-color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+        .faq-section { padding: 80px 0; }
+        .faq-question { padding: 20px; gap: 15px; }
+        .faq-q-text { font-size: 0.95rem; }
+        .faq-answer { padding: 0 20px 20px; }
+        .faq-num { display: none; }
+        .faq-cta { flex-direction: column; }
+    }
+</style>

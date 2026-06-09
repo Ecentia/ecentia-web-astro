@@ -33,7 +33,10 @@ const seoDescription =
 const seoKeywords =
   keywords || currentPage?.keywords || seoConfig.keywords.join(", ");
 const seoImage = image || `${seoConfig.siteUrl}${seoConfig.defaultImage}`;
-const canonicalURL = new URL(Astro.url.pathname, seoConfig.siteUrl).href;
+// Canonical URL: normalize to remove trailing slash (except homepage)
+const rawPath = Astro.url.pathname;
+const normalizedPath = rawPath === '/' ? '/' : rawPath.replace(/\/$/, '');
+const canonicalURL = new URL(normalizedPath, seoConfig.siteUrl).href;
 
 // ---------------- Schema Organization (SIN DIRECCIÓN FÍSICA) ----------------
 const organizationSchema = {
@@ -188,6 +191,8 @@ const allSchemas = [
     <meta name="keywords" content={seoKeywords} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="author" content="Ecentia Marketing" />
+    <meta http-equiv="Content-Language" content="es" />
+    <meta name="language" content="Spanish" />
 
     <meta name="geo.region" content="ES-AN" />
     <meta name="geo.placename" content="Andalucía" />

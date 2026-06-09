@@ -18,15 +18,35 @@
                 <div class="line indent"><span class="reveal-text">AUTORIDAD</span></div>
             </h1>
 
-            <div class="hero-footer fade-in-up delay-2">
+            <div class="hero-body fade-in-up delay-1">
                 <p class="hero-desc">
                     No hacemos simples páginas web.
                     Creamos <strong>activos digitales</strong> diseñados con
                     psicología de venta y automatización para que tu negocio no pare de
-                    crecer.
+                    crecer. Nuestro diseño web enfocado a la autoridad digital transforma
+                    visitantes en clientes desde el primer clic.
                 </p>
-                
-                <a href="/proyectos" class="scroll-down-btn magnet-target">
+            </div>
+
+            <div class="hero-stats fade-in-up delay-15">
+                <div class="stat-item">
+                    <span class="stat-num">+50</span>
+                    <span class="stat-label">Proyectos entregados</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Clientes satisfechos</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">24h</span>
+                    <span class="stat-label">Respuesta garantizada</span>
+                </div>
+            </div>
+
+            <div class="hero-footer fade-in-up delay-2">
+                <a href="/proyectos" class="scroll-down-btn magnet-target" aria-label="Ver casos de éxito en diseño web y marketing digital">
                     <div class="arrow-wrapper">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -34,6 +54,9 @@
                         </svg>
                     </div>
                     <span class="btn-text">Ver casos de éxito</span>
+                </a>
+                <a href="/servicios" class="scroll-down-btn magnet-target secondary-cta" aria-label="Explorar servicios de diseño web y SEO en Sevilla">
+                    <span class="btn-text">Nuestros servicios</span>
                 </a>
             </div>
         </div>
@@ -146,21 +169,83 @@
         box-shadow: 0 0 10px #00ff88;
     }
 
+    .hero-body {
+        margin-bottom: 40px;
+    }
+
     .hero-footer { 
         display: flex;
-        justify-content: space-between; 
-        align-items: flex-end;
+        align-items: center;
         flex-wrap: wrap;
-        gap: 30px; 
+        gap: 20px; 
     }
     
     .hero-desc { 
-        max-width: 400px;
+        max-width: 480px;
         color: var(--gray); 
         font-size: 1.1rem; 
         line-height: 1.6;
     }
+
+    /* Stats bar */
+    .hero-stats {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 40px;
+        padding: 20px 30px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        width: fit-content;
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .stat-num {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--white);
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        color: var(--gray);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+
+    .stat-divider {
+        width: 1px;
+        height: 40px;
+        background: rgba(255,255,255,0.1);
+    }
+
+    /* Secondary CTA */
+    .secondary-cta {
+        opacity: 0.6;
+        font-size: 0.9rem;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    .secondary-cta:hover {
+        opacity: 1;
+    }
+
+    .fade-in-up.delay-15 {
+        transition-delay: 0.15s;
+    }
     
+
     /* --- ESTILOS DEL BOTÓN / LINK (DESKTOP BASE) --- */
     
     .scroll-down-btn { 
@@ -237,8 +322,8 @@
 
         .hero-footer { 
             flex-direction: column;
-            align-items: flex-start; 
-            gap: 25px;
+            align-items: stretch; 
+            gap: 15px;
             margin-top: auto;
             padding-bottom: 40px; 
         }
@@ -322,6 +407,27 @@
             transform: rotate(-90deg);
             width: 22px;
             height: 22px;
+        }
+
+        /* Hero stats en móvil */
+        .hero-stats {
+            width: 100%;
+            justify-content: space-around;
+            padding: 15px 20px;
+            gap: 15px;
+        }
+
+        .stat-num { font-size: 1.3rem; }
+
+        /* Secondary CTA oculto en móvil (no hay espacio) */
+        .secondary-cta {
+            background: transparent !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            box-shadow: none !important;
+            opacity: 0.7;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 0;
         }
     }
     
