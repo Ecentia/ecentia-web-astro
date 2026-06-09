@@ -1,246 +1,252 @@
 ---
 // src/pages/proyectos.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import Footer from '../components/Footer.astro';
-import { link } from 'framer-motion/client';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Footer from "../components/Footer.astro";
+import { link } from "framer-motion/client";
 
 const projects = [
-    {
-        title: "Depofibra",
-        category: "LANDING WEB",
-        description: "Plataforma de comercio de depósitos con experiencia inmersiva.",
-        tags: ["HTML", "CSS", "JavaScript"],
-        image: "/webs_images/depofibra_sc.png",
-        link: "https://depofibra.com",
-        reverse: true
-    },
-    {
-        title: "Anazon Moda",
-        category: "E-COMMERCE / MODA",
-        description: "Diseño web elegante y optimizado para potenciar la identidad de marca en el sector moda.",
-        tags: ["Diseño UX/UI", "E-Commerce", "Desarrollo"],
-        image: "/webs_images/anazonmoda_sc.png",
-        link: "https://anazonmoda.com",
-        reverse: false
-    },
   {
-        title: "Pizzas a Todo Gas",
-        category: "LANDING WEB / RESTAURACIÓN",
-        description: "Plataforma para pizzería optimizada para la velocidad. Sistema de carta y experiencia de usuario fluida para maximizar conversiones.",
-        tags: ["Diseño UI/UX", "Carta online", "Desarrollo Web"],
-        image: "/webs_images/pizzasatodogas_sc.png", 
-        link: "https://pizzasatodogas.com", 
-        reverse: true
-    },
-    {
-        title: "Daniel Rayo Portfolio",
-        category: "DIGITAL PORTFOLIO",
-        description: "Portfolio digital totalmente innovador e impactante. Sistema de gestión de contenido y personalización.",
-        tags: ["Next.js", "Supabase", "Gestión de contenidos"],
-        image: "/webs_images/danirayo3d_sc.png", 
-        link: "https://danirayo3d.es",
-        reverse: false
-    },
-    {
-        title: "Eva Torres Moda",
-        category: "LANDING E-COMMERCE",
-        description: "Gestión de productos y diseño dinámico para tiendas locales.",
-        tags: ["Astro", "Tailwind CSS", "Sanity"],
-        image: "/webs_images/evatorresmoda_sc.png",
-        link: "https://evatorresmoda.com",
-        reverse: true
-    }
+    title: "Depofibra",
+    category: "LANDING WEB",
+    description:
+      "Plataforma de comercio de depósitos con experiencia inmersiva.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    image: "/webs_images/depofibra_sc.png",
+    link: "https://depofibra.com",
+    reverse: true,
+  },
+  {
+    title: "Pizzas a Todo Gas",
+    category: "LANDING WEB / RESTAURACIÓN",
+    description:
+      "Plataforma para pizzería optimizada para la velocidad. Sistema de carta y experiencia de usuario fluida para maximizar conversiones.",
+    tags: ["Diseño UI/UX", "Carta online", "Desarrollo Web"],
+    image: "/webs_images/pizzasatodogas_sc.png",
+    link: "https://pizzasatodogas.com",
+    reverse: false,
+  },
+  {
+    title: "Daniel Rayo Portfolio",
+    category: "DIGITAL PORTFOLIO",
+    description:
+      "Portfolio digital totalmente innovador e impactante. Sistema de gestión de contenido y personalización.",
+    tags: ["Next.js", "Supabase", "Gestión de contenidos"],
+    image: "/webs_images/danirayo3d_sc.png",
+    link: "https://danirayo3d.es",
+    reverse: true,
+  },
+  {
+    title: "Eva Torres Moda",
+    category: "LANDING E-COMMERCE",
+    description: "Gestión de productos y diseño dinámico para tiendas locales.",
+    tags: ["Astro", "Tailwind CSS", "Sanity"],
+    image: "/webs_images/evatorresmoda_sc.png",
+    link: "https://evatorresmoda.com",
+    reverse: false,
+  },
 ];
 ---
 
 <Layout pageKey="proyectos">
-    <Header />
-    
-    <main>
-        <section class="page-header">
-            <div class="container">
-                <div class="page-header-content fade-in-up">
-                    <span class="subtitle">CASOS DE ÉXITO</span>
-                    
-                    <h1 class="page-title">Experiencia <br> <span class="text-gradient">Digital.</span></h1>
-                    
-                    <p class="page-description">
-                        Una selección de proyectos donde la estrategia, el diseño y la tecnología convergen para crear resultados medibles.
-                    </p>
-                </div>
-            </div>
-            <div class="header-glow"></div>
-        </section>
+  <Header />
 
-        <section class="work-section">
-            <div class="container">
-                <div class="project-list">
-                    {projects.map(project => (
-                        <ProjectCard {...project} />
-                    ))}
-                </div>
-            </div>
-        </section>
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-content fade-in-up">
+          <span class="subtitle">CASOS DE ÉXITO</span>
 
-        <section class="project-cta fade-in-up">
-            <div class="container">
-                <div class="cta-box">
-                    <h2>¿Listo para empezar el tuyo?</h2>
-                    <p>Transformamos tus ideas en productos digitales de alto impacto.</p>
-                    <a href="/contacto" class="btn-primary">Iniciar Proyecto</a>
-                </div>
-            </div>
-        </section>
-    </main>
+          <h1 class="page-title">
+            Experiencia <br />
+            <span class="text-gradient">Digital.</span>
+          </h1>
 
-    <Footer />
+          <p class="page-description">
+            Una selección de proyectos donde la estrategia, el diseño y la
+            tecnología convergen para crear resultados medibles.
+          </p>
+        </div>
+      </div>
+      <div class="header-glow"></div>
+    </section>
+
+    <section class="work-section">
+      <div class="container">
+        <div class="project-list">
+          {projects.map((project) => <ProjectCard {...project} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="project-cta fade-in-up">
+      <div class="container">
+        <div class="cta-box">
+          <h2>¿Listo para empezar el tuyo?</h2>
+          <p>Transformamos tus ideas en productos digitales de alto impacto.</p>
+          <a href="/contacto" class="btn-primary">Iniciar Proyecto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>
 
 <style>
-    /* Estilos Específicos de Página */
-    main {
-        position: relative;
-        overflow: hidden;
-        width: 100%; /* Blindaje contra scroll horizontal */
-    }
+  /* Estilos Específicos de Página */
+  main {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Blindaje contra scroll horizontal */
+  }
 
-    .container { 
-        width: 100%; 
-        max-width: var(--container-width);
-        margin: 0 auto; 
-        padding: 0 var(--gutter); 
-    }
+  .container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
 
-    /* Page Header Styles */
+  /* Page Header Styles */
+  .page-header {
+    padding: 180px 0 100px;
+    position: relative;
+  }
+
+  .page-header-content {
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .subtitle {
+    font-family: "Syne", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+    font-weight: 700;
+  }
+
+  .page-title {
+    font-family: "Syne", sans-serif;
+    /* CLAVE: clamp ajustado para móviles (min 2.25rem) */
+    font-size: clamp(2.25rem, 7vw, 6rem);
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 30px;
+
+    /* ESTÉTICA: Balanceo de texto para evitar palabras sueltas */
+    text-wrap: balance;
+    max-width: 100%;
+  }
+
+  .text-gradient {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .page-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 600px;
+  }
+
+  .header-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.15) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Work Section */
+  .work-section {
+    padding: 50px 0 150px;
+  }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 150px; /* Separación amplia en escritorio */
+  }
+
+  /* CTA Section */
+  .project-cta {
+    padding-bottom: 150px;
+    text-align: center;
+  }
+
+  .cta-box {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid var(--border-color);
+    padding: 80px 20px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box h2 {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem); /* Responsivo */
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .cta-box p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--white);
+    color: var(--bg-color);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
     .page-header {
-        padding: 180px 0 100px;
-        position: relative;
+      padding: 130px 0 60px; /* Menos padding superior */
     }
 
-    .page-header-content {
-        max-width: 800px;
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    .subtitle {
-        font-family: 'Syne', sans-serif;
-        font-size: 0.9rem;
-        letter-spacing: 3px;
-        color: var(--accent-color);
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        display: block;
-        font-weight: 700;
-    }
-
-    .page-title {
-        font-family: 'Syne', sans-serif;
-        /* CLAVE: clamp ajustado para móviles (min 2.25rem) */
-        font-size: clamp(2.25rem, 7vw, 6rem);
-        line-height: 1.1;
-        font-weight: 800;
-        color: var(--white);
-        margin-bottom: 30px;
-        
-        /* ESTÉTICA: Balanceo de texto para evitar palabras sueltas */
-        text-wrap: balance;
-        max-width: 100%;
-    }
-
-    .text-gradient {
-        background: var(--primary-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .page-description {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: var(--text-muted);
-        max-width: 600px;
-    }
-
-    .header-glow {
-        position: absolute;
-        top: -20%;
-        right: -10%;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(0,0,0,0) 70%);
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    /* Work Section */
-    .work-section { 
-        padding: 50px 0 150px;
-    }
-    
-    .project-list { 
-        display: flex;
-        flex-direction: column; 
-        gap: 150px; /* Separación amplia en escritorio */
-    }
-
-    /* CTA Section */
-    .project-cta {
-        padding-bottom: 150px;
-        text-align: center;
+    .project-list {
+      /* MEJORA: Reducimos el gap drásticamente en móvil para mejorar UX */
+      gap: 60px;
     }
 
     .cta-box {
-        background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-        border: 1px solid var(--border-color);
-        padding: 80px 20px;
-        border-radius: 20px;
-        position: relative;
-        overflow: hidden;
+      padding: 50px 20px; /* Padding interno reducido */
     }
-
-    .cta-box h2 {
-        font-family: 'Syne', sans-serif;
-        font-size: clamp(2rem, 5vw, 3rem); /* Responsivo */
-        margin-bottom: 20px;
-        color: var(--white);
-    }
-
-    .cta-box p {
-        color: var(--text-muted);
-        margin-bottom: 40px;
-        font-size: 1.1rem;
-    }
-
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        background: var(--white);
-        color: var(--bg-color);
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 50px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-    }
-    
-    @media (max-width: 768px) {
-        .page-header { 
-            padding: 130px 0 60px; /* Menos padding superior */
-        }
-        
-        .project-list { 
-            /* MEJORA: Reducimos el gap drásticamente en móvil para mejorar UX */
-            gap: 60px; 
-        }
-        
-        .cta-box {
-            padding: 50px 20px; /* Padding interno reducido */
-        }
-    }
+  }
 </style>
