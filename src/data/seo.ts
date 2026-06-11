@@ -310,17 +310,17 @@ export const seoConfig = {
     },
     
     proyectos: {
-      title: 'Portfolio y Proyectos Web | Casos de Éxito | Ecentia',
-      description: 'Portfolio de Ecentia: diseño web, e-commerce y marketing digital con resultados reales. Casos de éxito en Sevilla, Málaga y toda España.',
-      keywords: 'ecentia portfolio, esentia proyectos, casos éxito diseño web, proyectos ecentia',
+      title: 'Diseño Web y SEO: Casos de Éxito en Sevilla y España | Ecentia',
+      description: 'Ver casos reales de éxito en diseño de páginas web profesionales, desarrollo de tiendas online Shopify y posicionamiento SEO. Impulsamos negocios en Sevilla, Málaga y toda España.',
+      keywords: 'casos de éxito diseño web, portfolio de páginas web sevilla, desarrollo tienda online shopify andalucia, agencia seo sevilla opiniones, diseño web corporativo españa, programacion web a medida sevilla',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Proyectos', url: '/proyectos' }
       ],
       schema: {
         "@type": "CollectionPage",
-        "name": "Portfolio de Proyectos de Ecentia",
-        "description": "Casos de éxito en diseño web y marketing digital",
+        "name": "Casos de Éxito de Diseño Web y Posicionamiento SEO de Ecentia",
+        "description": "Portafolio de proyectos reales en diseño de páginas web corporativas, tiendas e-commerce Shopify y optimización en motores de búsqueda (SEO) para empresas en Sevilla, Andalucía y a nivel nacional en España.",
         "publisher": {
           "@type": "Organization",
           "name": "Ecentia",
