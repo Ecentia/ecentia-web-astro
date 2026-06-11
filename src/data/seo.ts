@@ -235,16 +235,16 @@ export const seoConfig = {
     },
     
     servicios: {
-      title: 'Servicios Digitales | Diseño Web, SEO e IA | Ecentia',
-      description: 'Diseño web, SEO, automatización con IA, e-commerce y Google Ads en Sevilla y Málaga. Ecentia: tu agencia digital con resultados medibles.',
-      keywords: 'ecentia servicios, esentia servicios, diseño web sevilla, seo sevilla, ecommerce málaga',
+      title: 'Servicios de Diseño Web, Posicionamiento SEO y E-commerce | Ecentia',
+      description: 'Agencia de diseño de páginas web profesionales, posicionamiento SEO estratégico y desarrollo de e-commerce a medida. Impulsamos tu negocio en Sevilla, Málaga y toda España.',
+      keywords: 'diseño web sevilla, agencia seo sevilla, desarrollo web malaga, crear tienda online shopify, diseño paginas web andalucia, consultoria tecnologica españa, programacion web a medida',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Servicios', url: '/servicios' }
       ],
       schema: {
         "@type": "Service",
-        "serviceType": "Marketing Digital Profesional",
+        "serviceType": "Diseño Web, SEO y Consultoría Tecnológica",
         "provider": {
           "@type": "ProfessionalService",
           "name": "Ecentia",
@@ -260,6 +260,10 @@ export const seoConfig = {
             "name": "Málaga"
           },
           {
+            "@type": "City",
+            "name": "Granada"
+          },
+          {
             "@type": "Country",
             "name": "España"
           }
@@ -272,8 +276,8 @@ export const seoConfig = {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Diseño Web Premium",
-                "description": "Diseño de páginas web profesionales centradas en conversión",
+                "name": "Diseño Web Corporativo y Premium",
+                "description": "Creación y desarrollo de páginas web profesionales optimizadas para motores de búsqueda y centradas en la experiencia de usuario y conversión.",
                 "url": "https://ecentia.es/servicios#diseno-web"
               }
             },
@@ -281,8 +285,8 @@ export const seoConfig = {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "SEO Avanzado",
-                "description": "Posicionamiento web estratégico para dominar Google",
+                "name": "Posicionamiento SEO Avanzado",
+                "description": "Estrategias de posicionamiento SEO local y nacional en Google para aumentar la visibilidad orgánica, captar tráfico cualificado y leads.",
                 "url": "https://ecentia.es/servicios#seo"
               }
             },
@@ -290,18 +294,18 @@ export const seoConfig = {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Automatización con IA",
-                "description": "Automatización de procesos con inteligencia artificial",
-                "url": "https://ecentia.es/servicios#automatizacion"
+                "name": "Desarrollo E-Commerce",
+                "description": "Desarrollo de tiendas online profesionales en Shopify, WooCommerce o código a medida con pasarelas de pago y automatizaciones integradas.",
+                "url": "https://ecentia.es/servicios#ecommerce"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "E-Commerce",
-                "description": "Desarrollo de tiendas online que venden",
-                "url": "https://ecentia.es/servicios#ecommerce"
+                "name": "Automatización de Procesos con IA",
+                "description": "Implementación de flujos de trabajo inteligentes e integración de APIs de Inteligencia Artificial para optimizar procesos comerciales y operativos.",
+                "url": "https://ecentia.es/servicios#automatizacion"
               }
             }
           ]
