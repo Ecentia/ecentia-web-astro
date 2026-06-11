@@ -1,8 +1,8 @@
 export const seoConfig = {
   siteName: 'Ecentia',
   siteUrl: 'https://ecentia.es',
-  defaultTitle: 'Ecentia | Agencia Digital en Sevilla y Málaga',
-  defaultDescription: 'Agencia digital en Sevilla y Málaga especializada en diseño web, SEO, automatización con IA y e-commerce. Presupuesto gratis en 24h.',
+  defaultTitle: 'Página Web para tu Negocio en Sevilla | Desde 299€ | Ecentia',
+  defaultDescription: 'Hacemos la página web para tu negocio en Sevilla y provincia desde 299€. WordPress, Shopify y código a medida. Presupuesto gratis en menos de 24 horas sin compromiso.',
   defaultImage: '/logo.png',
   twitterHandle: '@ecentia',
   locale: 'es_ES',
@@ -31,67 +31,65 @@ export const seoConfig = {
   },
 
   keywords: [
-    // MÁXIMA PRIORIDAD: Marca sola (ESTO ES LO MÁS IMPORTANTE)
+    // MARCA
     'ecentia',
     'esentia',
     'ecentia sevilla',
-    'esentia sevilla',
-    'ecentia málaga',
-    'esentia málaga',
+    'ecentia arahal',
     'ecentia web',
-    'esentia web',
-    'ecentia digital',
-    'esentia digital',
-    'ecentia agencia',
-    'esentia agencia',
-    'ecentia.es',
-    'esentia.es',
-    'www.ecentia.es',
-    'www.esentia.es',
-    
-    // PRIORIDAD 2: Marca + Marketing
     'ecentia marketing',
-    'esentia marketing',
-    'ecentia marketing sevilla',
-    'esentia marketing sevilla',
-    'ecentia marketing málaga',
-    'esentia marketing málaga',
-    
-    // PRIORIDAD 3: Servicios con marca
     'ecentia diseño web',
-    'esentia diseño web',
-    'ecentia seo',
-    'esentia seo',
-    'ecentia desarrollo',
-    'esentia desarrollo',
-    
-    // PRIORIDAD 4: Keywords de servicio genéricas
-    'agencia digital sevilla',
-    'agencia digital málaga',
+    'ecentia.es',
+
+    // PRIORIDAD MÁXIMA: Intención de compra alta + baja competencia
+    'página web para mi negocio',
+    'página web para mi negocio sevilla',
+    'hacer una página web para mi negocio',
+    'quiero una página web para mi negocio',
+    'necesito una página web para mi negocio',
+    'página web para negocio local',
+    'página web para autónomos sevilla',
+    'página web barata sevilla',
+    'presupuesto página web sevilla',
+    'renovar página web sevilla',
+    'rediseño web sevilla',
+    'diseño web arahal',
+    'página web arahal',
+    'hacer una web en arahal',
+    'diseño web provincia sevilla',
+
+    // PLATAFORMAS + SEVILLA (baja competencia)
+    'wordpress sevilla',
+    'wordpress arahal',
+    'crear web wordpress sevilla',
+    'shopify sevilla',
+    'tienda online shopify sevilla',
+    'tienda online sevilla',
+    'tienda online arahal',
+
+    // SEO LOCAL
     'diseño web sevilla',
-    'diseño web málaga',
-    'seo sevilla',
-    'seo málaga',
     'desarrollo web sevilla',
-    'ecommerce sevilla',
-    'automatización marketing',
-    'google ads sevilla',
-    'redes sociales sevilla'
+    'agencia web sevilla',
+    'seo sevilla',
+    'seo local sevilla',
+    'posicionamiento web sevilla',
+    'ecommerce sevilla'
   ],
 
   pages: {
     home: {
-      title: 'Ecentia | Agencia Digital en Sevilla y Málaga',
-      description: 'Agencia digital en Sevilla y Málaga especializada en diseño web, SEO, automatización con IA y e-commerce. Presupuesto gratis en 24h.',
-      keywords: 'ecentia, esentia, ecentia sevilla, esentia sevilla, ecentia málaga, esentia málaga, ecentia marketing, esentia marketing, agencia digital sevilla, diseño web sevilla',
+      title: 'Página Web para tu Negocio en Sevilla | Desde 299€ | Ecentia',
+      description: 'Hacemos la página web para tu negocio en Sevilla y provincia desde 299€. WordPress, Shopify y código a medida. Presupuesto gratis en 24 horas sin compromiso.',
+      keywords: 'página web para mi negocio sevilla, hacer una página web para mi negocio, página web para negocio, quiero una página web sevilla, presupuesto página web sevilla, página web barata sevilla, wordpress sevilla, shopify sevilla, ecentia, ecentia arahal',
       breadcrumb: [
         { name: 'Inicio', url: '/' }
       ],
       schema: {
         "@type": "ProfessionalService",
         "name": "Ecentia",
-        "alternateName": ["Esentia", "Ecentia Marketing", "Esentia Marketing", "Ecentia Digital", "Esentia Digital"],
-        "description": "Ecentia - Agencia digital profesional especializada en diseño web, SEO, automatización y e-commerce en Sevilla y Málaga",
+        "alternateName": ["Esentia", "Ecentia Marketing", "Ecentia Arahal", "Ecentia Sevilla"],
+        "description": "Ecentia - Agencia de diseño web en Sevilla y provincia. Creamos páginas web en WordPress, Shopify y código a medida desde 299€. Presupuesto gratuito en 24 horas.",
         "url": "https://ecentia.es",
         "telephone": "+34655600555",
         "email": "ecentiaseo@gmail.com",
@@ -391,28 +389,28 @@ export const seoConfig = {
 
   faqs: [
     {
-      question: "¿Qué es Ecentia?",
-      answer: "Ecentia es una agencia digital profesional especializada en diseño web, SEO, automatización con IA y e-commerce. Ofrecemos servicios en Sevilla, Málaga y toda Andalucía con atención personalizada y resultados garantizados."
+      question: "¿Cuánto cuesta hacer una página web en Sevilla?",
+      answer: "En Ecentia, las páginas web corporativas en Sevilla empiezan desde 299€. Los e-commerce en Shopify o WordPress WooCommerce arrancan desde 599€. El precio final depende de lo que necesites: número de páginas, tienda online, formularios, integración con redes sociales, etc. Siempre hacemos un presupuesto personalizado y gratuito sin compromiso."
     },
     {
-      question: "¿Ecentia o Esentia?",
-      answer: "Ecentia (con C) es nuestra agencia activa y operativa en 2025. A veces nos buscan como Esentia (con S), pero somos Ecentia. Ofrecemos servicios profesionales de diseño web, SEO y marketing digital en Sevilla y Málaga."
+      question: "¿Hacéis webs en WordPress o en Shopify?",
+      answer: "Sí. En Ecentia trabajamos con WordPress, Shopify y también desarrollo web a medida con código propio. Dependiendo de lo que necesites, te recomendamos la plataforma que mejor se adapta: WordPress para webs corporativas y blogs, Shopify para tiendas online y código a medida para proyectos más específicos."
     },
     {
-      question: "¿Dónde está Ecentia?",
-      answer: "Ecentia atiende clientes en Sevilla, Málaga y toda Andalucía. Trabajamos de forma remota y nos desplazamos para reuniones presenciales cuando es necesario. Contacto: +34 655 60 05 55"
+      question: "¿Cuánto tarda en estar lista mi página web?",
+      answer: "Una web corporativa estándar en WordPress tarda entre 1 y 2 semanas desde que nos apruebas el diseño. Una tienda online en Shopify puede tardar entre 2 y 4 semanas según el número de productos y funcionalidades. Te mantenemos informado en cada paso del proceso."
     },
     {
-      question: "¿Cuánto cuesta el diseño web con Ecentia?",
-      answer: "Los precios varían según complejidad: Desde 800€ para webs corporativas hasta 3000€+ para e-commerce avanzados. Ofrecemos presupuestos personalizados gratuitos en 24h."
+      question: "¿Trabajáis con negocios de la provincia de Sevilla y de Arahal?",
+      answer: "Sí, somos una empresa de Arahal (Sevilla) y atendemos negocios de toda la provincia: Arahal, Utrera, Marchena, El Arahal, Morón de la Frontera, Dos Hermanas, Alcalá de Guadaíra, Carmona y Sevilla capital. También trabajamos con clientes de toda Andalucía y España de forma remota."
     },
     {
-      question: "¿Ecentia tiene oficina física?",
-      answer: "Ecentia opera digitalmente en toda Andalucía. Nos reunimos con clientes en Sevilla y Málaga según necesidad. Esta modalidad nos permite ofrecer precios más competitivos sin sacrificar calidad."
+      question: "¿Mi web va a aparecer en Google?",
+      answer: "Todas las webs que entregamos incluyen optimización SEO básica: estructura correcta, velocidad de carga, meta etiquetas y adaptación a móvil. Si además contratas nuestro servicio de SEO local en Sevilla, trabajamos para que tu negocio aparezca en Google cuando alguien busque tu servicio en tu zona. El SEO lleva tiempo, pero es la inversión más rentable a largo plazo."
     },
     {
-      question: "¿Qué diferencia a Ecentia de otras agencias?",
-      answer: "Ecentia destaca por su enfoque en resultados medibles, transparencia total en precios, tecnología avanzada (Astro, React, IA) y atención personalizada. No somos una agencia más, somos tu socio digital."
+      question: "¿Tengo que tener claro lo que quiero para contactaros?",
+      answer: "Para nada. Puedes contactarnos con una idea básica o incluso solo con la sensación de que necesitas mejorar tu presencia online. Nosotros te hacemos las preguntas adecuadas, analizamos tu negocio y te proponemos la solución más efectiva. La consulta inicial es completamente gratuita y sin compromiso."
     }
   ]
 };

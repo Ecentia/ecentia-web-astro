@@ -9,54 +9,53 @@
         <div class="hero-content">
             <div class="label-wrapper fade-in-up">
                 <span class="status-dot"></span>
-                <span class="status-text">Agencia Digital en Andalucía</span>
+                <span class="status-text">Páginas Web para Negocios · Desde 299€</span>
             </div>
 
             <h1 class="mega-title">
-                <div class="line"><span class="reveal-text">DISEÑO</span></div>
-                <div class="line"><span class="reveal-text outline-text">WEB &</span></div>
-                <div class="line indent"><span class="reveal-text">AUTORIDAD</span></div>
+                <div class="line"><span class="reveal-text">PÁGINAS WEB</span></div>
+                <div class="line"><span class="reveal-text outline-text">PARA TU</span></div>
+                <div class="line indent"><span class="reveal-text">NEGOCIO</span></div>
             </h1>
 
             <div class="hero-body fade-in-up delay-1">
                 <p class="hero-desc">
-                    No hacemos simples páginas web.
-                    Creamos <strong>activos digitales</strong> diseñados con
-                    psicología de venta y automatización para que tu negocio no pare de
-                    crecer. Nuestro diseño web enfocado a la autoridad digital transforma
-                    visitantes en clientes desde el primer clic.
+                    Hacemos páginas web en <strong>WordPress, Shopify y código a medida</strong>.
+                    Con base en Sevilla, trabajamos con negocios de <strong>toda España y Portugal</strong>,
+                    100% en remoto. Rápidas, modernas y diseñadas para que te encuentren en Google.
                 </p>
             </div>
 
             <div class="hero-stats fade-in-up delay-15">
                 <div class="stat-item">
-                    <span class="stat-num">+50</span>
-                    <span class="stat-label">Proyectos entregados</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">100%</span>
-                    <span class="stat-label">Clientes satisfechos</span>
+                    <span class="stat-num">Desde 299€</span>
+                    <span class="stat-label">Web incluida</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
                     <span class="stat-num">24h</span>
-                    <span class="stat-label">Respuesta garantizada</span>
+                    <span class="stat-label">Presupuesto gratis</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">WP · Shopify</span>
+                    <span class="stat-label">Y código a medida</span>
                 </div>
             </div>
 
             <div class="hero-footer fade-in-up delay-2">
-                <a href="/proyectos" class="scroll-down-btn magnet-target" aria-label="Ver casos de éxito en diseño web y marketing digital">
-                    <div class="arrow-wrapper">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="/contacto" class="btn-primary-cta magnet-target" aria-label="Pedir presupuesto gratis de página web en Sevilla sin compromiso">
+                    <div class="arrow-circle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <polyline points="19 12 12 19 5 12"></polyline>
                         </svg>
                     </div>
-                    <span class="btn-text">Ver casos de éxito</span>
+                    <span>Pedir presupuesto gratis</span>
                 </a>
-                <a href="/servicios" class="scroll-down-btn magnet-target secondary-cta" aria-label="Explorar servicios de diseño web y SEO en Sevilla">
-                    <span class="btn-text">Nuestros servicios</span>
+                <a href="/proyectos" class="btn-outline-cta magnet-target" aria-label="Ver proyectos de diseño web realizados">
+                    <span>Ver proyectos</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -106,8 +105,9 @@
 
     .mega-title {
         font-family: 'Syne', sans-serif;
-        font-size: clamp(3rem, 8vw, 8.5rem); 
-        line-height: 1.1;
+        /* Reducido de 8.5rem a 6.5rem para que «PÁGINAS WEB» no desborde */
+        font-size: clamp(2.8rem, 6.5vw, 6.5rem);
+        line-height: 1.05;
         font-weight: 800;
         text-transform: uppercase;
         color: var(--white);
@@ -117,16 +117,25 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        /* Blindaje anti-overflow */
+        overflow: hidden;
+        max-width: 100%;
     }
     
     .line {
         display: block;
-        padding: 5px 0; 
-        overflow: visible;
+        padding: 4px 0; 
+        overflow: hidden;
         white-space: nowrap;
+        max-width: 100%;
     }
 
-    .line.indent { margin-left: 5vw; }
+    /* En móvil el texto puede necesitar wrapping */
+    @media (max-width: 480px) {
+        .line { white-space: normal; word-break: break-word; }
+    }
+
+    .line.indent { margin-left: 4vw; }
 
     /* Animación de entrada */
     .reveal-text { 
@@ -229,61 +238,106 @@
         background: rgba(255,255,255,0.1);
     }
 
-    /* Secondary CTA */
-    .secondary-cta {
-        opacity: 0.6;
-        font-size: 0.9rem;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
+    /* ================================================
+       CTAs DEL HERO — ESTILO MINIMAL
+    ================================================ */
 
-    .secondary-cta:hover {
-        opacity: 1;
-    }
-
-    .fade-in-up.delay-15 {
-        transition-delay: 0.15s;
-    }
-    
-
-    /* --- ESTILOS DEL BOTÓN / LINK (DESKTOP BASE) --- */
-    
-    .scroll-down-btn { 
+    .hero-footer {
         display: flex;
-        align-items: center; 
-        gap: 15px; 
-        color: var(--white); 
-        text-decoration: none; 
-        opacity: 0.8; 
+        align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
+    }
+
+    /* ---- Botón PRIMARIO: círculo relleno + texto + animaciones ---- */
+    .btn-primary-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        color: var(--white);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.2px;
         transition: all 0.3s ease;
+        opacity: 0.9;
+    }
+
+    /* Círculo con la flecha */
+    .arrow-circle {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        box-shadow: 0 4px 20px -4px rgba(168, 85, 247, 0.5);
+    }
+
+    .arrow-circle svg { transition: transform 0.3s ease; }
+
+    /* Texto del botón primario con subrayado animado */
+    .btn-primary-cta span {
         position: relative;
     }
-    
-    /* Círculo de la flecha en Desktop */
-    .arrow-wrapper { 
-        width: 44px;
-        height: 44px;
-        border: 1px solid rgba(255,255,255,0.3); 
-        border-radius: 50%; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center;
-        transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+
+    .btn-primary-cta span::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--white);
+        transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
-    .arrow-wrapper svg {
-        transition: transform 0.3s ease;
+    /* Keyframe: la flecha rebota suavemente */
+    @keyframes arrow-bounce {
+        0%, 100% { transform: translateY(0); }
+        45%       { transform: translateY(4px); }
     }
 
-    /* Hover Desktop */
-    .scroll-down-btn:hover { 
-        opacity: 1;
+    /* Hover del botón primario */
+    .btn-primary-cta:hover { opacity: 1; }
+
+    .btn-primary-cta:hover span::after { width: 100%; }
+
+    .btn-primary-cta:hover .arrow-circle {
+        box-shadow: 0 6px 28px -4px rgba(168, 85, 247, 0.8);
     }
-    
-    .scroll-down-btn:hover .arrow-wrapper {
-        border-color: var(--accent-color);
-        background: rgba(255, 255, 255, 0.05);
-        transform: scale(1.1);
+
+    .btn-primary-cta:hover .arrow-circle svg {
+        animation: arrow-bounce 0.7s ease infinite;
+    }
+
+    /* ---- Botón SECUNDARIO: texto puro, sin caja ---- */
+    .btn-outline-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(255, 255, 255, 0.38);
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        transition: color 0.3s ease;
+    }
+
+    .btn-outline-cta i {
+        font-size: 0.68rem;
+        transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .btn-outline-cta:hover {
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    .btn-outline-cta:hover i {
+        transform: translateX(4px);
     }
     
     .scroll-down-btn:hover .arrow-wrapper svg {
@@ -292,30 +346,47 @@
 
     /* --- MEDIA QUERIES --- */
 
+    /* === LAPTOP PEQUEÑO (1025-1280px) === */
+    @media (max-width: 1280px) {
+        .mega-title { font-size: clamp(3rem, 6vw, 6rem); }
+        .line.indent { margin-left: 3vw; }
+    }
+
     @media (min-width: 1200px) {
-        .line.indent { margin-left: 10vw; }
+        .line.indent { margin-left: 8vw; }
     }
 
     @media (max-width: 1024px) {
         .line.indent { margin-left: 0; }
-        .mega-title { font-size: 7vw; }
+        .mega-title { font-size: clamp(2.8rem, 6.5vw, 5.5rem); }
     }
 
     /* === MÓVIL (EL BOTÓN CHULO) === */
     @media (max-width: 768px) {
         .hero-section {
-            padding-top: 110px;
+            padding-top: 90px;
+            padding-bottom: 30px;
             align-items: flex-start; 
         }
 
         .fluid-height {
             justify-content: flex-start;
-            padding-top: 20px;
+            padding-top: 15px;
         }
 
         .mega-title {
-            font-size: 9vw;
-            margin-bottom: 30px;
+            font-size: clamp(2.2rem, 12vw, 4rem);
+            margin-bottom: 20px;
+            white-space: normal;
+            overflow: hidden;
+            width: 100%;
+            line-height: 1.1;
+        }
+        
+        .line { 
+            white-space: normal;
+            overflow: hidden;
+            padding: 2px 0;
         }
         
         .line.indent { margin-left: 0 !important; }
@@ -323,115 +394,64 @@
         .hero-footer { 
             flex-direction: column;
             align-items: stretch; 
-            gap: 15px;
+            gap: 12px;
             margin-top: auto;
-            padding-bottom: 40px; 
+            padding-bottom: 30px; 
         }
         
         .hero-desc { 
-            font-size: 1rem;
+            font-size: 0.95rem;
             width: 100%;
+            line-height: 1.6;
         }
 
         .label-wrapper {
-            margin-bottom: 20px;
-            font-size: 0.75rem;
-        }
-
-        /* --- TRANSFORMACIÓN SUPER-CHULA DEL BOTÓN EN MÓVIL --- */
-        .scroll-down-btn {
-            /* Base con gradiente potente */
-            background: var(--primary-gradient); 
-            width: 100%; 
-            justify-content: center;
-            padding: 18px 24px; /* Un poco más alto */
-            border-radius: 50px; 
-            opacity: 1; 
-            
-            /* Tipografía más fuerte */
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.95rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra sutil al texto para que salte */
-
-            /* Efectos de profundidad y luz */
-            border: 1px solid rgba(255, 255, 255, 0.15); /* Borde fino para definir */
-            box-shadow: 
-                0 10px 30px -10px rgba(168, 85, 247, 0.6), /* Sombra difusa de neón abajo */
-                inset 0 0 20px rgba(255, 255, 255, 0.2); /* Luz interior */
-            
-            position: relative;
-            overflow: hidden; /* Necesario para el efecto de brillo */
-            z-index: 10;
-        }
-
-        /* Animación de "reflejo de luz" pasando por el botón */
-        .scroll-down-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%; right: -50%; bottom: -50%; left: -50%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.5) 50%, rgba(255,255,255,0));
-            transform: rotateZ(60deg) translate(-5em, 7.5em);
-            opacity: 0;
-            animation: sheen 5s infinite ease-in-out;
-            z-index: -1;
-        }
-        
-        /* Animación del brillo */
-        @keyframes sheen {
-            0%, 70% { opacity: 0; transform: rotateZ(60deg) translate(-5em, 7.5em); }
-            75% { opacity: 0.3; }
-            100% { opacity: 0; transform: rotateZ(60deg) translate(1em, -9em); }
-        }
-
-        /* Estado activo (al tocar con el dedo) */
-        .scroll-down-btn:active {
-            transform: scale(0.97) translateY(2px); /* Efecto de presión físico */
-            box-shadow: 
-                0 5px 15px -5px rgba(168, 85, 247, 0.8), /* Sombra más intensa y corta */
-                inset 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra interior para hundirlo */
-        }
-
-        /* Ajustes internos del botón en móvil */
-        .arrow-wrapper {
-            border: none;
-            width: auto;
-            height: auto;
-            margin-right: 0; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Sombra al icono también */
-        }
-        
-        /* Rotamos la flecha para que apunte a la derecha, invitando a la acción */
-        .arrow-wrapper svg {
-            transform: rotate(-90deg);
-            width: 22px;
-            height: 22px;
+            margin-bottom: 16px;
+            font-size: 0.7rem;
+            padding: 6px 12px;
         }
 
         /* Hero stats en móvil */
         .hero-stats {
             width: 100%;
             justify-content: space-around;
-            padding: 15px 20px;
-            gap: 15px;
+            padding: 12px 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .stat-num { font-size: 1.3rem; }
+        .stat-num { font-size: 1.1rem; }
+        .stat-label { font-size: 0.65rem; }
+        .stat-divider { height: 30px; }
 
-        /* Secondary CTA oculto en móvil (no hay espacio) */
-        .secondary-cta {
-            background: transparent !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
-            box-shadow: none !important;
-            opacity: 0.7;
-            font-weight: 500;
-            text-transform: none;
-            letter-spacing: 0;
+        /* Botón primario en móvil */
+        .btn-primary-cta {
+            width: 100%;
+            opacity: 1;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .arrow-circle {
+            width: 40px;
+            height: 40px;
+        }
+
+        .btn-primary-cta:active .arrow-circle {
+            transform: scale(0.93);
+        }
+
+        /* Botón secundario en móvil */
+        .btn-outline-cta {
+            width: 100%;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
         }
     }
     
     @media (max-width: 380px) {
-        .mega-title { font-size: 8.5vw; }
+        .mega-title { font-size: clamp(1.8rem, 11vw, 3rem); }
+        .label-wrapper { font-size: 0.65rem; }
     }
 </style>
