@@ -395,7 +395,7 @@ const blogPostingSchema = {
 <style>
   main {
     position: relative;
-    overflow: hidden;
+    overflow-x: clip; /* clip no bloquea el scroll interno de los hijos como overflow:hidden */
     width: 100%;
   }
 
@@ -580,11 +580,15 @@ const blogPostingSchema = {
     grid-template-columns: 1fr;
     gap: 50px;
     padding-bottom: 80px;
+    /* Evita desbordamiento en cualquier pantalla */
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   @media (min-width: 992px) {
     .article-body-layout {
-      grid-template-columns: 300px 760px;
+      /* minmax garantiza que no supere el ancho disponible */
+      grid-template-columns: minmax(0, 300px) minmax(0, 760px);
       justify-content: center;
       gap: 60px;
     }
@@ -788,6 +792,10 @@ const blogPostingSchema = {
     max-width: 760px; /* Ancho optimizado para lectura (aprox. 75 caracteres por línea) */
     width: 100%;
     margin: 0 auto;
+    /* Evita que palabras largas (URLs, código) desborden en móvil */
+    overflow-wrap: break-word;
+    word-break: break-word;
+    overflow-x: hidden;
   }
 
   @media (min-width: 992px) {
@@ -912,9 +920,12 @@ const blogPostingSchema = {
   .table-wrapper {
     margin: 40px 0;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
     border-radius: 16px;
     border: 1px solid var(--border-color);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    /* Asegura que no supere el ancho del contenedor padre */
+    max-width: 100%;
   }
 
   .comparison-table {
@@ -930,29 +941,37 @@ const blogPostingSchema = {
   }
 
   .comparison-table th {
-    padding: 18px 24px;
+    padding: 18px 16px;
     text-align: left;
     font-family: 'Syne', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--accent-color);
-    white-space: nowrap;
+    /* white-space: nowrap eliminado: en móvil puede romper el layout */
+    white-space: normal;
+    min-width: 100px;
   }
 
   .comparison-table td {
-    padding: 16px 24px;
+    padding: 14px 16px;
     color: rgba(255, 255, 255, 0.82);
     line-height: 1.6;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     vertical-align: top;
+    /* Evita desbordamiento en celdas con texto largo */
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 90px;
   }
 
   .comparison-table td.row-label {
     font-weight: 700;
     color: var(--white);
-    white-space: nowrap;
+    /* Eliminamos white-space:nowrap para que el texto rompa en móvil */
+    white-space: normal;
+    min-width: 110px;
   }
 
   .comparison-table tbody tr:last-child td {
@@ -1169,39 +1188,68 @@ const blogPostingSchema = {
 
     /* Responsive typography & spacing */
     .article-content h2 {
-      font-size: clamp(1.6rem, 5vw, 2rem);
+      font-size: clamp(1.5rem, 5vw, 2rem);
       margin: 40px 0 15px;
     }
     .article-content h3 {
-      font-size: clamp(1.3rem, 4vw, 1.5rem);
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
       margin: 30px 0 12px;
     }
     .article-content p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       line-height: 1.75;
       margin-bottom: 20px;
     }
     .article-content blockquote {
-      padding: 20px 25px;
-      margin: 30px 0;
+      padding: 18px 20px; /* reducido para no desbordarse en móviles estrechos */
+      margin: 25px 0;
     }
     .article-content blockquote p {
-      font-size: 1.15rem;
-      line-height: 1.6;
-    }
-    .article-content ul li {
       font-size: 1.05rem;
       line-height: 1.6;
-      padding-left: 24px;
+    }
+    .article-content ul {
+      margin-left: 0; /* eliminar margen extra en móvil */
+    }
+    .article-content ul li {
+      font-size: 1rem;
+      line-height: 1.65;
+      padding-left: 22px;
     }
     .code-block-wrapper {
-      margin: 30px 0;
+      margin: 25px 0;
     }
     .code-block-wrapper pre {
-      padding: 16px;
+      padding: 14px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .code-block-wrapper code {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 10px 12px;
+      font-size: 0.88rem;
+    }
+  }
+
+  /* Extra pequeño: < 400px */
+  @media (max-width: 400px) {
+    .article-content p,
+    .article-content ul li {
+      font-size: 0.98rem;
+    }
+    .article-content h2 {
+      font-size: 1.4rem;
+    }
+    .article-content h3 {
+      font-size: 1.15rem;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 8px 10px;
+      font-size: 0.82rem;
     }
   }
 
