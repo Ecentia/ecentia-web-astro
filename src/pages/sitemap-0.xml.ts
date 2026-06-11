@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { blogPosts } from '../data/blog';
 
 export const GET: APIRoute = async () => {
-  const baseUrl = 'https://ecentia.com';
+  const baseUrl = 'https://ecentia.es';
   
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'weekly' },

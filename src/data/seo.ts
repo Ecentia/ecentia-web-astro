@@ -141,14 +141,14 @@ export const seoConfig = {
         ],
         "logo": {
           "@type": "ImageObject",
-          "url": "https://ecentia.es/logo.png",
+          "url": "https://ecentia.es/logo.avif",
           "width": 512,
           "height": 512,
           "caption": "Ecentia Logo"
         },
         "image": {
           "@type": "ImageObject",
-          "url": "https://ecentia.es/logo.png",
+          "url": "https://ecentia.es/logo.avif",
           "width": 512,
           "height": 512,
           "caption": "Ecentia - Agencia Digital"
