@@ -107,4 +107,25 @@
         pointer-events: none;
         z-index: 1;
     }
+
+    /* --- MÓVIL --- */
+    @media (max-width: 768px) {
+        .cta-section { padding: 70px 0; }
+
+        .cta-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+
+        .cta-desc { font-size: 1rem; }
+
+        .btn-primary {
+            padding: 16px 28px;
+            font-size: 0.95rem;
+            white-space: normal;
+            text-align: center;
+            width: 100%;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cta-actions { width: 100%; }
+    }
 </style>

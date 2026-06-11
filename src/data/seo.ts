@@ -1,8 +1,8 @@
 export const seoConfig = {
   siteName: 'Ecentia',
   siteUrl: 'https://ecentia.es',
-  defaultTitle: 'Página Web para tu Negocio en Sevilla | Desde 299€ | Ecentia',
-  defaultDescription: 'Hacemos la página web para tu negocio en Sevilla y provincia desde 299€. WordPress, Shopify y código a medida. Presupuesto gratis en menos de 24 horas sin compromiso.',
+  defaultTitle: 'Diseño y Desarrollo Web a Medida en Sevilla | Ecentia',
+  defaultDescription: 'Diseño de páginas web y tiendas online profesionales adaptadas a tu negocio. WordPress, Shopify y código a medida con presupuesto personalizado gratuito en 24h.',
   defaultImage: '/logo.png',
   twitterHandle: '@ecentia',
   locale: 'es_ES',
@@ -79,8 +79,8 @@ export const seoConfig = {
 
   pages: {
     home: {
-      title: 'Página Web para tu Negocio en Sevilla | Desde 299€ | Ecentia',
-      description: 'Hacemos la página web para tu negocio en Sevilla y provincia desde 299€. WordPress, Shopify y código a medida. Presupuesto gratis en 24 horas sin compromiso.',
+      title: 'Diseño y Desarrollo Web a Medida en Sevilla | Ecentia',
+      description: 'Diseño de páginas web y tiendas online profesionales adaptadas a tu negocio. WordPress, Shopify y código a medida con presupuesto personalizado gratuito en 24h.',
       keywords: 'página web para mi negocio sevilla, hacer una página web para mi negocio, página web para negocio, quiero una página web sevilla, presupuesto página web sevilla, página web barata sevilla, wordpress sevilla, shopify sevilla, ecentia, ecentia arahal',
       breadcrumb: [
         { name: 'Inicio', url: '/' }
@@ -89,7 +89,7 @@ export const seoConfig = {
         "@type": "ProfessionalService",
         "name": "Ecentia",
         "alternateName": ["Esentia", "Ecentia Marketing", "Ecentia Arahal", "Ecentia Sevilla"],
-        "description": "Ecentia - Agencia de diseño web en Sevilla y provincia. Creamos páginas web en WordPress, Shopify y código a medida desde 299€. Presupuesto gratuito en 24 horas.",
+        "description": "Ecentia - Agencia de diseño web en Sevilla y provincia. Desarrollamos páginas web y tiendas online en WordPress, Shopify y código a medida con presupuestos personalizados.",
         "url": "https://ecentia.es",
         "telephone": "+34655600555",
         "email": "ecentiaseo@gmail.com",
@@ -389,8 +389,8 @@ export const seoConfig = {
 
   faqs: [
     {
-      question: "¿Cuánto cuesta hacer una página web en Sevilla?",
-      answer: "En Ecentia, las páginas web corporativas en Sevilla empiezan desde 299€. Los e-commerce en Shopify o WordPress WooCommerce arrancan desde 599€. El precio final depende de lo que necesites: número de páginas, tienda online, formularios, integración con redes sociales, etc. Siempre hacemos un presupuesto personalizado y gratuito sin compromiso."
+      question: "¿Cómo calculáis el presupuesto de una página web?",
+      answer: "En Ecentia no trabajamos con tarifas fijas cerradas porque cada proyecto requiere soluciones diferentes. Analizamos tus objetivos, tu competencia y las características que deseas incorporar para presentarte una propuesta económica 100% personalizada y a medida sin compromiso."
     },
     {
       question: "¿Hacéis webs en WordPress o en Shopify?",

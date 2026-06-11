@@ -9,12 +9,14 @@
         <div class="hero-content">
             <div class="label-wrapper fade-in-up">
                 <span class="status-dot"></span>
-                <span class="status-text">Páginas Web para Negocios · Desde 299€</span>
+                <span class="status-text">Diseño y Desarrollo Web a Medida</span>
             </div>
 
             <h1 class="mega-title">
-                <div class="line"><span class="reveal-text">PÁGINAS WEB</span></div>
-                <div class="line"><span class="reveal-text outline-text">PARA TU</span></div>
+                <div class="line"><span class="reveal-text">PÁGINAS</span></div>
+                <div class="line"><span class="reveal-text">WEB</span></div>
+                <div class="line"><span class="reveal-text outline-text">PARA</span></div>
+                <div class="line"><span class="reveal-text outline-text">TU</span></div>
                 <div class="line indent"><span class="reveal-text">NEGOCIO</span></div>
             </h1>
 
@@ -28,8 +30,8 @@
 
             <div class="hero-stats fade-in-up delay-15">
                 <div class="stat-item">
-                    <span class="stat-num">Desde 299€</span>
-                    <span class="stat-label">Web incluida</span>
+                    <span class="stat-num">A medida</span>
+                    <span class="stat-label">Según tu proyecto</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
@@ -105,9 +107,8 @@
 
     .mega-title {
         font-family: 'Syne', sans-serif;
-        /* Reducido de 8.5rem a 6.5rem para que «PÁGINAS WEB» no desborde */
-        font-size: clamp(2.8rem, 6.5vw, 6.5rem);
-        line-height: 1.05;
+        font-size: clamp(3rem, 9.2vw, 8.5rem);
+        line-height: 0.95;
         font-weight: 800;
         text-transform: uppercase;
         color: var(--white);
@@ -130,9 +131,9 @@
         max-width: 100%;
     }
 
-    /* En móvil el texto puede necesitar wrapping */
+    /* En móvil evitamos saltos de línea para mantener las palabras completas */
     @media (max-width: 480px) {
-        .line { white-space: normal; word-break: break-word; }
+        .line { white-space: nowrap; }
     }
 
     .line.indent { margin-left: 4vw; }
@@ -371,34 +372,25 @@
 
         .fluid-height {
             justify-content: flex-start;
-            padding-top: 15px;
         }
 
         .mega-title {
-            font-size: clamp(2.2rem, 12vw, 4rem);
+            font-size: clamp(2.5rem, 13vw, 5.5rem);
             margin-bottom: 20px;
             white-space: normal;
             overflow: hidden;
             width: 100%;
-            line-height: 1.1;
+            line-height: 0.95;
         }
         
         .line { 
-            white-space: normal;
+            white-space: nowrap;
             overflow: hidden;
             padding: 2px 0;
         }
         
         .line.indent { margin-left: 0 !important; }
 
-        .hero-footer { 
-            flex-direction: column;
-            align-items: stretch; 
-            gap: 12px;
-            margin-top: auto;
-            padding-bottom: 30px; 
-        }
-        
         .hero-desc { 
             font-size: 0.95rem;
             width: 100%;
@@ -411,22 +403,47 @@
             padding: 6px 12px;
         }
 
-        /* Hero stats en móvil */
+        /* Stats en móvil: apilados verticalmente de forma limpia y simétrica */
         .hero-stats {
             width: 100%;
-            justify-content: space-around;
-            padding: 12px 15px;
-            gap: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            gap: 15px;
         }
 
-        .stat-num { font-size: 1.1rem; }
-        .stat-label { font-size: 0.65rem; }
-        .stat-divider { height: 30px; }
+        .stat-item { 
+            width: 100%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .stat-num { font-size: 1.3rem; }
+        .stat-label { font-size: 0.7rem; }
 
-        /* Botón primario en móvil */
+        /* Mostrar divisores sutiles en horizontal en lugar de vertical */
+        .stat-divider { 
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* CTAs: centrados y limpios en móvil */
+        .hero-footer {
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            margin-top: 10px;
+            padding-bottom: 20px;
+        }
+
         .btn-primary-cta {
             width: 100%;
+            justify-content: center;
             opacity: 1;
             font-size: 1rem;
             font-weight: 700;
@@ -441,7 +458,7 @@
             transform: scale(0.93);
         }
 
-        /* Botón secundario en móvil */
+        /* Secundario: centrado debajo */
         .btn-outline-cta {
             width: 100%;
             justify-content: center;
@@ -451,7 +468,6 @@
     }
     
     @media (max-width: 380px) {
-        .mega-title { font-size: clamp(1.8rem, 11vw, 3rem); }
+        .mega-title { font-size: clamp(2.2rem, 12.5vw, 4.5rem); }
         .label-wrapper { font-size: 0.65rem; }
     }
-</style>
