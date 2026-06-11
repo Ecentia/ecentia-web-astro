@@ -348,22 +348,38 @@ export const seoConfig = {
       }
     },
     blog: {
-      title: 'Blog de Marketing Digital, SEO y Desarrollo Web | Ecentia',
-      description: 'Artículos, guías y consejos prácticos sobre SEO orgánico, diseño web moderno y automatizaciones con Inteligencia Artificial. Aprende a hacer crecer tu negocio.',
-      keywords: 'blog seo, blog marketing digital, blog desarrollo web, ecentia blog, blog inteligencia artificial, seo sevilla, seo malaga',
+      title: 'Blog de Diseño Web, SEO y Marketing Digital para PYMEs | Ecentia',
+      description: 'Guías prácticas y artículos especializados en posicionamiento SEO, diseño web profesional y automatización con IA para empresas en España. Aprende a atraer más clientes.',
+      keywords: 'blog diseño web pymes, guía seo para negocios, marketing digital sevilla, cómo aparecer en google, cuánto cuesta una web, blog automatización ia, blog desarrollo web astro, recursos marketing digital españa',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Blog', url: '/blog' }
       ],
       schema: {
-        "@type": "CollectionPage",
-        "name": "Blog de Ecentia",
-        "description": "Artículos especializados en diseño web, posicionamiento en Google y automatización con IA para empresas.",
+        "@type": "Blog",
+        "name": "Blog de Ecentia — Diseño Web, SEO y Marketing Digital",
+        "description": "Recursos prácticos sobre diseño de páginas web, posicionamiento en Google (SEO), desarrollo a medida y automatización con Inteligencia Artificial para pymes y autónomos en España.",
+        "url": "https://ecentia.es/blog",
+        "inLanguage": "es-ES",
         "publisher": {
           "@type": "Organization",
           "name": "Ecentia",
-          "alternateName": ["Esentia"]
-        }
+          "alternateName": ["Esentia", "Ecentia Marketing"],
+          "url": "https://ecentia.es",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ecentia.es/logo.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "about": [
+          { "@type": "Thing", "name": "Diseño Web Profesional" },
+          { "@type": "Thing", "name": "Posicionamiento SEO en Google" },
+          { "@type": "Thing", "name": "Marketing Digital para PYMEs" },
+          { "@type": "Thing", "name": "Automatización con Inteligencia Artificial" },
+          { "@type": "Thing", "name": "E-commerce y Tiendas Online" }
+        ]
       }
     },
   },

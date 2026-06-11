@@ -491,5 +491,363 @@ export const blogPosts: BlogPost[] = [
         text: '¿Tu empresa necesita una herramienta que se adapte a vosotros y no al revés? Hablemos.'
       }
     ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ARTÍCULO 3: ¿Cuánto cuesta una página web?
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    slug: 'cuanto-cuesta-hacer-una-pagina-web-en-espana',
+    title: '¿Cuánto cuesta hacer una página web en España? Guía de precios 2025',
+    seoTitle: '¿Cuánto Cuesta una Página Web en España? Precios Reales 2025 | Ecentia',
+    description: 'Descubre cuánto cuesta realmente hacer una página web en España en 2025: desde una landing básica hasta un e-commerce avanzado, con precios orientativos y qué factores influyen.',
+    seoDescription: '¿Cuánto cuesta hacer una web en España? Analizamos precios reales de landing pages, webs corporativas y tiendas online en 2025. Descubre qué incluye cada presupuesto.',
+    publishDate: '2026-06-12T09:00:00Z',
+    readTime: '7 min de lectura',
+    author: 'Ecentia Editorial',
+    tags: ['Diseño Web', 'Precios', 'PYMEs'],
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop',
+    keywords: [
+      'cuánto cuesta una página web en España',
+      'precio página web 2025',
+      'cuanto cuesta hacer una web',
+      'presupuesto diseño web',
+      'precio web corporativa spain'
+    ],
+    sections: [
+      {
+        type: 'paragraph',
+        text: 'Es la pregunta que más nos hacen, y con razón: "¿Cuánto me va a costar hacer mi página web?" La respuesta honesta es que depende de varios factores, pero en este artículo te damos rangos de precios reales para que llegues a cualquier reunión con una agencia sabiendo perfectamente qué debes esperar.'
+      },
+      {
+        type: 'h2',
+        text: 'Por qué los precios varían tanto entre presupuestos'
+      },
+      {
+        type: 'paragraph',
+        text: 'Si has pedido presupuestos, probablemente hayas recibido cifras que van desde los 300€ hasta los 15.000€ por un proyecto aparentemente similar. Esta disparidad no es arbitraria: refleja diferencias enormes en el nivel de personalización, la tecnología utilizada, la estrategia SEO incluida y el tiempo dedicado a entender tu negocio. Comparar presupuestos sin entender qué incluye cada uno es como comparar el precio de un coche sin saber si es un utilitario o un vehículo de alta gama.'
+      },
+      {
+        type: 'h2',
+        text: 'Rangos de precio orientativos por tipo de proyecto'
+      },
+      {
+        type: 'table',
+        tableHead: ['Tipo de proyecto', 'Rango de precio', 'Ideal para'],
+        tableRows: [
+          ['Landing Page básica', '300€ – 900€', 'Autónomos, validar una idea'],
+          ['Web corporativa con plantilla', '800€ – 2.500€', 'PYMEs con necesidades estándar'],
+          ['Web corporativa a medida', '2.500€ – 8.000€', 'Empresas que buscan diferenciarse'],
+          ['Tienda online básica (Shopify)', '1.500€ – 4.000€', 'Negocios con catálogos medianos'],
+          ['E-commerce avanzado', '5.000€ – 20.000€+', 'Tiendas con gran volumen y lógica compleja']
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Qué debe incluir siempre un presupuesto profesional'
+      },
+      {
+        type: 'list',
+        items: [
+          '**Diseño adaptado a móvil (responsive):** En 2025 más del 65% del tráfico web en España llega desde smartphones. Un diseño que no funcione en móvil no es una opción.',
+          '**Optimización SEO on-page básica:** La estructura de URLs, las etiquetas de título, las meta descripciones y los textos alternativos de imágenes deben estar correctamente configurados desde el primer día.',
+          '**Velocidad de carga optimizada:** Google penaliza las webs lentas. Un buen presupuesto debe incluir la compresión de imágenes, el uso de formatos modernos (WebP) y un hosting de calidad.',
+          '**Formulario de contacto y política de privacidad (RGPD):** Obligatorio legalmente en España para cualquier web que recoja datos de usuarios.'
+        ]
+      },
+      {
+        type: 'blockquote',
+        text: 'Una web barata que no genera clientes es infinitamente más cara que una inversión bien hecha desde el principio. El coste real de una mala web no está en la factura: está en las oportunidades que pierdes cada mes.'
+      },
+      {
+        type: 'h2',
+        text: 'Costes anuales que no debes olvidar'
+      },
+      {
+        type: 'paragraph',
+        text: 'El precio de desarrollo es solo la inversión inicial. Para mantener tu web operativa y segura, debes contemplar gastos recurrentes: el dominio (12€–40€/año), el hosting (100€–300€/año en un servidor de calidad), el mantenimiento técnico (actualizaciones, copias de seguridad y resolución de errores, entre 50€ y 150€/mes) y las posibles campañas de contenido SEO si quieres que tu web siga creciendo en visitas orgánicas.'
+      },
+      {
+        type: 'h2',
+        text: 'Freelance vs. agencia: ¿qué conviene más?'
+      },
+      {
+        type: 'paragraph',
+        text: 'Los freelancers suelen ofrecer precios más competitivos y mayor flexibilidad para proyectos pequeños y medianos. Las agencias aportan un equipo multidisciplinar (diseñador, desarrollador, copywriter, especialista SEO) y mayor capacidad para proyectos complejos o con plazos exigentes. La clave no es el modelo, sino la experiencia demostrable: exige ver proyectos anteriores y habla directamente con quien va a hacer el trabajo.'
+      },
+      {
+        type: 'h2',
+        text: 'Preguntas frecuentes sobre el precio de una página web'
+      },
+      {
+        type: 'h3',
+        text: '¿Puedo hacerme la web yo mismo con Wix o Squarespace?'
+      },
+      {
+        type: 'paragraph',
+        text: 'Sí, y para negocios muy pequeños con presupuesto limitado puede ser una solución temporal válida. Sin embargo, las webs en estas plataformas tienen limitaciones importantes de SEO técnico, velocidad y personalización. Cuando tu negocio crezca, migrar será inevitable y ese proceso tiene un coste.'
+      },
+      {
+        type: 'h3',
+        text: '¿Una web más cara siempre posiciona mejor en Google?'
+      },
+      {
+        type: 'paragraph',
+        text: 'No directamente. Lo que sí influye en el posicionamiento es la calidad técnica (velocidad, estructura semántica correcta, optimización móvil) y la estrategia de contenido. Un presupuesto mayor normalmente incluye más dedicación a estos aspectos, pero lo relevante es preguntar qué se incluye, no cuánto cuesta.'
+      },
+      {
+        type: 'h2',
+        text: 'Conclusión: invierte con criterio, no solo con precio'
+      },
+      {
+        type: 'paragraph',
+        text: 'Tu página web es el comercial que trabaja 24 horas al día, 365 días al año. Antes de decidirte por el presupuesto más bajo, pregúntate: ¿esta inversión me va a traer clientes? ¿Está optimizada para aparecer en Google? ¿Puedo escalarla cuando mi negocio crezca? Las respuestas a estas preguntas valen mucho más que el ahorro inicial.'
+      },
+      {
+        type: 'blockquote',
+        text: '¿Quieres un presupuesto personalizado y sin compromisos? En Ecentia analizamos tu proyecto y te proponemos la solución más rentable para tu negocio.'
+      }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ARTÍCULO 4: Cómo aparecer primero en Google
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    slug: 'como-aparecer-primero-en-google-guia-seo-pymes',
+    title: 'Cómo aparecer primero en Google: guía SEO práctica para pymes en 2025',
+    seoTitle: 'Cómo Aparecer Primero en Google: Guía SEO para PYMEs 2025 | Ecentia',
+    description: 'Guía práctica para que cualquier pequeña empresa o autónomo en España entienda cómo funciona el SEO y qué pasos concretos puede dar hoy mismo para mejorar su posición en Google.',
+    seoDescription: '¿Cómo aparecer primero en Google? Guía SEO paso a paso para PYMEs en 2025: qué hace Google, cómo optimizar tu web y qué resultados esperar. Sin tecnicismos.',
+    publishDate: '2026-06-12T10:00:00Z',
+    readTime: '8 min de lectura',
+    author: 'Ecentia Editorial',
+    tags: ['SEO', 'Google', 'PYMEs'],
+    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?q=80&w=1200&auto=format&fit=crop',
+    keywords: [
+      'cómo aparecer primero en Google',
+      'SEO para pymes España',
+      'posicionamiento web Google 2025',
+      'cómo mejorar mi posición en Google',
+      'SEO local negocio pequeño'
+    ],
+    sections: [
+      {
+        type: 'paragraph',
+        text: 'Si tienes un negocio en España y tu web no aparece en la primera página de Google cuando alguien busca lo que ofreces, estás perdiendo clientes cada día sin saberlo. El 92% de los usuarios no pasa de la primera página de resultados. La buena noticia: posicionarse bien no es magia ni un misterio. Es un proceso técnico y de contenido que cualquier pyme puede aplicar con la guía correcta.'
+      },
+      {
+        type: 'h2',
+        text: 'Cómo decide Google qué web mostrar primero'
+      },
+      {
+        type: 'paragraph',
+        text: 'Google analiza miles de factores para decidir qué páginas muestra en cada búsqueda, pero los más importantes se pueden agrupar en tres grandes categorías: relevancia (¿tu página responde bien a lo que busca el usuario?), autoridad (¿otras webs de confianza enlazan a la tuya?) y experiencia técnica (¿carga rápido, funciona bien en móvil y es segura con HTTPS?). Trabajar estos tres pilares de forma sostenida en el tiempo es la base de cualquier estrategia SEO que funcione.'
+      },
+      {
+        type: 'h2',
+        text: 'Los 5 pasos que toda pyme puede implementar hoy mismo'
+      },
+      {
+        type: 'h3',
+        text: 'Paso 1 — Investiga las palabras clave que usa tu cliente ideal'
+      },
+      {
+        type: 'paragraph',
+        text: 'El error más común es intentar posicionarse por términos genéricos y muy competidos ("diseño web", "abogado", "fontanero"). Una pyme no puede competir directamente con empresas gigantes por esas palabras. La estrategia ganadora es las palabras clave de cola larga: términos más específicos con menos competencia pero con una intención de compra mucho más clara. "fontanero urgente Sevilla 24 horas" tiene muchas menos búsquedas que "fontanero", pero quien lo busca quiere contratar ahora mismo. Herramientas gratuitas como Google Search Console o Ubersuggest te ayudarán a identificarlas.'
+      },
+      {
+        type: 'h3',
+        text: 'Paso 2 — Optimiza el título y la descripción de cada página'
+      },
+      {
+        type: 'paragraph',
+        text: 'La etiqueta de título (title tag) y la meta descripción son los elementos que Google muestra en sus resultados. El título debe incluir tu palabra clave principal y tener entre 50 y 60 caracteres. La descripción debe ser un texto persuasivo de 150–160 caracteres que invite al usuario a hacer clic. Son los dos elementos más directos para mejorar tanto tu posición como tu tasa de clics (CTR).'
+      },
+      {
+        type: 'h3',
+        text: 'Paso 3 — Crea contenido que resuelva preguntas reales'
+      },
+      {
+        type: 'paragraph',
+        text: 'Google premia el contenido útil y detallado. Si creas artículos de blog, guías o páginas de servicio que respondan exactamente las preguntas que hace tu público objetivo, Google te recompensará con mejores posiciones. La clave es la especificidad: no escribas sobre "cómo vender más" sino sobre "cómo aumentar las ventas de una tienda de ropa en Sevilla en temporada baja". Cuanto más específico, menos competencia y más relevante para tu cliente ideal.'
+      },
+      {
+        type: 'h3',
+        text: 'Paso 4 — Optimiza la velocidad de tu web'
+      },
+      {
+        type: 'paragraph',
+        text: 'Desde 2021, Google utiliza los Core Web Vitals como factor de posicionamiento directo. Esto significa que si tu web tarda más de 3 segundos en cargar, Google la penaliza en los resultados. Puedes medir la velocidad de tu web de forma gratuita con PageSpeed Insights (pagespeed.web.dev). Los problemas más comunes son imágenes demasiado pesadas, demasiados plugins o un servidor de hosting de baja calidad.'
+      },
+      {
+        type: 'h3',
+        text: 'Paso 5 — Optimiza tu perfil de Google Business'
+      },
+      {
+        type: 'paragraph',
+        text: 'Para negocios con presencia local, el Perfil de Empresa en Google (antes Google My Business) es probablemente la herramienta de SEO local más poderosa y gratuita disponible. Un perfil completo, con fotos actualizadas, horario correcto, categoría principal bien seleccionada y respuestas a reseñas, puede hacer que aparezcas en el mapa de Google para búsquedas locales de tu sector, incluso por delante de competidores con webs más grandes.'
+      },
+      {
+        type: 'image',
+        src: 'https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=1200&auto=format&fit=crop',
+        alt: 'Gráfico de crecimiento SEO en analytics de una web',
+        caption: 'Una estrategia SEO bien ejecutada muestra resultados sostenidos y acumulativos en el tiempo.'
+      },
+      {
+        type: 'h2',
+        text: '¿Cuánto tiempo tarda el SEO en dar resultados?'
+      },
+      {
+        type: 'paragraph',
+        text: 'Esta es la pregunta del millón. La respuesta honesta: el SEO es una inversión a medio-largo plazo. En mercados poco competitivos y con una estrategia bien ejecutada, es posible ver mejoras significativas en 3–4 meses. En sectores más competitivos, el horizonte suele ser de 6–12 meses. Lo importante es que, a diferencia de la publicidad de pago, los resultados SEO se acumulan y perduran en el tiempo.'
+      },
+      {
+        type: 'h2',
+        text: 'SEO vs. Google Ads: ¿cuál usar?'
+      },
+      {
+        type: 'paragraph',
+        text: 'No son opciones excluyentes. Google Ads te da visibilidad inmediata pero desaparece en cuanto dejas de pagar. El SEO tarda más, pero genera tráfico orgánico gratuito de forma sostenida. La estrategia ideal para una pyme suele ser usar Google Ads mientras se desarrolla la estrategia SEO, y paulatinamente reducir la dependencia de la publicidad de pago a medida que el posicionamiento orgánico crece.'
+      },
+      {
+        type: 'blockquote',
+        text: 'El mejor momento para empezar a trabajar el SEO de tu negocio fue hace un año. El segundo mejor momento es hoy.'
+      },
+      {
+        type: 'h2',
+        text: 'Conclusión: el SEO es la inversión más rentable a largo plazo'
+      },
+      {
+        type: 'paragraph',
+        text: 'Aparecer primero en Google no es un privilegio reservado a las grandes empresas. Es el resultado de una estrategia coherente y sostenida en el tiempo, accesible para cualquier pyme que decida priorizar su presencia digital. Empieza por los pasos básicos: palabras clave, velocidad, perfil de Google y contenido útil. Los resultados llegarán.'
+      }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ARTÍCULO 5: Wix vs WordPress vs Web a medida
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    slug: 'wix-vs-wordpress-vs-web-a-medida-cual-elegir-2025',
+    title: 'Wix vs WordPress vs web a medida: ¿cuál elegir para tu negocio en 2025?',
+    seoTitle: 'Wix vs WordPress vs Web a Medida: Cuál Elegir en 2025 | Ecentia',
+    description: 'Comparamos Wix, WordPress y el desarrollo web a medida para que puedas elegir la opción más rentable según el tamaño, presupuesto y objetivos de tu negocio en España.',
+    seoDescription: '¿Wix, WordPress o web a medida? Comparamos pros, contras, precios y SEO de cada opción para negocios en España. Descubre cuál te conviene realmente en 2025.',
+    publishDate: '2026-06-12T11:00:00Z',
+    readTime: '9 min de lectura',
+    author: 'Ecentia Editorial',
+    tags: ['Diseño Web', 'WordPress', 'Tecnología'],
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1200&auto=format&fit=crop',
+    keywords: [
+      'Wix vs WordPress vs web a medida',
+      'qué es mejor Wix o WordPress',
+      'web a medida o WordPress',
+      'mejor plataforma para crear web negocio',
+      'wix wordpress diferencias'
+    ],
+    sections: [
+      {
+        type: 'paragraph',
+        text: 'Una de las primeras decisiones que debe tomar cualquier empresa que quiera tener presencia digital es también una de las más confusas: ¿uso Wix, WordPress o le pido a una agencia que me haga la web a medida? Cada opción tiene sus ventajas, sus limitaciones y un perfil de usuario concreto al que sirve mejor. En este artículo te lo explicamos sin tecnicismos para que tomes la decisión correcta.'
+      },
+      {
+        type: 'h2',
+        text: 'Wix: facilidad ante todo, con limitaciones importantes'
+      },
+      {
+        type: 'paragraph',
+        text: 'Wix es una plataforma de creación de webs pensada para que cualquier persona, sin conocimientos técnicos, pueda tener una presencia online en pocas horas. Ofrece cientos de plantillas, un editor visual de arrastrar y soltar y planes desde unos 16€ al mes. Para autónomos que necesitan algo básico y rápido, puede ser una solución de arranque válida.'
+      },
+      {
+        type: 'list',
+        items: [
+          '✅ **Ventajas de Wix:** Facilidad de uso extrema, sin necesidad de programación, soporte incluido en el plan, listo en horas.',
+          '❌ **Desventajas de Wix:** Limitaciones severas de SEO técnico, no puedes exportar tu web si decides cambiarte (quedas atado a la plataforma), velocidad de carga inferior a otras opciones, personalización muy limitada a medida que crece el negocio.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'WordPress: el estándar del sector, pero con matices'
+      },
+      {
+        type: 'paragraph',
+        text: 'WordPress impulsa el 43% de todos los sitios web del mundo. Es la plataforma más utilizada por agencias y desarrolladores precisamente porque combina flexibilidad, una enorme comunidad de soporte y la posibilidad de crecer desde un blog personal hasta una tienda con miles de productos. Sin embargo, WordPress no es la solución perfecta para todos los casos.'
+      },
+      {
+        type: 'list',
+        items: [
+          '✅ **Ventajas de WordPress:** Totalmente flexible y personalizable, excelente para SEO cuando se configura correctamente, miles de plugins disponibles, gran comunidad de soporte, no estás atado a ningún proveedor.',
+          '❌ **Desventajas de WordPress:** Requiere mantenimiento constante (actualizaciones de plugins, seguridad), puede volverse lento si se abusa de los plugins, la curva de aprendizaje es mayor que la de Wix, los problemas de seguridad son más frecuentes que en soluciones gestionadas.'
+        ]
+      },
+      {
+        type: 'h2',
+        text: 'Web a medida: la opción premium con el mayor retorno'
+      },
+      {
+        type: 'paragraph',
+        text: 'Una web desarrollada a medida se construye desde cero, pensada específicamente para los objetivos, el sector y la identidad de tu empresa. No hay plantillas, no hay código ajeno que ralentice la carga, no hay funciones innecesarias. Solo lo que tu negocio necesita, optimizado al máximo. En Ecentia utilizamos Astro para el frontend, lo que nos permite crear webs hasta 10 veces más rápidas que las basadas en WordPress con plantillas.'
+      },
+      {
+        type: 'list',
+        items: [
+          '✅ **Ventajas del desarrollo a medida:** Velocidad de carga máxima (Core Web Vitals perfectos), diseño 100% diferenciador, SEO técnico impecable desde el primer día, sin dependencia de plugins de terceros, escalable sin límites.',
+          '❌ **Desventajas del desarrollo a medida:** Mayor inversión inicial, los cambios de contenido requieren al equipo técnico o un CMS personalizado, el tiempo de desarrollo es mayor (3–8 semanas típicamente).'
+        ]
+      },
+      {
+        type: 'image',
+        src: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop',
+        alt: 'Diseñador trabajando en código de una web a medida en su portátil',
+        caption: 'El desarrollo a medida permite construir exactamente lo que el negocio necesita, sin compromisos ni limitaciones.'
+      },
+      {
+        type: 'h2',
+        text: 'Comparativa directa: Wix vs WordPress vs web a medida'
+      },
+      {
+        type: 'table',
+        tableHead: ['Criterio', 'Wix', 'WordPress', 'Web a medida'],
+        tableRows: [
+          ['Precio inicial', '16–45€/mes', '500€–3.000€', '2.500€–10.000€+'],
+          ['Velocidad de carga', 'Media-baja', 'Variable (media)', 'Alta (óptima)'],
+          ['SEO técnico', 'Limitado', 'Bueno (con plugins)', 'Excelente (nativo)'],
+          ['Personalización', 'Baja', 'Alta', 'Total'],
+          ['Mantenimiento', 'Automático', 'Manual (plugins)', 'Mínimo'],
+          ['Propiedad del código', 'No', 'Sí', 'Sí'],
+          ['Escalabilidad', 'Baja', 'Alta', 'Máxima'],
+          ['Ideal para', 'Autónomos básicos', 'PYMEs estándar', 'Empresas con ambición']
+        ]
+      },
+      {
+        type: 'h2',
+        text: '¿Cuál te conviene según tu situación?'
+      },
+      {
+        type: 'paragraph',
+        text: 'La respuesta depende de tres factores: tu presupuesto, tus objetivos de negocio y el tiempo que puedes dedicar a gestionar la web. Si eres autónomo empezando y solo necesitas una presencia online básica para validar tu idea, Wix puede ser suficiente de forma provisional. Si tienes una pyme consolidada y quieres posicionarte en Google y crecer, WordPress bien desarrollado es una opción sólida. Si el diseño diferenciador, la velocidad y el posicionamiento son prioridades estratégicas para tu empresa, el desarrollo a medida es la inversión más rentable a largo plazo.'
+      },
+      {
+        type: 'h2',
+        text: 'El error más caro: elegir en función del precio inicial'
+      },
+      {
+        type: 'paragraph',
+        text: 'Muchas empresas eligen la opción más barata para empezar con la intención de migrar más adelante. El problema es que migrar una web implica costes de rediseño, pérdida de posicionamiento SEO acumulado y tiempo de inactividad. Lo que se ahorra al principio casi siempre se paga doble cuando llega el momento de la migración. Si puedes, piensa en tu web como una inversión a cinco años, no como un gasto puntual.'
+      },
+      {
+        type: 'blockquote',
+        text: '¿No sabes qué opción se adapta mejor a tu caso? En Ecentia hacemos un análisis gratuito de tu proyecto y te recomendamos la solución más rentable para tu negocio, sin ningún compromiso.'
+      },
+      {
+        type: 'h2',
+        text: 'Conclusión'
+      },
+      {
+        type: 'paragraph',
+        text: 'No existe una plataforma universal perfecta. Wix, WordPress y el desarrollo a medida son herramientas distintas para necesidades distintas. Lo importante es elegir con criterio basado en tus objetivos reales, no en el precio inicial. Una web que genera clientes siempre es una buena inversión, independientemente de cómo esté construida.'
+      }
+    ]
   }
 ];
