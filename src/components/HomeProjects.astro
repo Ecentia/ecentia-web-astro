@@ -1,138 +1,158 @@
 ---
 // src/components/HomeProjects.astro
-import ProjectCard from './ProjectCard.astro';
+import ProjectCard from "./ProjectCard.astro";
 
 // DATOS: En el futuro, idealmente estos datos vendrían de una colección de contenido (src/content)
 // para no duplicarlos, pero por ahora los mantenemos aquí para la estructura.
 const projects = [
   {
-        title: "Pizzas a Todo Gas",
-        category: "LANDING WEB / RESTAURACIÓN",
-        description: "Plataforma para pizzería optimizada para la velocidad. Sistema de carta y experiencia de usuario fluida para maximizar conversiones.",
-        tags: ["Diseño UI/UX", "Carta online", "Desarrollo Web"],
-        image: "/webs_images/pizzasatodogas_sc.png", 
-        link: "https://pizzasatodogas.com", 
-        reverse: false
-    },
-    {
-        title: "Depofibra",
-        category: "LANDING WEB",
-        description: "Plataforma de comercio de depósitos con experiencia inmersiva.",
-        tags: ["HTML", "CSS", "JavaScript"],
-        image: "/webs_images/depofibra_sc.png",
-        link: "https://depofibra.com",
-        reverse: true
-    },
-    {
-        title: "Eva Torres Moda",
-        category: "LANDING WITH PRODUCTS",
-        description: "Gestión de productos y diseño dinámico para tiendas locales.",
-        tags: ["Astro", "Tailwind CSS", "Sanity"],
-        image: "/webs_images/evatorresmoda_sc.png",
-        link: "https://evatorresmoda.com",
-        reverse: false
-    }
+    title: "Pizzas a Todo Gas",
+    category: "LANDING WEB / RESTAURACIÓN",
+    description:
+      "Plataforma para pizzería optimizada para la velocidad. Sistema de carta y experiencia de usuario fluida para maximizar conversiones.",
+    tags: ["Diseño UI/UX", "Carta online", "Desarrollo Web"],
+    image: "/webs_images/pizzasatodogas_sc.webp",
+    link: "https://pizzasatodogas.com",
+    reverse: false,
+  },
+  {
+    title: "Depofibra",
+    category: "LANDING WEB",
+    description:
+      "Plataforma de comercio de depósitos con experiencia inmersiva.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    image: "/webs_images/depofibra_sc.webp",
+    link: "https://depofibra.com",
+    reverse: true,
+  },
+  {
+    title: "Eva Torres Moda",
+    category: "LANDING WITH PRODUCTS",
+    description: "Gestión de productos y diseño dinámico para tiendas locales.",
+    tags: ["Astro", "Tailwind CSS", "Sanity"],
+    image: "/webs_images/evatorresmoda_sc.webp",
+    link: "https://evatorresmoda.com",
+    reverse: false,
+  },
+  {
+    title: "Xollazo",
+    category: "E-COMMERCE",
+    description:
+      "Plataforma de comercio electrónico con experiencia optimizada y diseño atractivo.",
+    tags: ["Shopify", "Liquids Personalizados", "SEO", "Optimización Web"],
+    image: "/webs_images/xollazo_sc.webp",
+    link: "https://xollazo.com",
+    reverse: true,
+  },
 ];
 ---
 
 <section id="work" class="work-section">
-    <div class="container">
-        <div class="section-head">
-            <h2 class="section-title">Obras Destacadas</h2>
-            <span class="section-number">01</span>
-        </div>
-
-        <div class="project-list">
-            {/* Lógica: Mostramos SOLO los primeros 3 proyectos */}
-            {projects.slice(0, 3).map(project => (
-                <ProjectCard {...project} />
-            ))}
-        </div>
-
-        <div class="view-all-container">
-            <a href="/proyectos" class="btn-view-all" aria-label="Ver todos los proyectos de diseño web y marketing digital de Ecentia">
-                Ver todos los proyectos
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Obras Destacadas</h2>
+      <span class="section-number">01</span>
     </div>
+
+    <div class="project-list">
+      {/* Lógica: Mostramos SOLO los primeros 3 proyectos */}
+      {projects.slice(0, 3).map((project) => <ProjectCard {...project} />)}
+    </div>
+
+    <div class="view-all-container">
+      <a
+        href="/proyectos"
+        class="btn-view-all"
+        aria-label="Ver todos los proyectos de diseño web y marketing digital de Ecentia"
+      >
+        Ver todos los proyectos
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
 </section>
 
 <style>
-    .work-section { 
-        padding: 100px 0; 
-        position: relative;
-    }
-    
-    .section-head { 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: flex-end; 
-        margin-bottom: 80px; 
-        padding-bottom: 20px; 
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .section-title { 
-        font-family: 'Syne', sans-serif; 
-        font-size: clamp(2.5rem, 5vw, 3rem); 
-        font-weight: 700;
-        color: var(--white);
-    }
-    
-    .section-number { 
-        font-family: 'Syne', sans-serif; 
-        font-size: 1.5rem; 
-        color: var(--gray);
-    }
-    
-    .project-list { 
-        display: flex; 
-        flex-direction: column; 
-        gap: 120px;
-        margin-bottom: 100px; /* Espacio antes del botón */
-    }
+  .work-section {
+    padding: 100px 0;
+    position: relative;
+  }
 
-    /* Estilos del Botón Ver Todo */
-    .view-all-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 80px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
+  .section-title {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .section-number {
+    font-family: "Syne", sans-serif;
+    font-size: 1.5rem;
+    color: var(--gray);
+  }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    margin-bottom: 100px; /* Espacio antes del botón */
+  }
+
+  /* Estilos del Botón Ver Todo */
+  .view-all-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: var(--white);
+    text-decoration: none;
+    font-family: "Syne", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+
+  .btn-view-all:hover {
+    background: var(--white);
+    color: var(--bg-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-view-all i {
+    transition: transform 0.4s ease;
+  }
+
+  .btn-view-all:hover i {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .project-list {
+      gap: 80px;
+      margin-bottom: 60px;
+    }
     .btn-view-all {
-        display: inline-flex;
-        align-items: center;
-        gap: 15px;
-        padding: 20px 50px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 100px;
-        color: var(--white);
-        text-decoration: none;
-        font-family: 'Syne', sans-serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        transition: all 0.4s ease;
-        background: transparent;
+      width: 100%;
+      justify-content: center;
     }
-
-    .btn-view-all:hover {
-        background: var(--white);
-        color: var(--bg-color);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-view-all i {
-        transition: transform 0.4s ease;
-    }
-
-    .btn-view-all:hover i {
-        transform: translateX(5px);
-    }
-    
-    @media (max-width: 768px) {
-        .project-list { gap: 80px; margin-bottom: 60px; }
-        .btn-view-all { width: 100%; justify-content: center; }
-    }
+  }
 </style>
