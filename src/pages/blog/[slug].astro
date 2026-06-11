@@ -241,6 +241,42 @@ const blogPostingSchema = {
                     <pre><code class={`language-${section.language || 'text'}`}>{section.code}</code></pre>
                   </div>
                 );
+              case 'table':
+                return (
+                  <div class="table-wrapper">
+                    <table class="comparison-table">
+                      {section.tableHead && (
+                        <thead>
+                          <tr>
+                            {section.tableHead.map(th => (
+                              <th set:html={formatMarkdown(th)}></th>
+                            ))}
+                          </tr>
+                        </thead>
+                      )}
+                      {section.tableRows && (
+                        <tbody>
+                          {section.tableRows.map(row => (
+                            <tr>
+                              {row.map((cell, i) => (
+                                i === 0
+                                  ? <td class="row-label" set:html={formatMarkdown(cell)}></td>
+                                  : <td set:html={formatMarkdown(cell)}></td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      )}
+                    </table>
+                  </div>
+                );
+              case 'image':
+                return (
+                  <figure class="article-inline-figure">
+                    <img src={section.src} alt={section.alt} loading="lazy" />
+                    {section.caption && <figcaption>{section.caption}</figcaption>}
+                  </figure>
+                );
               default:
                 return null;
             }
@@ -870,6 +906,87 @@ const blogPostingSchema = {
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
+  }
+
+  /* Comparison Table */
+  .table-wrapper {
+    margin: 40px 0;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.01);
+  }
+
+  .comparison-table thead tr {
+    background: rgba(168, 85, 247, 0.08);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+  }
+
+  .comparison-table th {
+    padding: 18px 24px;
+    text-align: left;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    white-space: nowrap;
+  }
+
+  .comparison-table td {
+    padding: 16px 24px;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: top;
+  }
+
+  .comparison-table td.row-label {
+    font-weight: 700;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .comparison-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comparison-table tbody tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  /* Inline article image / figure */
+  .article-inline-figure {
+    margin: 50px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  }
+
+  .article-inline-figure img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16/7;
+  }
+
+  .article-inline-figure figcaption {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--border-color);
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
   }
 
   /* Related section */
