@@ -79,9 +79,9 @@ export const seoConfig = {
 
   pages: {
     home: {
-      title: 'Diseño y Desarrollo Web a Medida en Sevilla | Ecentia',
-      description: 'Diseño de páginas web y tiendas online profesionales adaptadas a tu negocio. WordPress, Shopify y código a medida con presupuesto personalizado gratuito en 24h.',
-      keywords: 'página web para mi negocio sevilla, hacer una página web para mi negocio, página web para negocio, quiero una página web sevilla, presupuesto página web sevilla, página web barata sevilla, wordpress sevilla, shopify sevilla, ecentia, ecentia arahal',
+      title: 'Diseño Web Profesional en Sevilla | Presupuesto Gratis | Ecentia',
+      description: 'Páginas web y tiendas online a medida que atraen clientes. WordPress, Shopify o desarrollo propio. Presupuesto gratuito y personalizado en menos de 24h. Sevilla y toda España.',
+      keywords: 'diseño web sevilla, página web para mi negocio, hacer una página web negocio sevilla, presupuesto página web gratis, agencia web sevilla, página web profesional arahal, wordpress sevilla, shopify sevilla, ecentia',
       breadcrumb: [
         { name: 'Inicio', url: '/' }
       ],
@@ -235,9 +235,9 @@ export const seoConfig = {
     },
     
     servicios: {
-      title: 'Servicios de Diseño Web, Posicionamiento SEO y E-commerce | Ecentia',
-      description: 'Agencia de diseño de páginas web profesionales, posicionamiento SEO estratégico y desarrollo de e-commerce a medida. Impulsamos tu negocio en Sevilla, Málaga y toda España.',
-      keywords: 'diseño web sevilla, agencia seo sevilla, desarrollo web malaga, crear tienda online shopify, diseño paginas web andalucia, consultoria tecnologica españa, programacion web a medida',
+      title: 'Diseño Web, SEO y Tiendas Online en Sevilla | Ecentia Servicios',
+      description: 'Diseño web profesional, posicionamiento SEO local y e-commerce a medida en Sevilla, Málaga y España. Proyectos que generan tráfico y ventas reales. Consulta sin coste.',
+      keywords: 'diseño web sevilla, posicionamiento seo sevilla, agencia seo malaga, crear tienda online shopify, desarrollo web andalucia, automatización ia empresa, web a medida sevilla, marketing digital sevilla',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Servicios', url: '/servicios' }
@@ -314,9 +314,9 @@ export const seoConfig = {
     },
     
     proyectos: {
-      title: 'Diseño Web y SEO: Casos de Éxito en Sevilla y España | Ecentia',
-      description: 'Ver casos reales de éxito en diseño de páginas web profesionales, desarrollo de tiendas online Shopify y posicionamiento SEO. Impulsamos negocios en Sevilla, Málaga y toda España.',
-      keywords: 'casos de éxito diseño web, portfolio de páginas web sevilla, desarrollo tienda online shopify andalucia, agencia seo sevilla opiniones, diseño web corporativo españa, programacion web a medida sevilla',
+      title: 'Proyectos de Diseño Web y SEO en Sevilla | Portfolio Ecentia',
+      description: 'Descubre proyectos reales de páginas web, tiendas online y posicionamiento SEO para empresas en Sevilla, Málaga y España. Resultados medibles y diseño diferenciador.',
+      keywords: 'portfolio diseño web sevilla, casos de éxito web, proyectos tienda online shopify andalucia, ejemplos webs profesionales pymes, agencia seo sevilla resultados, web a medida sevilla ejemplos',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Proyectos', url: '/proyectos' }
@@ -334,9 +334,9 @@ export const seoConfig = {
     },
     
     contacto: {
-      title: 'Contacto | Presupuesto Gratis 24h | Ecentia Sevilla',
-      description: 'Contacta con Ecentia y recibe tu presupuesto de diseño web o SEO en menos de 24h sin compromiso. Atendemos Sevilla, Málaga y toda Andalucía.',
-      keywords: 'ecentia contacto, esentia contacto, presupuesto diseño web, ecentia telefono',
+      title: 'Pide tu Presupuesto Web Gratis en 24h | Contacto Ecentia',
+      description: 'Cuéntanos tu proyecto y recibe una propuesta personalizada de diseño web, SEO o tienda online en menos de 24h. Sin compromiso. Sevilla, Málaga y toda España.',
+      keywords: 'contacto ecentia, presupuesto diseño web gratis, presupuesto seo sevilla, pedir presupuesto web, contactar agencia web sevilla, ecentia telefono, esentia contacto',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Contacto', url: '/contacto' }
@@ -348,9 +348,9 @@ export const seoConfig = {
       }
     },
     blog: {
-      title: 'Blog de Diseño Web, SEO y Marketing Digital para PYMEs | Ecentia',
-      description: 'Guías prácticas y artículos especializados en posicionamiento SEO, diseño web profesional y automatización con IA para empresas en España. Aprende a atraer más clientes.',
-      keywords: 'blog diseño web pymes, guía seo para negocios, marketing digital sevilla, cómo aparecer en google, cuánto cuesta una web, blog automatización ia, blog desarrollo web astro, recursos marketing digital españa',
+      title: 'Blog SEO, Diseño Web y Marketing Digital para PYMEs | Ecentia',
+      description: 'Guías prácticas sobre SEO, diseño web y automatización con IA para pymes en España. Aprende a atraer más clientes y posicionarte en Google. Artículos gratuitos.',
+      keywords: 'blog seo pymes españa, guía posicionamiento google, blog diseño web profesional, marketing digital para empresas, cuánto cuesta una web españa, cómo aparecer primero google, wix wordpress web a medida',
       breadcrumb: [
         { name: 'Inicio', url: '/' },
         { name: 'Blog', url: '/blog' }
