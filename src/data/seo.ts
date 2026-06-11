@@ -382,6 +382,52 @@ export const seoConfig = {
         ]
       }
     },
+    
+    // LANDINGS OCULTAS (GEO/SEO LOCAL)
+    'sectores/restaurantes': {
+      title: 'Diseño Web para Restaurantes y Hostelería + Reservas IA | Ecentia',
+      description: 'Atrae más comensales con una web optimizada para SEO Local. Integra menú digital interactivo y automatiza reservas con IA 24/7. Solicita presupuesto.',
+      keywords: 'diseño web para restaurantes, seo local hostelería, menú digital interactivo, reservas online restaurante, web corporativa restaurante',
+      breadcrumb: [
+        { name: 'Inicio', url: '/' },
+        { name: 'Restaurantes', url: '/sectores/restaurantes' }
+      ],
+      schema: {
+        "@type": "WebPage",
+        "name": "Diseño Web y Digitalización para Restaurantes",
+        "description": "Desarrollo de páginas web SEO y menús digitales interactivos con IA para el sector hostelería."
+      }
+    },
+
+    'sectores/barberias': {
+      title: 'Diseño Web para Barberías y Centros de Estética + Citas IA | Ecentia',
+      description: 'Llena tu agenda con una página web profesional para tu salón. Posicionamiento SEO Local y sistema inteligente de citas automatizadas con IA por WhatsApp.',
+      keywords: 'diseño web para barberías, seo local estética, citas online peluquería, página web salón de belleza, automatización de reservas online',
+      breadcrumb: [
+        { name: 'Inicio', url: '/' },
+        { name: 'Barberías y Estética', url: '/sectores/barberias' }
+      ],
+      schema: {
+        "@type": "WebPage",
+        "name": "Diseño Web y Agenda Automatizada para Barberías y Centros de Estética",
+        "description": "Desarrollo web corporativo con sistema de citas online integrado y recordatorios por WhatsApp."
+      }
+    },
+
+    'sectores/clinicas': {
+      title: 'Diseño Web para Clínicas y Centros Médicos + CRM IA | Ecentia',
+      description: 'Webs premium para clínicas médicas y estéticas (100% RGPD). Capta pacientes con SEO Local y automatiza su seguimiento mediante CRM e Inteligencia Artificial.',
+      keywords: 'diseño web clínicas médicas, seo médico, web para clínica dental, crm personalizado clínicas, captación de pacientes',
+      breadcrumb: [
+        { name: 'Inicio', url: '/' },
+        { name: 'Clínicas y Salud', url: '/sectores/clinicas' }
+      ],
+      schema: {
+        "@type": "WebPage",
+        "name": "Diseño Web Premium y CRM para Clínicas y Centros Médicos",
+        "description": "Desarrollo de páginas web corporativas enfocadas en la captación de pacientes y CRM médico a medida."
+      }
+    }
   },
 
   sitelinks: [
