@@ -105,9 +105,16 @@
         z-index: 1;
     }
 
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
     .mega-title {
         font-family: 'Syne', sans-serif;
-        font-size: clamp(3rem, 9.2vw, 8.5rem);
+        font-size: clamp(3rem, 8.8vw, 8.2rem);
         line-height: 0.95;
         font-weight: 800;
         text-transform: uppercase;
@@ -375,12 +382,13 @@
         }
 
         .mega-title {
-            font-size: clamp(2.5rem, 13vw, 5.5rem);
+            font-size: clamp(2.2rem, 11.2vw, 4.4rem);
             margin-bottom: 20px;
             white-space: normal;
             overflow: hidden;
             width: 100%;
             line-height: 0.95;
+            order: 2;
         }
         
         .line { 
@@ -390,6 +398,10 @@
         }
         
         .line.indent { margin-left: 0 !important; }
+
+        .hero-body {
+            order: 3;
+        }
 
         .hero-desc { 
             font-size: 0.95rem;
@@ -401,6 +413,7 @@
             margin-bottom: 16px;
             font-size: 0.7rem;
             padding: 6px 12px;
+            order: 1;
         }
 
         /* Stats en móvil: apilados verticalmente de forma limpia y simétrica */
@@ -411,6 +424,8 @@
             align-items: center;
             padding: 20px 15px;
             gap: 15px;
+            order: 5;
+            margin-top: 35px;
         }
 
         .stat-item { 
@@ -437,8 +452,9 @@
             align-items: center;
             gap: 16px;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 25px;
             padding-bottom: 20px;
+            order: 4;
         }
 
         .btn-primary-cta {
@@ -468,6 +484,6 @@
     }
     
     @media (max-width: 380px) {
-        .mega-title { font-size: clamp(2.2rem, 12.5vw, 4.5rem); }
+        .mega-title { font-size: clamp(1.8rem, 10.5vw, 3.8rem); }
         .label-wrapper { font-size: 0.65rem; }
     }
