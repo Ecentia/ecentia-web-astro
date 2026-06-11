@@ -5,7 +5,8 @@ const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname === '/' ? '/' : pathname.replace(/\/$/, "");
 
 const isActive = (path: string) => {
-  return currentPath === path;
+  if (path === '/') return currentPath === '/';
+  return currentPath.startsWith(path);
 };
 ---
 
@@ -21,6 +22,7 @@ const isActive = (path: string) => {
       <a href="/" class="magnet-target">Inicio</a>
       <a href="/proyectos" class="magnet-target">Proyectos</a>
       <a href="/servicios" class="magnet-target">Servicios</a>
+      <a href="/blog" class="magnet-target">Blog</a>
       <a href="/contacto" class="btn-contact magnet-target">Contacto</a>
     </div>
 
@@ -50,6 +52,12 @@ const isActive = (path: string) => {
       class:list={["mobile-link", { "highlight": isActive('/servicios') }]}
     >
       Servicios
+    </a>
+    <a 
+      href="/blog" 
+      class:list={["mobile-link", { "highlight": isActive('/blog') }]}
+    >
+      Blog
     </a>
     <a 
       href="/contacto" 

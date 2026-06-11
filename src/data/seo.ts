@@ -345,6 +345,25 @@ export const seoConfig = {
         "description": "Formulario de contacto para consultas y presupuestos gratuitos"
       }
     },
+    blog: {
+      title: 'Blog de Marketing Digital, SEO y Desarrollo Web | Ecentia',
+      description: 'Artículos, guías y consejos prácticos sobre SEO orgánico, diseño web moderno y automatizaciones con Inteligencia Artificial. Aprende a hacer crecer tu negocio.',
+      keywords: 'blog seo, blog marketing digital, blog desarrollo web, ecentia blog, blog inteligencia artificial, seo sevilla, seo malaga',
+      breadcrumb: [
+        { name: 'Inicio', url: '/' },
+        { name: 'Blog', url: '/blog' }
+      ],
+      schema: {
+        "@type": "CollectionPage",
+        "name": "Blog de Ecentia",
+        "description": "Artículos especializados en diseño web, posicionamiento en Google y automatización con IA para empresas.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Ecentia",
+          "alternateName": ["Esentia"]
+        }
+      }
+    },
   },
 
   sitelinks: [

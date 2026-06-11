@@ -1,0 +1,257 @@
+---
+// src/components/BlogCard.astro
+import type { BlogPost } from '../data/blog';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+
+// Formatear la fecha en español
+const formattedDate = new Date(post.publishDate).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class="blog-card fade-in-up">
+  <a href={`/blog/${post.slug}`} class="blog-image-container magnet-target">
+    <div class="image-overlay">
+      <span>Leer Artículo</span>
+    </div>
+    <img src={post.image} alt={`Portada de: ${post.title}`} loading="lazy" />
+  </a>
+
+  <div class="blog-content">
+    <div class="blog-meta">
+      <span class="blog-date">
+        <i class="far fa-calendar-alt"></i> {formattedDate}
+      </span>
+      <span class="blog-divider">•</span>
+      <span class="blog-read-time">
+        <i class="far fa-clock"></i> {post.readTime}
+      </span>
+    </div>
+
+    <h3 class="blog-title">
+      <a href={`/blog/${post.slug}`} class="magnet-target">{post.title}</a>
+    </h3>
+
+    <p class="blog-excerpt">{post.description}</p>
+
+    <div class="blog-footer">
+      <ul class="blog-tags">
+        {post.tags.map(tag => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+      <a href={`/blog/${post.slug}`} class="read-more-link magnet-target" aria-label={`Leer artículo completo: ${post.title}`}>
+        Leer más <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.4s var(--ease-out-expo), border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.05);
+  }
+
+  .blog-image-container {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .blog-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 16, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+  }
+
+  .image-overlay span {
+    padding: 10px 20px;
+    background: var(--white);
+    color: var(--bg-color);
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transform: translateY(15px);
+    transition: transform 0.4s ease;
+  }
+
+  .blog-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+  }
+
+  .blog-meta i {
+    color: var(--accent-color);
+    margin-right: 4px;
+  }
+
+  .blog-divider {
+    opacity: 0.3;
+  }
+
+  .blog-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .blog-title a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .blog-title a:hover {
+    color: var(--accent-color);
+  }
+
+  .blog-excerpt {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  .blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 15px;
+  }
+
+  .blog-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .blog-tags li {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+  }
+
+  .read-more-link {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  .read-more-link i {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  .read-more-link:hover {
+    color: var(--accent-color);
+  }
+
+  .read-more-link:hover i {
+    transform: translateX(4px);
+  }
+
+  @media (hover: hover) {
+    .blog-image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    .blog-image-container:hover .image-overlay {
+      opacity: 1;
+    }
+
+    .blog-image-container:hover .image-overlay span {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .blog-content {
+      padding: 20px;
+    }
+    .blog-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .read-more-link {
+      margin-top: 5px;
+    }
+  }
+</style>

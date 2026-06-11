@@ -1,0 +1,922 @@
+---
+// src/pages/blog/[slug].astro
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { blogPosts, type BlogPost, type BlogSection } from "../../data/blog";
+
+export async function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+
+// Obtener posts relacionados (máximo 2, excluyendo el actual)
+const relatedPosts = blogPosts
+  .filter((p) => p.slug !== post.slug)
+  .slice(0, 2);
+
+// Formatear la fecha
+const formattedDate = new Date(post.publishDate).toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// Función simple para parsear negritas de Markdown (**texto**) en HTML
+const formatMarkdown = (text?: string) => {
+  if (!text) return "";
+  return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+};
+
+// Generar IDs para las cabeceras (H2 e H3) para el TOC y enlaces internos
+const slugify = (text?: string) => {
+  if (!text) return "";
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // quitar acentos
+    .replace(/\s+/g, "-") // reemplazar espacios con guiones
+    .replace(/[^\w\-]+/g, "") // quitar caracteres no válidos
+    .replace(/\-\-+/g, "-") // colapsar guiones múltiples
+    .replace(/^-+/, "") // recortar del inicio
+    .replace(/-+$/, ""); // recortar del final
+};
+
+// Obtener todas las cabeceras para la Tabla de Contenidos (TOC)
+const headings = post.sections
+  .filter((sec) => sec.type === "h2" || sec.type === "h3")
+  .map((sec) => ({
+    text: sec.text || "",
+    level: sec.type,
+    id: slugify(sec.text),
+  }));
+
+// Schema.org JSON-LD para BlogPosting
+const schemaUrl = `https://ecentia.es/blog/${post.slug}`;
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${schemaUrl}#blogposting`,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": schemaUrl
+  },
+  "headline": post.title,
+  "description": post.description,
+  "image": post.image,
+  "datePublished": post.publishDate,
+  "dateModified": post.publishDate,
+  "author": {
+    "@type": "Organization",
+    "name": "Ecentia Editorial",
+    "url": "https://ecentia.es"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ecentia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ecentia.es/logo.png"
+    }
+  },
+  "keywords": post.keywords.join(", ")
+};
+---
+
+<Layout 
+  title={post.seoTitle} 
+  description={post.seoDescription} 
+  keywords={post.keywords.join(", ")}
+  image={post.image}
+>
+  <Header />
+
+  <!-- Barra de progreso de lectura -->
+  <div class="reading-progress-container">
+    <div class="reading-progress-bar" id="reading-progress"></div>
+  </div>
+
+  <main class="article-page">
+    <article class="article-container">
+      
+      <!-- Cabecera del Artículo -->
+      <header class="article-header container">
+        <div class="header-breadcrumbs">
+          <a href="/" class="magnet-target">Inicio</a>
+          <i class="fas fa-chevron-right separator"></i>
+          <a href="/blog" class="magnet-target">Blog</a>
+          <i class="fas fa-chevron-right separator"></i>
+          <span class="active-crumb">{post.title}</span>
+        </div>
+
+        <div class="tags-container">
+          {post.tags.map(tag => (
+            <span class="tag-badge">{tag}</span>
+          ))}
+        </div>
+
+        <h1 class="article-title">{post.title}</h1>
+
+        <div class="article-meta">
+          <div class="meta-author">
+            <span class="author-avatar"><i class="fas fa-user-edit"></i></span>
+            <span class="author-name">{post.author}</span>
+          </div>
+          <span class="meta-divider">•</span>
+          <time datetime={post.publishDate} class="meta-date">
+            <i class="far fa-calendar-alt"></i> {formattedDate}
+          </time>
+          <span class="meta-divider">•</span>
+          <span class="meta-readtime">
+            <i class="far fa-clock"></i> {post.readTime}
+          </span>
+        </div>
+      </header>
+
+      <!-- Portada Principal -->
+      <div class="article-hero-image container">
+        <div class="image-wrapper">
+          <img src={post.image} alt={`Portada de: ${post.title}`} class="hero-img" />
+        </div>
+        <div class="hero-glow"></div>
+      </div>
+
+      <!-- Cuerpo y Tabla de Contenidos -->
+      <div class="article-body-layout container">
+        
+        <!-- Tabla de Contenidos Flotante Lateral -->
+        <aside class="article-sidebar">
+          {headings.length > 0 && (
+            <div class="toc-card">
+              <h4>ÍNDICE DE CONTENIDOS</h4>
+              <nav class="toc-nav" id="toc-nav">
+                <ul>
+                  {headings.map(h => (
+                    <li class={`toc-item level-${h.level}`}>
+                      <a href={`#${h.id}`} class="toc-link magnet-target" data-target={h.id}>
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          )}
+
+          <!-- Compartir -->
+          <div class="share-card">
+            <h4>COMPARTIR</h4>
+            <div class="share-buttons">
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(schemaUrl)}`} target="_blank" rel="noopener noreferrer" class="share-btn linkedin magnet-target" aria-label="Compartir en LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(schemaUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" class="share-btn twitter magnet-target" aria-label="Compartir en Twitter">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(schemaUrl)}`} target="_blank" rel="noopener noreferrer" class="share-btn facebook magnet-target" aria-label="Compartir en Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <button class="share-btn copy magnet-target" id="btn-copy-link" data-url={schemaUrl} aria-label="Copiar enlace al portapapeles">
+                <i class="fas fa-link"></i>
+              </button>
+            </div>
+            <span class="copied-toast" id="copied-toast">¡Enlace copiado!</span>
+          </div>
+        </aside>
+
+        <!-- Contenido Semántico -->
+        <section class="article-content" id="article-content">
+          {post.sections.map((section) => {
+            const headingId = slugify(section.text);
+            switch (section.type) {
+              case 'h2':
+                return <h2 id={headingId} class="scroll-anchor">{section.text}</h2>;
+              case 'h3':
+                return <h3 id={headingId} class="scroll-anchor">{section.text}</h3>;
+              case 'paragraph':
+                return <p set:html={formatMarkdown(section.text)}></p>;
+              case 'blockquote':
+                return <blockquote><p>{section.text}</p></blockquote>;
+              case 'list':
+                return (
+                  <ul>
+                    {section.items?.map(item => (
+                      <li set:html={formatMarkdown(item)}></li>
+                    ))}
+                  </ul>
+                );
+              case 'code':
+                return (
+                  <div class="code-block-wrapper">
+                    {section.language && <div class="code-lang">{section.language}</div>}
+                    <pre><code class={`language-${section.language || 'text'}`}>{section.code}</code></pre>
+                  </div>
+                );
+              default:
+                return null;
+            }
+          })}
+        </section>
+
+      </div>
+    </article>
+
+    <!-- Artículos Relacionados -->
+    {relatedPosts.length > 0 && (
+      <section class="related-posts-section">
+        <div class="container">
+          <h2 class="section-title">Artículos <span class="text-gradient">relacionados.</span></h2>
+          <div class="related-grid">
+            {relatedPosts.map(p => (
+              <a href={`/blog/${p.slug}`} class="related-card magnet-target">
+                <div class="related-img-wrapper">
+                  <img src={p.image} alt={p.title} />
+                </div>
+                <div class="related-content">
+                  <span class="related-tag">{p.tags[0]}</span>
+                  <h3>{p.title}</h3>
+                  <span class="related-link">Leer artículo <i class="fas fa-arrow-right"></i></span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA Directo -->
+    <section class="project-cta container">
+      <div class="cta-box">
+        <h2>¿Quieres posicionarte por encima de tu competencia?</h2>
+        <p>Llevamos el SEO y la tecnología de tu web al siguiente nivel. Obtén una auditoría SEO inicial sin coste.</p>
+        <a href="/contacto" class="btn-primary magnet-target">Solicitar Auditoría Gratis</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <!-- Inyectar Schema de forma aislada -->
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // 1. Barra de Progreso de Lectura
+    const progress = document.getElementById("reading-progress");
+    const updateProgress = () => {
+      if (!progress) return;
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight <= 0) {
+        progress.style.width = "0%";
+        return;
+      }
+      const scrollPos = window.scrollY || window.pageYOffset;
+      const percentage = (scrollPos / totalHeight) * 100;
+      progress.style.width = `${percentage}%`;
+    };
+    
+    window.addEventListener("scroll", updateProgress);
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+
+    // 2. Copiar enlace al portapapeles
+    const copyBtn = document.getElementById("btn-copy-link");
+    const toast = document.getElementById("copied-toast");
+    copyBtn?.addEventListener("click", () => {
+      const url = copyBtn.dataset.url || window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        if (toast) {
+          toast.classList.add("show");
+          setTimeout(() => {
+            toast.classList.remove("show");
+          }, 2500);
+        }
+      });
+    });
+
+    // 3. Highlight de la Tabla de Contenidos Activa al Hacer Scroll
+    const anchors = document.querySelectorAll(".scroll-anchor");
+    const tocLinks = document.querySelectorAll(".toc-link");
+
+    if (anchors.length && tocLinks.length) {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-10% 0px -75% 0px",
+        threshold: 0,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            tocLinks.forEach((link) => {
+              const htmlLink = link as HTMLElement;
+              if (htmlLink.dataset.target === id) {
+                htmlLink.classList.add("active");
+              } else {
+                htmlLink.classList.remove("active");
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      anchors.forEach((anchor) => observer.observe(anchor));
+    }
+  });
+</script>
+
+<style>
+  main {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Barra de progreso de lectura */
+  .reading-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 1002;
+  }
+
+  .reading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary-gradient);
+    transition: width 0.1s linear;
+  }
+
+  /* Breadcrumbs */
+  .header-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+
+  .header-breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .header-breadcrumbs a:hover {
+    color: var(--white);
+  }
+
+  .header-breadcrumbs .separator {
+    font-size: 0.7rem;
+    opacity: 0.5;
+  }
+
+  .header-breadcrumbs .active-crumb {
+    color: var(--white);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+  }
+
+  @media (min-width: 768px) {
+    .header-breadcrumbs .active-crumb {
+      max-width: 450px;
+    }
+  }
+
+  /* Article Header */
+  .article-header {
+    padding: 180px 0 40px;
+    max-width: 900px;
+  }
+
+  .tags-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .tag-badge {
+    background: rgba(168, 85, 247, 0.1);
+    color: var(--accent-color);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 25px;
+    text-wrap: balance;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .author-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+  }
+
+  .meta-date i, .meta-readtime i {
+    color: var(--accent-color);
+    margin-right: 4px;
+  }
+
+  .meta-divider {
+    opacity: 0.3;
+  }
+
+  /* Cover Image */
+  .article-hero-image {
+    position: relative;
+    margin-bottom: 60px;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    aspect-ratio: 21/9;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Body Layout */
+  .article-body-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding-bottom: 80px;
+  }
+
+  @media (min-width: 992px) {
+    .article-body-layout {
+      grid-template-columns: 320px 1fr;
+      gap: 80px;
+    }
+  }
+
+  /* Sidebar */
+  .article-sidebar {
+    order: 2;
+  }
+
+  @media (min-width: 992px) {
+    .article-sidebar {
+      order: 1;
+      position: sticky;
+      top: 130px;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+
+  .toc-card, .share-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+  }
+
+  .toc-card h4, .share-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+
+  .toc-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .toc-item.level-h3 {
+    padding-left: 15px;
+  }
+
+  .toc-link {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    line-height: 1.4;
+    display: inline-block;
+  }
+
+  .toc-link:hover, .toc-link.active {
+    color: var(--white);
+    transform: translateX(4px);
+  }
+
+  .toc-link.active {
+    font-weight: 600;
+    border-left: 2px solid var(--accent-color);
+    padding-left: 8px;
+    margin-left: -10px;
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .share-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .share-btn:hover {
+    background: var(--white);
+    color: var(--bg-color);
+    border-color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .share-btn.copy:hover {
+    background: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+  }
+
+  .copied-toast {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .copied-toast.show {
+    opacity: 1;
+  }
+
+  /* Content area */
+  .article-content {
+    order: 1;
+    max-width: 800px;
+  }
+
+  @media (min-width: 992px) {
+    .article-content {
+      order: 2;
+    }
+  }
+
+  .article-content p {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 25px;
+  }
+
+  .article-content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 50px 0 20px;
+    line-height: 1.25;
+  }
+
+  .article-content h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 35px 0 15px;
+    line-height: 1.3;
+  }
+
+  .article-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    background: rgba(168, 85, 247, 0.03);
+    padding: 25px 30px;
+    border-radius: 0 16px 16px 0;
+    margin: 35px 0;
+  }
+
+  .article-content blockquote p {
+    font-style: italic;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--white);
+  }
+
+  .article-content ul {
+    margin: 0 0 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .article-content ul li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Code block */
+  .code-block-wrapper {
+    margin: 35px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .code-lang {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 1px;
+  }
+
+  .code-block-wrapper pre {
+    padding: 20px;
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  .code-block-wrapper code {
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Related section */
+  .related-posts-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: var(--white);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  @media (min-width: 768px) {
+    .related-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .related-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.03);
+  }
+
+  .related-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16/7;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .related-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .related-card:hover img {
+    transform: scale(1.03);
+  }
+
+  .related-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .related-tag {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .related-content h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .related-link {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .related-link i {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  .related-card:hover .related-link {
+    color: var(--accent-color);
+  }
+
+  .related-card:hover .related-link i {
+    transform: translateX(4px);
+  }
+
+  /* CTA */
+  .project-cta {
+    padding: 80px 0 150px;
+    text-align: center;
+  }
+
+  .cta-box {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid var(--border-color);
+    padding: 80px 20px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box h2 {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .cta-box p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--white);
+    color: var(--bg-color);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Adjustments */
+  @media (max-width: 768px) {
+    .article-header {
+      padding: 130px 0 30px;
+    }
+    .image-wrapper {
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+    }
+    .article-hero-image {
+      margin-bottom: 40px;
+    }
+    .cta-box {
+      padding: 50px 20px;
+    }
+  }
+</style>

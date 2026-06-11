@@ -1,17 +1,27 @@
 import type { APIRoute } from 'astro';
+import { blogPosts } from '../data/blog';
 
 export const GET: APIRoute = async () => {
   const baseUrl = 'https://ecentia.com';
   
-  const pages = [
+  const staticPages = [
     { url: '', priority: '1.0', changefreq: 'weekly' },
     { url: '/servicios', priority: '0.9', changefreq: 'weekly' },
     { url: '/proyectos', priority: '0.9', changefreq: 'weekly' },
     { url: '/contacto', priority: '0.8', changefreq: 'monthly' },
+    { url: '/blog', priority: '0.9', changefreq: 'daily' },
     { url: '/legal/aviso-legal', priority: '0.3', changefreq: 'yearly' },
     { url: '/legal/politica-privacidad', priority: '0.3', changefreq: 'yearly' },
     { url: '/legal/politica-cookies', priority: '0.3', changefreq: 'yearly' },
   ];
+
+  const blogPages = blogPosts.map(post => ({
+    url: `/blog/${post.slug}`,
+    priority: '0.8',
+    changefreq: 'weekly'
+  }));
+
+  const pages = [...staticPages, ...blogPages];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
